@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A18226C0FA200042919 /* AppDelegate.swift */; };
-		B6929A1B226C0FA200042919 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A1A226C0FA200042919 /* ViewController.swift */; };
 		B6929A1E226C0FA200042919 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A1C226C0FA200042919 /* Main.storyboard */; };
 		B6929A20226C0FA300042919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6929A1F226C0FA300042919 /* Assets.xcassets */; };
 		B6929A23226C0FA300042919 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A21226C0FA300042919 /* LaunchScreen.storyboard */; };
@@ -22,6 +21,17 @@
 		B6929A47226C11DF00042919 /* Ex+CoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A40226C11DF00042919 /* Ex+CoreGraphics.swift */; };
 		B6929A49226C11E500042919 /* RMStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A48226C11E500042919 /* RMStorage.swift */; };
 		B6929A4D226C120200042919 /* IEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A4C226C120200042919 /* IEView.swift */; };
+		B6929A53226C139500042919 /* HSMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A52226C139500042919 /* HSMainMenuViewController.swift */; };
+		B6929A55226C13A000042919 /* HSMainMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A54226C13A000042919 /* HSMainMenuViewModel.swift */; };
+		B6929A58226C13B600042919 /* HSMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A57226C13B600042919 /* HSMapViewController.swift */; };
+		B6929A5A226C13BF00042919 /* HSMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A59226C13BF00042919 /* HSMapViewModel.swift */; };
+		B6929A5D226C13E400042919 /* HSMapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A5C226C13E400042919 /* HSMapDetailViewController.swift */; };
+		B6929A5F226C13EA00042919 /* HSMapDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A5E226C13EA00042919 /* HSMapDetailViewModel.swift */; };
+		B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A60226C13FD00042919 /* HSMapDetailView.storyboard */; };
+		B6929A63226C141600042919 /* HSMapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A62226C141600042919 /* HSMapView.storyboard */; };
+		B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A64226C142100042919 /* HSMainMenu.storyboard */; };
+		B6929A68226C146E00042919 /* HSGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A67226C146E00042919 /* HSGameController.swift */; };
+		B6929A6B226C14A600042919 /* HSPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6A226C14A600042919 /* HSPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +47,6 @@
 /* Begin PBXFileReference section */
 		B6929A15226C0FA200042919 /* Heisei_Jinsei_Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heisei_Jinsei_Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6929A18226C0FA200042919 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6929A1A226C0FA200042919 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B6929A1D226C0FA200042919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B6929A1F226C0FA300042919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6929A22226C0FA300042919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +63,17 @@
 		B6929A40226C11DF00042919 /* Ex+CoreGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ex+CoreGraphics.swift"; sourceTree = "<group>"; };
 		B6929A48226C11E500042919 /* RMStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMStorage.swift; sourceTree = "<group>"; };
 		B6929A4C226C120200042919 /* IEView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IEView.swift; sourceTree = "<group>"; };
+		B6929A52226C139500042919 /* HSMainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSMainMenuViewController.swift; sourceTree = "<group>"; };
+		B6929A54226C13A000042919 /* HSMainMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSMainMenuViewModel.swift; sourceTree = "<group>"; };
+		B6929A57226C13B600042919 /* HSMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSMapViewController.swift; sourceTree = "<group>"; };
+		B6929A59226C13BF00042919 /* HSMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSMapViewModel.swift; sourceTree = "<group>"; };
+		B6929A5C226C13E400042919 /* HSMapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSMapDetailViewController.swift; sourceTree = "<group>"; };
+		B6929A5E226C13EA00042919 /* HSMapDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSMapDetailViewModel.swift; sourceTree = "<group>"; };
+		B6929A60226C13FD00042919 /* HSMapDetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSMapDetailView.storyboard; sourceTree = "<group>"; };
+		B6929A62226C141600042919 /* HSMapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSMapView.storyboard; sourceTree = "<group>"; };
+		B6929A64226C142100042919 /* HSMainMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSMainMenu.storyboard; sourceTree = "<group>"; };
+		B6929A67226C146E00042919 /* HSGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSGameController.swift; sourceTree = "<group>"; };
+		B6929A6A226C14A600042919 /* HSPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,13 +115,13 @@
 		B6929A17226C0FA200042919 /* Heisei_Jinsei_Game */ = {
 			isa = PBXGroup;
 			children = (
-				B6929A38226C0FB000042919 /* CommonLib */,
-				B6929A18226C0FA200042919 /* AppDelegate.swift */,
-				B6929A1A226C0FA200042919 /* ViewController.swift */,
-				B6929A1C226C0FA200042919 /* Main.storyboard */,
-				B6929A1F226C0FA300042919 /* Assets.xcassets */,
-				B6929A21226C0FA300042919 /* LaunchScreen.storyboard */,
 				B6929A24226C0FA300042919 /* Info.plist */,
+				B6929A18226C0FA200042919 /* AppDelegate.swift */,
+				B6929A4F226C135900042919 /* Interface */,
+				B6929A38226C0FB000042919 /* CommonLib */,
+				B6929A66226C143A00042919 /* System */,
+				B6929A50226C136700042919 /* View-ViewModel */,
+				B6929A4E226C134A00042919 /* Resource */,
 			);
 			path = Heisei_Jinsei_Game;
 			sourceTree = "<group>";
@@ -153,6 +173,80 @@
 				B6929A4C226C120200042919 /* IEView.swift */,
 			);
 			path = IEKit;
+			sourceTree = "<group>";
+		};
+		B6929A4E226C134A00042919 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A1F226C0FA300042919 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		B6929A4F226C135900042919 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A21226C0FA300042919 /* LaunchScreen.storyboard */,
+				B6929A1C226C0FA200042919 /* Main.storyboard */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		B6929A50226C136700042919 /* View-ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A5B226C13C300042919 /* MapDetail */,
+				B6929A56226C13A400042919 /* Map */,
+				B6929A51226C138100042919 /* MainMenu */,
+			);
+			path = "View-ViewModel";
+			sourceTree = "<group>";
+		};
+		B6929A51226C138100042919 /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A64226C142100042919 /* HSMainMenu.storyboard */,
+				B6929A52226C139500042919 /* HSMainMenuViewController.swift */,
+				B6929A54226C13A000042919 /* HSMainMenuViewModel.swift */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		B6929A56226C13A400042919 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A62226C141600042919 /* HSMapView.storyboard */,
+				B6929A57226C13B600042919 /* HSMapViewController.swift */,
+				B6929A59226C13BF00042919 /* HSMapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		B6929A5B226C13C300042919 /* MapDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A60226C13FD00042919 /* HSMapDetailView.storyboard */,
+				B6929A5C226C13E400042919 /* HSMapDetailViewController.swift */,
+				B6929A5E226C13EA00042919 /* HSMapDetailViewModel.swift */,
+			);
+			path = MapDetail;
+			sourceTree = "<group>";
+		};
+		B6929A66226C143A00042919 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A69226C149A00042919 /* DataClass */,
+				B6929A67226C146E00042919 /* HSGameController.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		B6929A69226C149A00042919 /* DataClass */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A6A226C14A600042919 /* HSPlayer.swift */,
+			);
+			path = DataClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,9 +330,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */,
+				B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */,
 				B6929A23226C0FA300042919 /* LaunchScreen.storyboard in Resources */,
 				B6929A20226C0FA300042919 /* Assets.xcassets in Resources */,
 				B6929A1E226C0FA200042919 /* Main.storyboard in Resources */,
+				B6929A63226C141600042919 /* HSMapView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,14 +354,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6929A46226C11DF00042919 /* Ex+UIColor.swift in Sources */,
+				B6929A55226C13A000042919 /* HSMainMenuViewModel.swift in Sources */,
 				B6929A45226C11DF00042919 /* Ex+UIKit.swift in Sources */,
 				B6929A49226C11E500042919 /* RMStorage.swift in Sources */,
 				B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */,
 				B6929A4D226C120200042919 /* IEView.swift in Sources */,
 				B6929A47226C11DF00042919 /* Ex+CoreGraphics.swift in Sources */,
-				B6929A1B226C0FA200042919 /* ViewController.swift in Sources */,
+				B6929A58226C13B600042919 /* HSMapViewController.swift in Sources */,
 				B6929A44226C11DF00042919 /* EX+SpriteKit.swift in Sources */,
 				B6929A42226C11DF00042919 /* Ex+Swift.swift in Sources */,
+				B6929A5A226C13BF00042919 /* HSMapViewModel.swift in Sources */,
+				B6929A53226C139500042919 /* HSMainMenuViewController.swift in Sources */,
+				B6929A68226C146E00042919 /* HSGameController.swift in Sources */,
+				B6929A6B226C14A600042919 /* HSPlayer.swift in Sources */,
+				B6929A5D226C13E400042919 /* HSMapDetailViewController.swift in Sources */,
+				B6929A5F226C13EA00042919 /* HSMapDetailViewModel.swift in Sources */,
 				B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */,
 				B6929A43226C11DF00042919 /* Ex+Foundation.swift in Sources */,
 			);
