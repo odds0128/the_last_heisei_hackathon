@@ -13,11 +13,9 @@ import Foundation
  シングルトンとして、`default`を持ちます。
  
  --通知--
- HSPlayerTroutManagerは以下の通知を投げます。ViewModelはこれを受け取って、Viewに状態を反映させてください。
+ HSPlayerTroutManagerは以下の通知を投げます。
  `(object:...)`は `Notification`の`object`プロパティの中身です。
- 
- - HSPlayerTroutManagerPlayerPositionDidChange (object: HSPlayer)
- */
+  */
 class HSPlayerTroutManager{
     // MARK: - Singleton
     static let `default` = HSPlayerTroutManager()
