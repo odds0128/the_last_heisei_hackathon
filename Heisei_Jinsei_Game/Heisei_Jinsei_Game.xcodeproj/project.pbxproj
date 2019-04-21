@@ -30,13 +30,14 @@
 		B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A60226C13FD00042919 /* HSMapDetailView.storyboard */; };
 		B6929A63226C141600042919 /* HSMapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A62226C141600042919 /* HSMapView.storyboard */; };
 		B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A64226C142100042919 /* HSMainMenu.storyboard */; };
-		B6929A68226C146E00042919 /* HSGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A67226C146E00042919 /* HSGameController.swift */; };
+		B6929A68226C146E00042919 /* HSPlayerTroutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A67226C146E00042919 /* HSPlayerTroutManager.swift */; };
 		B6929A6B226C14A600042919 /* HSPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6A226C14A600042919 /* HSPlayer.swift */; };
 		B6929A6D226C155300042919 /* HSEraEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6C226C155300042919 /* HSEraEvent.swift */; };
 		B6929A6F226C1B2A00042919 /* HSEraEventAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6E226C1B2A00042919 /* HSEraEventAction.swift */; };
 		B6929A71226C1B8C00042919 /* +HSEraEventAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A70226C1B8C00042919 /* +HSEraEventAction.swift */; };
 		B6929A73226C414F00042919 /* HSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A72226C414F00042919 /* HSItem.swift */; };
 		B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A74226C42DF00042919 /* HSItemStack.swift */; };
+		B6929A79226C581700042919 /* HSGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A78226C581700042919 /* HSGameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,13 +78,15 @@
 		B6929A60226C13FD00042919 /* HSMapDetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSMapDetailView.storyboard; sourceTree = "<group>"; };
 		B6929A62226C141600042919 /* HSMapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSMapView.storyboard; sourceTree = "<group>"; };
 		B6929A64226C142100042919 /* HSMainMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSMainMenu.storyboard; sourceTree = "<group>"; };
-		B6929A67226C146E00042919 /* HSGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSGameController.swift; sourceTree = "<group>"; };
+		B6929A67226C146E00042919 /* HSPlayerTroutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSPlayerTroutManager.swift; sourceTree = "<group>"; };
 		B6929A6A226C14A600042919 /* HSPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSPlayer.swift; sourceTree = "<group>"; };
 		B6929A6C226C155300042919 /* HSEraEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSEraEvent.swift; sourceTree = "<group>"; };
 		B6929A6E226C1B2A00042919 /* HSEraEventAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSEraEventAction.swift; sourceTree = "<group>"; };
 		B6929A70226C1B8C00042919 /* +HSEraEventAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+HSEraEventAction.swift"; sourceTree = "<group>"; };
 		B6929A72226C414F00042919 /* HSItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSItem.swift; sourceTree = "<group>"; };
 		B6929A74226C42DF00042919 /* HSItemStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSItemStack.swift; sourceTree = "<group>"; };
+		B6929A76226C48F800042919 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B6929A78226C581700042919 /* HSGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSGameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,8 +248,8 @@
 		B6929A66226C143A00042919 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				B6929A77226C540E00042919 /* Manager */,
 				B6929A69226C149A00042919 /* DataClass */,
-				B6929A67226C146E00042919 /* HSGameController.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 		B6929A69226C149A00042919 /* DataClass */ = {
 			isa = PBXGroup;
 			children = (
+				B6929A76226C48F800042919 /* README.md */,
 				B6929A6A226C14A600042919 /* HSPlayer.swift */,
 				B6929A72226C414F00042919 /* HSItem.swift */,
 				B6929A74226C42DF00042919 /* HSItemStack.swift */,
@@ -262,6 +266,15 @@
 				B6929A70226C1B8C00042919 /* +HSEraEventAction.swift */,
 			);
 			path = DataClass;
+			sourceTree = "<group>";
+		};
+		B6929A77226C540E00042919 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A67226C146E00042919 /* HSPlayerTroutManager.swift */,
+				B6929A78226C581700042919 /* HSGameController.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,9 +396,10 @@
 				B6929A42226C11DF00042919 /* Ex+Swift.swift in Sources */,
 				B6929A5A226C13BF00042919 /* HSMapViewModel.swift in Sources */,
 				B6929A53226C139500042919 /* HSMainMenuViewController.swift in Sources */,
-				B6929A68226C146E00042919 /* HSGameController.swift in Sources */,
+				B6929A68226C146E00042919 /* HSPlayerTroutManager.swift in Sources */,
 				B6929A6B226C14A600042919 /* HSPlayer.swift in Sources */,
 				B6929A5D226C13E400042919 /* HSMapDetailViewController.swift in Sources */,
+				B6929A79226C581700042919 /* HSGameController.swift in Sources */,
 				B6929A6F226C1B2A00042919 /* HSEraEventAction.swift in Sources */,
 				B6929A5F226C13EA00042919 /* HSMapDetailViewModel.swift in Sources */,
 				B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */,

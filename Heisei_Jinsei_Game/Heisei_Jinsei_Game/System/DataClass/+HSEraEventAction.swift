@@ -46,6 +46,20 @@ class HSEraEventItemGettingAction: HSEraEventAction {
     }
 }
 
+/// アイテムが複数手に入れられます。
+/// 選択式です。View-ViewModel側で調整してください。
+class HSEraEventMultipulItemGettingAction: HSEraEventAction {
+    let gettableItem:HSItem
+    let maxGettingCount:Int
+    
+    init(item:HSItem, max:Int) {
+        self.gettableItem = item
+        self.maxGettingCount = max
+        
+        super.init(eventType: .good, description: "\(item.name)を\(item.price)円で\(max)個までゲットできる。")
+    }
+}
+
 /// 先のマスまで飛べます。
 /// 選択式です。View-ViewModel側で調整してください。
 class HSEraEventSkipTroutAction: HSEraEventAction{

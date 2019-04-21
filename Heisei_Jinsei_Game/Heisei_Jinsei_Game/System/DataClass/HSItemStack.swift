@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ HSItemをまとめて持てるようになります。
+ 株券とか、ビットコインとか...? 複数持つものについて
+ */
 class HSItemStack {
     let item:HSItem
     var count:Int

@@ -22,7 +22,7 @@ struct HSPlayer {
     /// プレイヤーの家族数です。
     var familyCount:Int = 0
     /// プレイヤーが持っているアイテム一覧です。
-    var currentItems = [HSItem]()
+    var currentItems = [HSItemStack]()
     /// プレイヤーの色です。生成時に自動的に決定されます。
     let color:Color
     enum Color:Int { case red=0, blue=1, green=2, yellow=3}
@@ -40,8 +40,14 @@ struct HSPlayer {
     }
 }
 
-extension HSPlayer:Equatable {
+extension HSPlayer: Equatable {
     static func == (left:HSPlayer, right:HSPlayer) -> Bool{
         return left.index == right.index
+    }
+}
+
+extension HSPlayer: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.index)
     }
 }
