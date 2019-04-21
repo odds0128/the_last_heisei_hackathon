@@ -1,0 +1,538 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A18226C0FA200042919 /* AppDelegate.swift */; };
+		B6929A1B226C0FA200042919 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A1A226C0FA200042919 /* ViewController.swift */; };
+		B6929A1E226C0FA200042919 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A1C226C0FA200042919 /* Main.storyboard */; };
+		B6929A20226C0FA300042919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6929A1F226C0FA300042919 /* Assets.xcassets */; };
+		B6929A23226C0FA300042919 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A21226C0FA300042919 /* LaunchScreen.storyboard */; };
+		B6929A2E226C0FA300042919 /* Heisei_Jinsei_GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A2D226C0FA300042919 /* Heisei_Jinsei_GameTests.swift */; };
+		B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A3A226C11DF00042919 /* Ex+UIImage.swift */; };
+		B6929A42226C11DF00042919 /* Ex+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A3B226C11DF00042919 /* Ex+Swift.swift */; };
+		B6929A43226C11DF00042919 /* Ex+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A3C226C11DF00042919 /* Ex+Foundation.swift */; };
+		B6929A44226C11DF00042919 /* EX+SpriteKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A3D226C11DF00042919 /* EX+SpriteKit.swift */; };
+		B6929A45226C11DF00042919 /* Ex+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A3E226C11DF00042919 /* Ex+UIKit.swift */; };
+		B6929A46226C11DF00042919 /* Ex+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A3F226C11DF00042919 /* Ex+UIColor.swift */; };
+		B6929A47226C11DF00042919 /* Ex+CoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A40226C11DF00042919 /* Ex+CoreGraphics.swift */; };
+		B6929A49226C11E500042919 /* RMStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A48226C11E500042919 /* RMStorage.swift */; };
+		B6929A4D226C120200042919 /* IEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A4C226C120200042919 /* IEView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B6929A2A226C0FA300042919 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6929A0D226C0FA200042919 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6929A14226C0FA200042919;
+			remoteInfo = Heisei_Jinsei_Game;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B6929A15226C0FA200042919 /* Heisei_Jinsei_Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heisei_Jinsei_Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6929A18226C0FA200042919 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B6929A1A226C0FA200042919 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B6929A1D226C0FA200042919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B6929A1F226C0FA300042919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B6929A22226C0FA300042919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B6929A24226C0FA300042919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6929A29226C0FA300042919 /* Heisei_Jinsei_GameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Heisei_Jinsei_GameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6929A2D226C0FA300042919 /* Heisei_Jinsei_GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heisei_Jinsei_GameTests.swift; sourceTree = "<group>"; };
+		B6929A2F226C0FA300042919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6929A3A226C11DF00042919 /* Ex+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ex+UIImage.swift"; sourceTree = "<group>"; };
+		B6929A3B226C11DF00042919 /* Ex+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ex+Swift.swift"; sourceTree = "<group>"; };
+		B6929A3C226C11DF00042919 /* Ex+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ex+Foundation.swift"; sourceTree = "<group>"; };
+		B6929A3D226C11DF00042919 /* EX+SpriteKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EX+SpriteKit.swift"; sourceTree = "<group>"; };
+		B6929A3E226C11DF00042919 /* Ex+UIKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ex+UIKit.swift"; sourceTree = "<group>"; };
+		B6929A3F226C11DF00042919 /* Ex+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ex+UIColor.swift"; sourceTree = "<group>"; };
+		B6929A40226C11DF00042919 /* Ex+CoreGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ex+CoreGraphics.swift"; sourceTree = "<group>"; };
+		B6929A48226C11E500042919 /* RMStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMStorage.swift; sourceTree = "<group>"; };
+		B6929A4C226C120200042919 /* IEView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IEView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6929A12226C0FA200042919 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6929A26226C0FA300042919 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B6929A0C226C0FA200042919 = {
+			isa = PBXGroup;
+			children = (
+				B6929A17226C0FA200042919 /* Heisei_Jinsei_Game */,
+				B6929A2C226C0FA300042919 /* Heisei_Jinsei_GameTests */,
+				B6929A16226C0FA200042919 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6929A16226C0FA200042919 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A15226C0FA200042919 /* Heisei_Jinsei_Game.app */,
+				B6929A29226C0FA300042919 /* Heisei_Jinsei_GameTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6929A17226C0FA200042919 /* Heisei_Jinsei_Game */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A38226C0FB000042919 /* CommonLib */,
+				B6929A18226C0FA200042919 /* AppDelegate.swift */,
+				B6929A1A226C0FA200042919 /* ViewController.swift */,
+				B6929A1C226C0FA200042919 /* Main.storyboard */,
+				B6929A1F226C0FA300042919 /* Assets.xcassets */,
+				B6929A21226C0FA300042919 /* LaunchScreen.storyboard */,
+				B6929A24226C0FA300042919 /* Info.plist */,
+			);
+			path = Heisei_Jinsei_Game;
+			sourceTree = "<group>";
+		};
+		B6929A2C226C0FA300042919 /* Heisei_Jinsei_GameTests */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A2D226C0FA300042919 /* Heisei_Jinsei_GameTests.swift */,
+				B6929A2F226C0FA300042919 /* Info.plist */,
+			);
+			path = Heisei_Jinsei_GameTests;
+			sourceTree = "<group>";
+		};
+		B6929A38226C0FB000042919 /* CommonLib */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A4B226C11FA00042919 /* IEKit */,
+				B6929A4A226C11EE00042919 /* RMKit */,
+			);
+			path = CommonLib;
+			sourceTree = "<group>";
+		};
+		B6929A39226C11DF00042919 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A3A226C11DF00042919 /* Ex+UIImage.swift */,
+				B6929A3B226C11DF00042919 /* Ex+Swift.swift */,
+				B6929A3C226C11DF00042919 /* Ex+Foundation.swift */,
+				B6929A3D226C11DF00042919 /* EX+SpriteKit.swift */,
+				B6929A3E226C11DF00042919 /* Ex+UIKit.swift */,
+				B6929A3F226C11DF00042919 /* Ex+UIColor.swift */,
+				B6929A40226C11DF00042919 /* Ex+CoreGraphics.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		B6929A4A226C11EE00042919 /* RMKit */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A39226C11DF00042919 /* extensions */,
+				B6929A48226C11E500042919 /* RMStorage.swift */,
+			);
+			path = RMKit;
+			sourceTree = "<group>";
+		};
+		B6929A4B226C11FA00042919 /* IEKit */ = {
+			isa = PBXGroup;
+			children = (
+				B6929A4C226C120200042919 /* IEView.swift */,
+			);
+			path = IEKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B6929A14226C0FA200042919 /* Heisei_Jinsei_Game */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6929A32226C0FA300042919 /* Build configuration list for PBXNativeTarget "Heisei_Jinsei_Game" */;
+			buildPhases = (
+				B6929A11226C0FA200042919 /* Sources */,
+				B6929A12226C0FA200042919 /* Frameworks */,
+				B6929A13226C0FA200042919 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Heisei_Jinsei_Game;
+			productName = Heisei_Jinsei_Game;
+			productReference = B6929A15226C0FA200042919 /* Heisei_Jinsei_Game.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B6929A28226C0FA300042919 /* Heisei_Jinsei_GameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6929A35226C0FA300042919 /* Build configuration list for PBXNativeTarget "Heisei_Jinsei_GameTests" */;
+			buildPhases = (
+				B6929A25226C0FA300042919 /* Sources */,
+				B6929A26226C0FA300042919 /* Frameworks */,
+				B6929A27226C0FA300042919 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6929A2B226C0FA300042919 /* PBXTargetDependency */,
+			);
+			name = Heisei_Jinsei_GameTests;
+			productName = Heisei_Jinsei_GameTests;
+			productReference = B6929A29226C0FA300042919 /* Heisei_Jinsei_GameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B6929A0D226C0FA200042919 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = yuki;
+				TargetAttributes = {
+					B6929A14226C0FA200042919 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					B6929A28226C0FA300042919 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = B6929A14226C0FA200042919;
+					};
+				};
+			};
+			buildConfigurationList = B6929A10226C0FA200042919 /* Build configuration list for PBXProject "Heisei_Jinsei_Game" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B6929A0C226C0FA200042919;
+			productRefGroup = B6929A16226C0FA200042919 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B6929A14226C0FA200042919 /* Heisei_Jinsei_Game */,
+				B6929A28226C0FA300042919 /* Heisei_Jinsei_GameTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B6929A13226C0FA200042919 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6929A23226C0FA300042919 /* LaunchScreen.storyboard in Resources */,
+				B6929A20226C0FA300042919 /* Assets.xcassets in Resources */,
+				B6929A1E226C0FA200042919 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6929A27226C0FA300042919 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B6929A11226C0FA200042919 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6929A46226C11DF00042919 /* Ex+UIColor.swift in Sources */,
+				B6929A45226C11DF00042919 /* Ex+UIKit.swift in Sources */,
+				B6929A49226C11E500042919 /* RMStorage.swift in Sources */,
+				B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */,
+				B6929A4D226C120200042919 /* IEView.swift in Sources */,
+				B6929A47226C11DF00042919 /* Ex+CoreGraphics.swift in Sources */,
+				B6929A1B226C0FA200042919 /* ViewController.swift in Sources */,
+				B6929A44226C11DF00042919 /* EX+SpriteKit.swift in Sources */,
+				B6929A42226C11DF00042919 /* Ex+Swift.swift in Sources */,
+				B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */,
+				B6929A43226C11DF00042919 /* Ex+Foundation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6929A25226C0FA300042919 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6929A2E226C0FA300042919 /* Heisei_Jinsei_GameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B6929A2B226C0FA300042919 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6929A14226C0FA200042919 /* Heisei_Jinsei_Game */;
+			targetProxy = B6929A2A226C0FA300042919 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B6929A1C226C0FA200042919 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6929A1D226C0FA200042919 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B6929A21226C0FA300042919 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6929A22226C0FA300042919 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B6929A30226C0FA300042919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B6929A31226C0FA300042919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B6929A33226C0FA300042919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y475J6372H;
+				INFOPLIST_FILE = Heisei_Jinsei_Game/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-Game";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B6929A34226C0FA300042919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y475J6372H;
+				INFOPLIST_FILE = Heisei_Jinsei_Game/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-Game";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B6929A36226C0FA300042919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y475J6372H;
+				INFOPLIST_FILE = Heisei_Jinsei_GameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-GameTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heisei_Jinsei_Game.app/Heisei_Jinsei_Game";
+			};
+			name = Debug;
+		};
+		B6929A37226C0FA300042919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y475J6372H;
+				INFOPLIST_FILE = Heisei_Jinsei_GameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-GameTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heisei_Jinsei_Game.app/Heisei_Jinsei_Game";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B6929A10226C0FA200042919 /* Build configuration list for PBXProject "Heisei_Jinsei_Game" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6929A30226C0FA300042919 /* Debug */,
+				B6929A31226C0FA300042919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6929A32226C0FA300042919 /* Build configuration list for PBXNativeTarget "Heisei_Jinsei_Game" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6929A33226C0FA300042919 /* Debug */,
+				B6929A34226C0FA300042919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6929A35226C0FA300042919 /* Build configuration list for PBXNativeTarget "Heisei_Jinsei_GameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6929A36226C0FA300042919 /* Debug */,
+				B6929A37226C0FA300042919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B6929A0D226C0FA200042919 /* Project object */;
+}
