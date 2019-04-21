@@ -8,12 +8,22 @@
 
 import Foundation
 
-class HSPlayer {
+
+struct HSPlayer {
+    /// 日本語のプレイヤー名です。
     var name:String
-    var money:Int = ""
+    /// プレーヤーの所持金です。
+    var money:Int = 0
+    /// プレイヤーの家族数です。
     var familyCount:Int = 0
+    
+    fileprivate var index:Int
     
     init(name:String) {
         self.name = name
     }
+}
+
+extension HSPlayer {
+    
 }

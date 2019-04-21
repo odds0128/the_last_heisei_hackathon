@@ -8,8 +8,16 @@
 
 import Foundation
 
+/**
+ HSGameController: ゲームの状況管理をします。
+ シングルトンとして、`default`を持ちます。
+ */
 class HSGameController{
     static let `default` = HSGameController()
     
-    func 
+    private var playerPositions = []
+    
+    func spinWheel(for player:HSPlayer) {
+        
+    }
 }
