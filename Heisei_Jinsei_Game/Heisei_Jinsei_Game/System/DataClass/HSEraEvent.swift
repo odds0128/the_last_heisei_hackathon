@@ -13,9 +13,14 @@ import Foundation
 所持金の増減などのActionも持ちます。
  */
 struct HSEraEvent{
+    /// イベントのタイトルです。
     let title:String
+    /// イベントの詳細です。何が起こったかを書いてください。
     let description:String
-    let imageName:String // 画像URLになる...?
+    /// 画像名です`UIImage(named: ...)`で使います。　　　画像URLになる...?
+    let imageName:String
     
+    /// マスのアクションです。
+    /// あってもなくてもいいです。なければマスが白く、`.bad`ならマスが赤く、`.good`ならマスが緑になります。
     let action:HSEraEventAction?
 }

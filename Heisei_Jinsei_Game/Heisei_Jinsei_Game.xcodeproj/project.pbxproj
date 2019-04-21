@@ -34,7 +34,9 @@
 		B6929A6B226C14A600042919 /* HSPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6A226C14A600042919 /* HSPlayer.swift */; };
 		B6929A6D226C155300042919 /* HSEraEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6C226C155300042919 /* HSEraEvent.swift */; };
 		B6929A6F226C1B2A00042919 /* HSEraEventAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6E226C1B2A00042919 /* HSEraEventAction.swift */; };
-		B6929A71226C1B8C00042919 /* Impl+HSEraEventAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A70226C1B8C00042919 /* Impl+HSEraEventAction.swift */; };
+		B6929A71226C1B8C00042919 /* +HSEraEventAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A70226C1B8C00042919 /* +HSEraEventAction.swift */; };
+		B6929A73226C414F00042919 /* HSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A72226C414F00042919 /* HSItem.swift */; };
+		B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A74226C42DF00042919 /* HSItemStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +81,9 @@
 		B6929A6A226C14A600042919 /* HSPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSPlayer.swift; sourceTree = "<group>"; };
 		B6929A6C226C155300042919 /* HSEraEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSEraEvent.swift; sourceTree = "<group>"; };
 		B6929A6E226C1B2A00042919 /* HSEraEventAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSEraEventAction.swift; sourceTree = "<group>"; };
-		B6929A70226C1B8C00042919 /* Impl+HSEraEventAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Impl+HSEraEventAction.swift"; sourceTree = "<group>"; };
+		B6929A70226C1B8C00042919 /* +HSEraEventAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+HSEraEventAction.swift"; sourceTree = "<group>"; };
+		B6929A72226C414F00042919 /* HSItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSItem.swift; sourceTree = "<group>"; };
+		B6929A74226C42DF00042919 /* HSItemStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSItemStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,9 +255,11 @@
 			isa = PBXGroup;
 			children = (
 				B6929A6A226C14A600042919 /* HSPlayer.swift */,
+				B6929A72226C414F00042919 /* HSItem.swift */,
+				B6929A74226C42DF00042919 /* HSItemStack.swift */,
 				B6929A6C226C155300042919 /* HSEraEvent.swift */,
 				B6929A6E226C1B2A00042919 /* HSEraEventAction.swift */,
-				B6929A70226C1B8C00042919 /* Impl+HSEraEventAction.swift */,
+				B6929A70226C1B8C00042919 /* +HSEraEventAction.swift */,
 			);
 			path = DataClass;
 			sourceTree = "<group>";
@@ -365,6 +371,8 @@
 				B6929A6D226C155300042919 /* HSEraEvent.swift in Sources */,
 				B6929A46226C11DF00042919 /* Ex+UIColor.swift in Sources */,
 				B6929A55226C13A000042919 /* HSMainMenuViewModel.swift in Sources */,
+				B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */,
+				B6929A73226C414F00042919 /* HSItem.swift in Sources */,
 				B6929A45226C11DF00042919 /* Ex+UIKit.swift in Sources */,
 				B6929A49226C11E500042919 /* RMStorage.swift in Sources */,
 				B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */,
@@ -381,7 +389,7 @@
 				B6929A6F226C1B2A00042919 /* HSEraEventAction.swift in Sources */,
 				B6929A5F226C13EA00042919 /* HSMapDetailViewModel.swift in Sources */,
 				B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */,
-				B6929A71226C1B8C00042919 /* Impl+HSEraEventAction.swift in Sources */,
+				B6929A71226C1B8C00042919 /* +HSEraEventAction.swift in Sources */,
 				B6929A43226C11DF00042919 /* Ex+Foundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

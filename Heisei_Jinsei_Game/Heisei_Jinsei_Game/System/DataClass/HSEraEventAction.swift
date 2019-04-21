@@ -9,32 +9,26 @@
 import Foundation
 
 /**
- 時代アクションのRootクラスです。
+ アクションのRootクラスです。
+ 各アクションはこのクラスを継承してください。
  */
 class HSEraEventAction {
+    /// イベントの種類です。`.bad`ならマスが赤く、`.good`ならマスが緑になります。
     let eventType:EventType
     
-    enum EventType {
-        case bad
-        case good
-    }
+    /// イベントの日本語の説明です。
+    let description:String
     
-    
-    init(eventType:EventType) {
+    init(eventType:EventType, description:String) {
         self.eventType = eventType
+        self.description = description
+        
     }
-}
-
-/// 悪いアクションです。
-class HSEraEventBadAction:HSEraEventAction {
-    init() {
-        super.init(eventType: .bad)
-    }
-}
-
-/// 良いアクションです。
-class HSEraEventGoodAction:HSEraEventAction {
-    init() {
-        super.init(eventType: .good)
+    
+    enum EventType {
+        /// マスが赤くなります。
+        case bad
+        /// マスが緑になります。
+        case good
     }
 }
