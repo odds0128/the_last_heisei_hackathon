@@ -62,24 +62,24 @@ class HSEraEventMultipulItemGettingAction: HSEraEventAction {
 
 /// 先のマスまで飛べます。
 /// 選択式です。View-ViewModel側で調整してください。
-class HSEraEventSkipTroutAction: HSEraEventAction{
-    let skippableTroutCount:Int
+class HSEraEventSkipSquareAction: HSEraEventAction{
+    let skippableSquareCount:Int
     
-    init(skippableTroutCount:Int) {
-        self.skippableTroutCount = skippableTroutCount
+    init(skippableSquareCount:Int) {
+        self.skippableSquareCount = skippableSquareCount
         
-        super.init(eventType: .good, description: "\(skippableTroutCount)マス先まで進める。")
+        super.init(eventType: .good, description: "\(skippableSquareCount)マス先まで進める。")
     }
 }
 
 /// マスを戻らされます。
 /// 強制です。
-class HSEraEventReturnTroutAction: HSEraEventAction{
-    let returnTroutCount:Int
+class HSEraEventReturnSquareAction: HSEraEventAction{
+    let returnSquareCount:Int
     
-    init(returnTroutCount:Int) {
-        self.returnTroutCount =  returnTroutCount
+    init(returnSquareCount:Int) {
+        self.returnSquareCount =  returnSquareCount
         
-        super.init(eventType: .bad, description: "\(returnTroutCount)マス戻る。")
+        super.init(eventType: .bad, description: "\(returnSquareCount)マス戻る。")
     }
 }

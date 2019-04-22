@@ -36,16 +36,16 @@ class HSGameController {
     
     /// マスにイベントを追加します。
     /// 連続的に`index`を指定してください。じゃないとお血ます。
-    func registerTrout(index:Int, event:HSEraEvent){
+    func registerSquare(index:Int, event:HSEraEvent){
         
     }
     /// 手番のプレイヤーがルーレットを回します。
     func spinWheel() {
-        HSPlayerTroutManager.default.spinWheel(for: currentPlayer)
+        HSPlayerSquareManager.default.spinWheel(for: currentPlayer)
     }
     /// プレイヤーの場所を返します。
     func getPlayerPosition(_ player:HSPlayer) -> Int {
-        return HSPlayerTroutManager.default.getPosition(of: player)
+        return HSPlayerSquareManager.default.getPosition(of: player)
     }
     
     private init(gamingPlayers:[HSPlayer]) {

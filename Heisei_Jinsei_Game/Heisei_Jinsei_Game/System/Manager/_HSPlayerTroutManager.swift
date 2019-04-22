@@ -1,5 +1,5 @@
 //
-//  HSPlayerTroutManager.swift
+//  HSPlayerSquareManager.swift
 //  Heisei_Jinsei_Game
 //
 //  Created by yuki on 2019/04/21.
@@ -9,21 +9,21 @@
 import Foundation
 
 /**
- HSPlayerTroutManager: プレイヤーの位置情報管理をします。
+ HSPlayerSquareManager: プレイヤーの位置情報管理をします。
  シングルトンとして、`default`を持ちます。
  
  --通知--
- HSPlayerTroutManagerは以下の通知を投げます。
+ HSPlayerSquareManagerは以下の通知を投げます。
  `(object:...)`は `Notification`の`object`プロパティの中身です。
   */
-class HSPlayerTroutManager{
+class HSPlayerSquareManager{
     // MARK: - Singleton
-    static let `default` = HSPlayerTroutManager()
+    static let `default` = HSPlayerSquareManager()
     
-    // MARK: - HSPlayerTroutManager Priavate Properties
+    // MARK: - HSPlayerSquareManager Priavate Properties
     private var playerPositions = [HSPlayer:Int]()
     
-    // MARK: - HSPlayerTroutManager APIs
+    // MARK: - HSPlayerSquareManager APIs
     /**
      ルーレットを回します。
      具体的には1...12の乱数を生成し、PlayerPositionに足します。
@@ -50,7 +50,7 @@ class HSPlayerTroutManager{
     }
     
     
-    // MARK: - HSPlayerTroutManager Private Mathods
+    // MARK: - HSPlayerSquareManager Private Mathods
     private func _setPosition(for player:HSPlayer, to value:Int) {
         self.playerPositions[player] = value
     }
