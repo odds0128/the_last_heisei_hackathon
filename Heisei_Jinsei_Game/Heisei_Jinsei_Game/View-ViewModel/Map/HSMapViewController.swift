@@ -18,7 +18,11 @@ class HSMapViewController: UIViewController {
     var nextCenterPointY: Int!
     
     var eventPoint: UIButton!
-    var detailMapButton: UIButton!
+    var squareButton: UIButton!
+    var detailButton: UIButton!
+    var menuButton: UIButton!
+    var moneyIcon: UIView!
+    
     
     var num = 0
     
@@ -28,18 +32,21 @@ class HSMapViewController: UIViewController {
         super.viewDidLoad()
         
         generateEventPoint()
-        generateDetailMapButton()
+        generateSquareButton()
+        generateDetailButton()
+        generateMenuButton()
+        generateMoneyIcon()
     }
     
     
     //イベントボタン生成
     func generateEventPoint() {
         
-        for i in 0..<40 {
+        for i in 0..<120 {
             eventPoint = UIButton()
-            eventPoint.frame = CGRect(x: basePointX, y: basePointY, width: 43, height: 43)
+            eventPoint.frame = CGRect(x: basePointX, y: basePointY, width: 60, height: 60)
             eventPoint.backgroundColor = .white
-            eventPoint.layer.cornerRadius = 21.5
+            eventPoint.layer.cornerRadius = 30
             eventPoint.tag = i
             eventPoint.addTarget(self, action: #selector(eventPointTapped), for: .touchUpInside)
             // 影の設定
@@ -49,16 +56,16 @@ class HSMapViewController: UIViewController {
             eventPoint.layer.shadowOffset = CGSize(width: 2, height: 2)
             scrollView.addSubview(eventPoint)
             //画面の端にきたら折り返す
-            if (i % 4 == 0 && i != 0) {
+            if (i % 8 == 0 && i != 0) {
                 num += 1
             }
-            if ((num*4) <= i && i < (num*4)+4) {
+            if ((num*8) <= i && i < (num*8)+8) {
                 if (num % 2 == 0) {
-                    self.basePointX += 65
-                    self.basePointY = Int(arc4random(lower: 50, upper: 160)) + (num*150)
+                    self.basePointX += 80
+                    self.basePointY = Int(arc4random(lower: 50, upper: 160)) + (num*200)
                 } else {
-                    self.basePointX -= 65
-                    self.basePointY = Int(arc4random(lower: 50, upper: 160)) + (num*150)
+                    self.basePointX -= 80
+                    self.basePointY = Int(arc4random(lower: 50, upper: 160)) + (num*200)
                 }
             }
             
@@ -87,55 +94,86 @@ class HSMapViewController: UIViewController {
         
     }
     
-    //マスBUtton
-    func generateDetailMapButton() {
-        detailMapButton = UIButton()
-        detailMapButton.frame = CGRect(x: 30, y: self.view.bounds.maxY - 80, width: 90, height: 40)
-        detailMapButton.backgroundColor = UIColor(red: 246/255, green: 205/255, blue: 68/255, alpha: 1)
-        detailMapButton.setTitle("マス", for: .normal)
-        detailMapButton.setTitleColor(.white, for: .normal)
-        detailMapButton.titleLabel?.font = UIFont(name: "HiraMaruProN-W4", size: 17)
+    //マスButton
+    func generateSquareButton() {
+        squareButton = UIButton()
+        squareButton.frame = CGRect(x: 30, y: self.view.bounds.maxY - 80, width: 90, height: 40)
+        squareButton.backgroundColor = UIColor(red: 246/255, green: 205/255, blue: 68/255, alpha: 1)
+        squareButton.setTitle("マス", for: .normal)
+        squareButton.setTitleColor(.white, for: .normal)
+        squareButton.titleLabel?.font = UIFont(name: "HiraMaruProN-W4", size: 17)
 
-        var familyNames : Array = UIFont.familyNames;
-        let len = familyNames.count;
+        var familyNames: Array = UIFont.familyNames
+        let len = familyNames.count
         
         for i in 0 ..< len {
-            let fontFamily = familyNames[i] as String;
-            let fontNames = UIFont.fontNames(forFamilyName: fontFamily);
+            let fontFamily = familyNames[i] as String
+            let fontNames = UIFont.fontNames(forFamilyName: fontFamily)
             print("\(fontFamily),\(fontNames)")
         }
-        //detailMapButton.titleLabel?.font =
         let image = UIImage(named: "masu_icon.png")
-        detailMapButton.setImage(image, for: .normal)
-        detailMapButton.imageView?.contentMode = .scaleAspectFit
-        detailMapButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 60)
-        detailMapButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
-        detailMapButton.layer.cornerRadius = 20
-        detailMapButton.layer.shadowOpacity = 0.5
-        detailMapButton.layer.shadowRadius = 3
-        detailMapButton.layer.shadowColor = UIColor.black.cgColor
-        detailMapButton.layer.shadowOffset = CGSize(width: 2, height: 2)
-        self.view.addSubview(detailMapButton)
+        squareButton.setImage(image, for: .normal)
+        squareButton.imageView?.contentMode = .scaleAspectFit
+        squareButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 60)
+        squareButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        squareButton.layer.cornerRadius = 20
+        squareButton.layer.shadowOpacity = 0.5
+        squareButton.layer.shadowRadius = 3
+        squareButton.layer.shadowColor = UIColor.black.cgColor
+        squareButton.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.view.addSubview(squareButton)
     }
     
-//    //詳細Button
-//    func generateDetailMapButton() {
-//        detailMapButton = UIButton()
-//        detailMapButton.frame = CGRect(x: 30, y: self.view.bounds.maxY - 80, width: 80, height: 40)
-//        detailMapButton.backgroundColor = UIColor(red: 246/255, green: 205/255, blue: 68/255, alpha: 1)
-//        detailMapButton.setTitle("マス", for: .normal)
-//        detailMapButton.setTitleColor(.white, for: .normal)
-//        detailMapButton.titleLabel?.font = UIFont(name: "Hiragino Maru Gothic ProN", size: 17)
-//        //        let image = UIImage(named: "map_icon.png")
-//        //        detailMapButton.setImage(image, for: .normal)
-//        //        detailMapButton.imageView?.contentMode = .scaleAspectFit
-//        detailMapButton.layer.cornerRadius = 20
-//        detailMapButton.layer.shadowOpacity = 0.5
-//        detailMapButton.layer.shadowRadius = 3
-//        detailMapButton.layer.shadowColor = UIColor.black.cgColor
-//        detailMapButton.layer.shadowOffset = CGSize(width: 2, height: 2)
-//        self.view.addSubview(detailMapButton)
-//    }
+    //詳細Button
+    func generateDetailButton() {
+        detailButton = UIButton()
+        detailButton.frame = CGRect(x: self.view.bounds.maxX - 110, y: self.view.bounds.maxY - 80, width: 90, height: 40)
+        detailButton.backgroundColor = UIColor(red: 49/255, green: 115/255, blue: 246/255, alpha: 1)
+        detailButton.setTitle("詳細", for: .normal)
+        detailButton.setTitleColor(.white, for: .normal)
+        detailButton.titleLabel?.font = UIFont(name: "HiraMaruProN-W4", size: 17)
+        
+        let image = UIImage(named: "detail_icon.png")
+        detailButton.setImage(image, for: .normal)
+        detailButton.imageView?.contentMode = .scaleAspectFit
+        detailButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 60)
+        detailButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        detailButton.layer.cornerRadius = 20
+        detailButton.layer.shadowOpacity = 0.5
+        detailButton.layer.shadowRadius = 3
+        detailButton.layer.shadowColor = UIColor.black.cgColor
+        detailButton.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.view.addSubview(detailButton)
+    }
+    
+    //メニューButton
+    func generateMenuButton() {
+        menuButton = UIButton()
+        menuButton.frame = CGRect(x: 30, y: 50, width: 50, height: 50)
+        let image = UIImage(named: "menu_icon.png")
+        menuButton.setImage(image, for: .normal)
+        menuButton.imageView?.contentMode = .scaleAspectFit
+        menuButton.layer.cornerRadius = 20
+        menuButton.layer.shadowOpacity = 0.5
+        menuButton.layer.shadowRadius = 3
+        menuButton.layer.shadowColor = UIColor.black.cgColor
+        menuButton.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.view.addSubview(menuButton)
+    }
+
+    //所持金ラベルの生成
+    func generateMoneyIcon() {
+//        moneyIcon = UIView()
+//        moneyIcon.frame = CGRect(x: self.view.bounds.width - 150, y: 50, width: 50, height: 50)
+//        moneyIcon.backgroundColor = UIColor(red: 249/255, green: 223/255, blue: 75/255, alpha: 1)
+//        moneyIcon.layer.cornerRadius = 25
+        let image = UIImage(named: "moneyIndicator.png")
+        let imageView = UIImageView(image: image)
+        imageView.frame = CGRect(x: self.view.bounds.width - 180, y: 30, width: 170, height: 100)
+
+        imageView.contentMode = .scaleAspectFit
+        self.view.addSubview(imageView)
+    }
     
     //範囲指定した間でランダムな数字を返す
     func arc4random(lower: UInt32, upper: UInt32) -> UInt32 {

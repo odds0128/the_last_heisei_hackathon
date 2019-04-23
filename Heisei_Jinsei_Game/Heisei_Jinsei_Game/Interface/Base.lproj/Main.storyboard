@@ -32,7 +32,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.87058823529411766" green="0.87000000476837158" blue="0.87000000476837158" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.96599680190000003" green="0.80296125299999999" blue="0.26678990450000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.97776728868484497" green="0.87257826328277588" blue="0.2939264178276062" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
