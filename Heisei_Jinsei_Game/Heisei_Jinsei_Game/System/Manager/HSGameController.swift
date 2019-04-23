@@ -38,11 +38,16 @@ class HSGameController {
         return wheelValue
     }
     
-    /// (アニメーションの都合があると思うので)
-    /// ユーザーがイベント発火を確認したら呼び出してください。
-    /// アクションを続行します。
-    func didUserAcceptEventAction(_ action:HSEraEventAction){
-        self._didUserAcceptEventAction(action)
+    /// アニメーションが完了したら呼び出してください。
+    /// マスのアクション・操作ユーザー更新を行います。
+    /// アクションによるAnimation後も再度呼び出してください。
+    func didAnimationEnd(){
+        if let watingAction = watingAction{
+            self.watingAction = nil
+            self._didUserAcceptEventAction(watingAction)
+        }else{
+            self.changeTurn()
+        }
     }
     
     /// `index`番めのマス情報を返します。
@@ -51,10 +56,17 @@ class HSGameController {
         return _HSSquareEventManager.default.getEraEvent(at: index)
     }
     
+    /// 全マスのイベントを返します。
+    func getAllEraEvents() -> [HSEraEvent]{
+        return _HSSquareEventManager.default.getAllEraEvents()
+    }
+    
     // ====================================================================================================
     // -----------------------------  HSGameController Private System  ------------------------------------
     // ====================================================================================================
     
+    /// 待機中のアクションです。
+    private var watingAction:HSEraEventAction?
     
     /// プレイヤーの位置がサイコロによって変更された時に呼び出してください。
     /// アクションによる変更ではお呼び出さないでください。
@@ -63,12 +75,23 @@ class HSGameController {
         
         if let action = _HSSquareEventManager.default.getEraEvent(at: position)?.action{
             self._didOccurActionByWheel(action)
+        } else {
+            changeTurn()
         }
+    }
+    
+    private func changeTurn(){
+        guard let indexOfCurrentPlayer = gamingPlayers.firstIndex(of: currentPlayer) else {fatalError("存在しないユーザーが指定されました。")}
+        let nextIndex = (indexOfCurrentPlayer + 1) % gamingPlayers.count
         
+        currentPlayer = gamingPlayers[nextIndex]
+        
+        NotificationCenter.default.post(name: .HSGameControllerDidCurrentPlayerChanged, object: currentPlayer)
     }
     
     /// アクションがサイコロによって発生した時に呼び出してください。
     private func _didOccurActionByWheel(_ action:HSEraEventAction) {
+        self.watingAction = action
         NotificationCenter.default.post(name: .HSGameControllerDidEventActionOccur, object: action)
     }
     
@@ -101,11 +124,7 @@ class HSGameController {
     private func _didPlayerSquareChanginActionOccur(_ value:Int) {
         _HSPlayerSquareManager.default.advancePlayer(for: currentPlayer, with: value)
         
-        /// アクションが1度なら
         NotificationCenter.default.post(name: .HSGameControllerDidPlayerPositionChanged, object: currentPlayer)
-        /// アクションがn度なら
-        // let result = _HSPlayerSquareManager.default.getPosition(of: currentPlayer)
-        // self._didPlayerPositionChanged(to: result)
     }
     
     /// 初期化します。
@@ -122,8 +141,10 @@ extension HSGameController {
     static var `default`:HSGameController! = nil
     
     
-    static func initiarize(with gamingPlayers:[HSPlayer]){
+    @discardableResult
+    static func initiarize(with gamingPlayers:[HSPlayer]) -> HSGameController{
         HSGameController.default = HSGameController(gamingPlayers: gamingPlayers)
+        return HSGameController.default
     }
     
 }
@@ -140,6 +161,10 @@ extension Notification.Name{
     /// プレイヤーの場所が変化した時に発火します。
     /// `Notification::object`は`HSPlayer`です。
     static let HSGameControllerDidPlayerPositionChanged = Notification.Name("__HSGameControllerDidPlayerPositionChanged__")
+    
+    ///   操作ユーザーが更新された時に発火します。
+    /// `Notification::object`は更新後の`HSPlayer`です。
+    static let HSGameControllerDidCurrentPlayerChanged = Notification.Name("__HSGameControllerDidCurrentPlayerChanged__")
     
 }
 

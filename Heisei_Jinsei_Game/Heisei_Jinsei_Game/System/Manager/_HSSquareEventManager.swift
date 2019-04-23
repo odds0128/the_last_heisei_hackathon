@@ -31,4 +31,5 @@ class _HSSquareEventManager {
     func registerEvent(_ event:HSEraEvent){
         eraEvents.append(event)
     }
+    
 }

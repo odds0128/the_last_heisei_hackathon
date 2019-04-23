@@ -41,13 +41,13 @@
 
   
 
-- `func didUserAcceptEventAction(_ action:HSEventAction)`
+- `func didAnimationEnd()`
 
-  (アニメーションの都合があるので) 
+アニメーションが完了したら呼び出してください。
 
-  ユーザーがイベント発火を確認したら呼び出してください。
+マスのアクション・操作ユーザー更新を行います。
 
-  アクションを続行します。
+アクションによるAnimation後も再度呼び出してください。
 
   
 

@@ -31,7 +31,7 @@ struct HSPlayer {
     fileprivate var index:Int
     
     init(name:String) {
-        precondition(HSPlayerCurrentLastIndex < 4 , "プレイヤーは4人以上生成できません。")
+        precondition(HSPlayerCurrentLastIndex <= 4 , "プレイヤーは4人以上生成できません。")
         self.name = name
         self.index =  HSPlayerCurrentLastIndex
         self.color = Color(rawValue: HSPlayerCurrentLastIndex)!
