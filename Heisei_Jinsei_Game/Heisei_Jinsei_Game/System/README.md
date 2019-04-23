@@ -4,7 +4,10 @@
 
 `ViewModel`との通信関連はほぼここ
 
-
+## 注意
+`HSGameController`はシングルトンを提供しますが、最初から初期化されていません。
+ユーザーがゲームをスタートした後に
+`HSGameController::initiarize(_:)` で初期化する必要がありあます。
 
 ### プロパティ
 - `var currentPlayer: HSPlayer`
@@ -30,7 +33,7 @@
 
   
 
-- `Notification:: HSGameControllerEventActionOccur (object:HSEventAction)`
+- `Notification:: HSGameControllerDidEventActionOccur (object:HSEventAction)`
 
   止まったマスにイベントアクションが発生した時に発火します。
 
@@ -86,37 +89,6 @@
 
 マス目移動・アイテム...などはEventActionと明記します。
 
-- `func getEvent(for troutIndex:Int) -> HSEraEvent`
+- `func getEvent(for squareIndex:Int) -> HSEraEvent`
 
   `index`番めのマス情報を返します。
-
-  
-
-## `HSItemShopManager`
-
-アイテムショップ関連のAPIを提供します。
-
-
-
-#### 情報系
-
-- `func getAvailableItems(for player:HSPlayer) -> [HSItem]`
-
-  プレイヤーが購入可能なアイテムを表します。
-
-  
-
-#### 購入・売却系
-
-- `func buyItem(_ item:HSItem, count:Int, by player:HSPlayer)`
-
-  アイテムを購入します。所持金が増減します。
-
-  所持金増減後は`HSGameControllerDidPlayerPositionChanged`が呼ばれます。
-
-- `func sellItem(_ itemStack:HSItemStack, by player:HSPlayer)`
-
-  アイテムを売却します。所持金が増減します。
-
-  所持金増減後は`HSGameControllerDidPlayerPositionChanged`が呼ばれます。
-

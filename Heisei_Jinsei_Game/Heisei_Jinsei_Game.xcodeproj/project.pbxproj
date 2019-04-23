@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B68686A4226EEF4200389CFB /* _HSSquareEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68686A3226EEF4200389CFB /* _HSSquareEventManager.swift */; };
 		B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A18226C0FA200042919 /* AppDelegate.swift */; };
 		B6929A1E226C0FA200042919 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A1C226C0FA200042919 /* Main.storyboard */; };
 		B6929A20226C0FA300042919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6929A1F226C0FA300042919 /* Assets.xcassets */; };
@@ -30,7 +31,7 @@
 		B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A60226C13FD00042919 /* HSMapDetailView.storyboard */; };
 		B6929A63226C141600042919 /* HSMapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A62226C141600042919 /* HSMapView.storyboard */; };
 		B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A64226C142100042919 /* HSMainMenu.storyboard */; };
-		B6929A68226C146E00042919 /* _HSPlayerTroutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A67226C146E00042919 /* _HSPlayerTroutManager.swift */; };
+		B6929A68226C146E00042919 /* _HSPlayerSquareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A67226C146E00042919 /* _HSPlayerSquareManager.swift */; };
 		B6929A6B226C14A600042919 /* HSPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6A226C14A600042919 /* HSPlayer.swift */; };
 		B6929A6D226C155300042919 /* HSEraEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6C226C155300042919 /* HSEraEvent.swift */; };
 		B6929A6F226C1B2A00042919 /* HSEraEventAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A6E226C1B2A00042919 /* HSEraEventAction.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B68686A3226EEF4200389CFB /* _HSSquareEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HSSquareEventManager.swift; sourceTree = "<group>"; };
 		B6929A15226C0FA200042919 /* Heisei_Jinsei_Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heisei_Jinsei_Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6929A18226C0FA200042919 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6929A1D226C0FA200042919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,7 +80,7 @@
 		B6929A60226C13FD00042919 /* HSMapDetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSMapDetailView.storyboard; sourceTree = "<group>"; };
 		B6929A62226C141600042919 /* HSMapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSMapView.storyboard; sourceTree = "<group>"; };
 		B6929A64226C142100042919 /* HSMainMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSMainMenu.storyboard; sourceTree = "<group>"; };
-		B6929A67226C146E00042919 /* _HSPlayerTroutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HSPlayerTroutManager.swift; sourceTree = "<group>"; };
+		B6929A67226C146E00042919 /* _HSPlayerSquareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HSPlayerSquareManager.swift; sourceTree = "<group>"; };
 		B6929A6A226C14A600042919 /* HSPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSPlayer.swift; sourceTree = "<group>"; };
 		B6929A6C226C155300042919 /* HSEraEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSEraEvent.swift; sourceTree = "<group>"; };
 		B6929A6E226C1B2A00042919 /* HSEraEventAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSEraEventAction.swift; sourceTree = "<group>"; };
@@ -272,7 +274,8 @@
 			isa = PBXGroup;
 			children = (
 				B6929A78226C581700042919 /* HSGameController.swift */,
-				B6929A67226C146E00042919 /* _HSPlayerTroutManager.swift */,
+				B6929A67226C146E00042919 /* _HSPlayerSquareManager.swift */,
+				B68686A3226EEF4200389CFB /* _HSSquareEventManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -392,11 +395,12 @@
 				B6929A4D226C120200042919 /* IEView.swift in Sources */,
 				B6929A47226C11DF00042919 /* Ex+CoreGraphics.swift in Sources */,
 				B6929A58226C13B600042919 /* HSMapViewController.swift in Sources */,
+				B68686A4226EEF4200389CFB /* _HSSquareEventManager.swift in Sources */,
 				B6929A44226C11DF00042919 /* EX+SpriteKit.swift in Sources */,
 				B6929A42226C11DF00042919 /* Ex+Swift.swift in Sources */,
 				B6929A5A226C13BF00042919 /* HSMapViewModel.swift in Sources */,
 				B6929A53226C139500042919 /* HSMainMenuViewController.swift in Sources */,
-				B6929A68226C146E00042919 /* _HSPlayerTroutManager.swift in Sources */,
+				B6929A68226C146E00042919 /* _HSPlayerSquareManager.swift in Sources */,
 				B6929A6B226C14A600042919 /* HSPlayer.swift in Sources */,
 				B6929A5D226C13E400042919 /* HSMapDetailViewController.swift in Sources */,
 				B6929A79226C581700042919 /* HSGameController.swift in Sources */,

@@ -11,25 +11,18 @@ import Foundation
 /**
  HSPlayerSquareManager: プレイヤーの位置情報管理をします。
  シングルトンとして、`default`を持ちます。
- 
- --通知--
- HSPlayerSquareManagerは以下の通知を投げます。
- `(object:...)`は `Notification`の`object`プロパティの中身です。
   */
-class HSPlayerSquareManager{
+class _HSPlayerSquareManager{
     // MARK: - Singleton
-    static let `default` = HSPlayerSquareManager()
+    static let `default` = _HSPlayerSquareManager()
     
     // MARK: - HSPlayerSquareManager Priavate Properties
     private var playerPositions = [HSPlayer:Int]()
     
     // MARK: - HSPlayerSquareManager APIs
-    /**
-     ルーレットを回します。
-     具体的には1...12の乱数を生成し、PlayerPositionに足します。
-     */
-    func spinWheel(for player:HSPlayer) {
-        let wheelValue = _generateRandomNumber()
+    
+    /// ルーレットの結果を反映します。
+    func didSpinWheel(for player:HSPlayer,with wheelValue:Int) {
         let newPlayerPosition = getPosition(of: player) + wheelValue
         
         self._setPosition(for: player, to: newPlayerPosition)
@@ -49,7 +42,6 @@ class HSPlayerSquareManager{
         return playerPositions[player]!
     }
     
-    
     // MARK: - HSPlayerSquareManager Private Mathods
     private func _setPosition(for player:HSPlayer, to value:Int) {
         self.playerPositions[player] = value
@@ -60,9 +52,5 @@ class HSPlayerSquareManager{
         if playerPositions[player] == nil{
             playerPositions[player] = 0
         }
-    }
-    /// 1...12までの乱数を返します。
-    private func _generateRandomNumber() -> Int{
-        return (1...12).randomElement()!
     }
 }
