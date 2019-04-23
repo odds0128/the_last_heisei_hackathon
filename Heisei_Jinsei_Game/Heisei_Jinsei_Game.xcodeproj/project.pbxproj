@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B68686A4226EEF4200389CFB /* _HSSquareEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68686A3226EEF4200389CFB /* _HSSquareEventManager.swift */; };
+		B68686A6226F053900389CFB /* HSGameControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68686A5226F053900389CFB /* HSGameControllerTests.swift */; };
 		B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A18226C0FA200042919 /* AppDelegate.swift */; };
 		B6929A1E226C0FA200042919 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6929A1C226C0FA200042919 /* Main.storyboard */; };
 		B6929A20226C0FA300042919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6929A1F226C0FA300042919 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		B68686A3226EEF4200389CFB /* _HSSquareEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HSSquareEventManager.swift; sourceTree = "<group>"; };
+		B68686A5226F053900389CFB /* HSGameControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSGameControllerTests.swift; sourceTree = "<group>"; };
 		B6929A15226C0FA200042919 /* Heisei_Jinsei_Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heisei_Jinsei_Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6929A18226C0FA200042919 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6929A1D226C0FA200042919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		B6929A2C226C0FA300042919 /* Heisei_Jinsei_GameTests */ = {
 			isa = PBXGroup;
 			children = (
+				B68686A5226F053900389CFB /* HSGameControllerTests.swift */,
 				B6929A2D226C0FA300042919 /* Heisei_Jinsei_GameTests.swift */,
 				B6929A2F226C0FA300042919 /* Info.plist */,
 			);
@@ -416,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B68686A6226F053900389CFB /* HSGameControllerTests.swift in Sources */,
 				B6929A2E226C0FA300042919 /* Heisei_Jinsei_GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
