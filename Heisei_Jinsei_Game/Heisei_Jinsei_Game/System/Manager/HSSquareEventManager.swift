@@ -8,10 +8,7 @@
 
 import Foundation
 
-class _HSSquareEventManager {
-    // MARK: - シングルトン
-    static let `default` = _HSSquareEventManager()
-
+class HSSquareEventManager {
     // MARK: - P - プロパティー
     private var eraEvents = [HSEraEvent]()
     

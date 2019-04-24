@@ -10,12 +10,10 @@ import Foundation
 
 /**
  HSPlayerSquareManager: プレイヤーの位置情報管理をします。
- シングルトンとして、`default`を持ちます。
   */
-class _HSPlayerSquareManager{
-    // MARK: - Singleton
-    static let `default` = _HSPlayerSquareManager()
-    
+class HSPlayerSquareManager{
+
+    var players:[HSPlayer]
     // MARK: - HSPlayerSquareManager Priavate Properties
     private var playerPositions = [HSPlayer:Int]()
     
@@ -37,8 +35,6 @@ class _HSPlayerSquareManager{
     
     /// 現在のプレイヤーの場所を返しあす。
     func getPosition(of player:HSPlayer) -> Int{
-        self._initiarizePlayerIfNeeded(player)
-        
         return playerPositions[player]!
     }
     
@@ -47,10 +43,10 @@ class _HSPlayerSquareManager{
         self.playerPositions[player] = value
     }
     
-    /// 必要ならばPlayerを初期化します。
-    private func _initiarizePlayerIfNeeded(_ player:HSPlayer){
-        if playerPositions[player] == nil{
-            playerPositions[player] = 0
+    init(gamingPlayers:[HSPlayer]) {
+        players = gamingPlayers
+        for player in gamingPlayers{
+            self.playerPositions[player] = 0
         }
     }
 }

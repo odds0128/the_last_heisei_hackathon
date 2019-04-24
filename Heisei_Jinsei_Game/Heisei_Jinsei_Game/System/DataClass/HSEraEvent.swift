@@ -14,13 +14,13 @@ import Foundation
  */
 struct HSEraEvent{
     /// イベントのタイトルです。
-    let title:String
+    var title:String
     /// イベントの詳細です。何が起こったかを書いてください。
-    let description:String
+    var description:String
     /// 画像名です`UIImage(named: ...)`で使います。　　　画像URLになる...?
-    let imageName:String
+    var imageName:String
     
     /// マスのアクションです。
     /// あってもなくてもいいです。なければマスが白く、`.bad`ならマスが赤く、`.good`ならマスが緑になります。
-    let action:HSEraEventAction?
+    var action:HSEraEventAction?
 }
