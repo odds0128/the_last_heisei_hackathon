@@ -4,6 +4,16 @@
 
 `ViewModel`との通信関連はほぼここ
 
+
+
+### 初期化
+
+`HSPlayerSquareManager`
+
+`HSSquareEventManager`
+
+が必要、これらのクラスについては下で説明する。
+
 ### プロパティ
 - `var currentPlayer: HSPlayer`
 現在のプレーヤーです。
@@ -24,7 +34,6 @@
 
   返り値はルーレットの出目です。
   
-
 - `Notification:: HSGameControllerDidEventActionOccur (object:HSEventAction)`
 
   止まったマスにイベントアクションが発生した時に発火します。
@@ -83,3 +92,36 @@
 - `func getAllEvent() -> [HSEraEvent]`
 
 全てのマス情報を返します。
+
+
+
+## `HSPlayerSquareManager`
+
+プレイヤーの位置情報を管理します。
+
+API使用者はこのクラスのAPIを使用しないでください。
+
+
+
+### 初期化
+
+ゲームプレイヤーとして`[HSPlayer]`が必要
+
+
+
+## `HSSquareEventManager`
+
+マスにある時代のイベントを管理します。
+
+
+
+### APIs
+
+- `func registerEvent(_ event:HSEraEvent)`
+
+  マスにイベントを登録します。
+
+  登録した順にマス目となります。
+
+
+
