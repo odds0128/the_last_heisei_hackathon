@@ -23,6 +23,8 @@ class HSMapViewController: UIViewController {
     var menuButton: UIButton!
     var moneyIcon: UIView!
     
+    var rouletteImageView: UIImageView!
+    var buttonStartFlg = true
     
     var num = 0
     
@@ -36,6 +38,13 @@ class HSMapViewController: UIViewController {
         generateDetailButton()
         generateMenuButton()
         generateMoneyIcon()
+        
+        rouletteImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: self.view.bounds.width - 150, height: self.view.bounds.width - 150))
+        rouletteImageView.center = self.view.center
+        let rouletteImage = UIImage(named: "no_handle_roulette.png")
+        rouletteImageView.image = rouletteImage
+        rouletteImageView.contentMode = .scaleAspectFit
+        view.addSubview(rouletteImageView)
     }
     
     
@@ -132,6 +141,7 @@ class HSMapViewController: UIViewController {
         detailButton.setTitle("詳細", for: .normal)
         detailButton.setTitleColor(.white, for: .normal)
         detailButton.titleLabel?.font = UIFont(name: "HiraMaruProN-W4", size: 17)
+        detailButton.addTarget(self, action: #selector(startRoulette(_:)), for: .touchUpInside)
         
         let image = UIImage(named: "detail_icon.png")
         detailButton.setImage(image, for: .normal)
@@ -182,6 +192,30 @@ class HSMapViewController: UIViewController {
         }
         
         return arc4random_uniform(upper - lower) + lower
+    }
+    
+    @objc func startRoulette(_ sender: Any) {
+        
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        
+        if buttonStartFlg {
+            //startRouletteBtn.setImage(UIImage(named: "stop"), for: .normal)
+            rouletteImageView.layer.speed = 2
+            animation.toValue = .pi / 2.0
+            animation.duration = 0.1
+            animation.repeatCount = MAXFLOAT
+            animation.isCumulative = true
+            rouletteImageView.layer.add(animation, forKey: "ImageViewRotation")
+            buttonStartFlg = false
+        } else {
+            //startRouletteBtn.setImage(UIImage(named: "start"), for: .normal)
+            let pausedTime = rouletteImageView.layer.convertTime(CACurrentMediaTime(), from: nil)
+            rouletteImageView.layer.speed = 0.0
+            rouletteImageView.layer.timeOffset = pausedTime
+            buttonStartFlg = true
+        }
     }
     
 }
