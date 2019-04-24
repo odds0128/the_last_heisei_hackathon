@@ -4,17 +4,11 @@
 
 `ViewModel`との通信関連はほぼここ
 
-## 注意
-`HSGameController`はシングルトンを提供しますが、最初から初期化されていません。
-ユーザーがゲームをスタートした後に
-`HSGameController::initiarize(_:)` で初期化する必要がありあます。
-
 ### プロパティ
 - `var currentPlayer: HSPlayer`
 現在のプレーヤーです。
 - `var gamingPlayers: [HSPlayer]`
 ゲーム中のプレイヤー一覧です。
-
 
 
 #### マス目管理系
@@ -23,14 +17,12 @@
 
   プレーヤーの現在地を返します。
 
-  
 
 - `func spinWheel(min:Int = 1, max:Int = 12) -> Int`
 
   現在のプレイヤーに対してルーレットを回します。
 
   返り値はルーレットの出目です。
-
   
 
 - `Notification:: HSGameControllerDidEventActionOccur (object:HSEventAction)`
@@ -39,7 +31,6 @@
 
   `Notification::object`は`HSEventAction`です。
 
-  
 
 - `func didAnimationEnd()`
 
@@ -49,7 +40,6 @@
 
 アクションによるAnimation後も再度呼び出してください。
 
-  
 
 - `Notification:: HSGameControllerDidCurrentPlayerChanged (object:HSPlayer)`
 
@@ -57,7 +47,6 @@
 
   `Notification::object`は更新後の`HSPlayer`です。
 
-  
 
 #### プレイヤー管理系
 
@@ -77,11 +66,9 @@
 
   View側は対応してPlayerの場所を変化させてください。
 
-  （アクションによる変更でも`didUserAcceptEventAction`が呼び出されるまで、発火しません。）
+  （アクションによる変更でも`didAnimationEnd`が呼び出されるまで、発火しません。）
 
   
-
-
 
 #### イベント（マス目情報）管理系
 
@@ -92,3 +79,7 @@
 - `func getEvent(for squareIndex:Int) -> HSEraEvent`
 
   `index`番めのマス情報を返します。
+
+- `func getAllEvent() -> [HSEraEvent]`
+
+全てのマス情報を返します。
