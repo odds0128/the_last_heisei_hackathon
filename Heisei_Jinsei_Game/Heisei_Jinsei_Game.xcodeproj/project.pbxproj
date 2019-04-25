@@ -38,6 +38,7 @@
 		B6929A73226C414F00042919 /* HSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A72226C414F00042919 /* HSItem.swift */; };
 		B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A74226C42DF00042919 /* HSItemStack.swift */; };
 		B6929A79226C581700042919 /* HSGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A78226C581700042919 /* HSGameController.swift */; };
+		CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED28102270D13100B676BF /* HSRouletteAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		B6929A74226C42DF00042919 /* HSItemStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSItemStack.swift; sourceTree = "<group>"; };
 		B6929A76226C48F800042919 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B6929A78226C581700042919 /* HSGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSGameController.swift; sourceTree = "<group>"; };
+		CCED28102270D13100B676BF /* HSRouletteAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRouletteAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				B6929A62226C141600042919 /* HSMapView.storyboard */,
 				B6929A57226C13B600042919 /* HSMapViewController.swift */,
 				B6929A59226C13BF00042919 /* HSMapViewModel.swift */,
+				CCED28102270D13100B676BF /* HSRouletteAnimation.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */,
 				B6929A73226C414F00042919 /* HSItem.swift in Sources */,
 				B6929A45226C11DF00042919 /* Ex+UIKit.swift in Sources */,
+				CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */,
 				B6929A49226C11E500042919 /* RMStorage.swift in Sources */,
 				B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */,
 				B6929A4D226C120200042919 /* IEView.swift in Sources */,
@@ -577,7 +581,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -596,7 +600,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

@@ -24,8 +24,8 @@ class HSMapViewController: UIViewController {
     var moneyIcon: UIView!
     
     var rouletteImageView: UIImageView!
-    var buttonStartFlg = true
-    
+    var rouletteHandleImageView: UIImageView!
+    var isRotating: Bool = false
     var num = 0
     
     @IBOutlet weak var scrollView: UIView!
@@ -39,12 +39,7 @@ class HSMapViewController: UIViewController {
         generateMenuButton()
         generateMoneyIcon()
         
-        rouletteImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: self.view.bounds.width - 150, height: self.view.bounds.width - 150))
-        rouletteImageView.center = self.view.center
-        let rouletteImage = UIImage(named: "no_handle_roulette.png")
-        rouletteImageView.image = rouletteImage
-        rouletteImageView.contentMode = .scaleAspectFit
-        view.addSubview(rouletteImageView)
+        drawRoulette()
     }
     
     
@@ -111,7 +106,7 @@ class HSMapViewController: UIViewController {
         squareButton.setTitle("マス", for: .normal)
         squareButton.setTitleColor(.white, for: .normal)
         squareButton.titleLabel?.font = UIFont(name: "HiraMaruProN-W4", size: 17)
-
+        
         var familyNames: Array = UIFont.familyNames
         let len = familyNames.count
         
@@ -141,7 +136,7 @@ class HSMapViewController: UIViewController {
         detailButton.setTitle("詳細", for: .normal)
         detailButton.setTitleColor(.white, for: .normal)
         detailButton.titleLabel?.font = UIFont(name: "HiraMaruProN-W4", size: 17)
-        detailButton.addTarget(self, action: #selector(startRoulette(_:)), for: .touchUpInside)
+        detailButton.addTarget(self, action: #selector(startRoulette), for: .touchUpInside)
         
         let image = UIImage(named: "detail_icon.png")
         detailButton.setImage(image, for: .normal)
@@ -170,17 +165,17 @@ class HSMapViewController: UIViewController {
         menuButton.layer.shadowOffset = CGSize(width: 2, height: 2)
         self.view.addSubview(menuButton)
     }
-
+    
     //所持金ラベルの生成
     func generateMoneyIcon() {
-//        moneyIcon = UIView()
-//        moneyIcon.frame = CGRect(x: self.view.bounds.width - 150, y: 50, width: 50, height: 50)
-//        moneyIcon.backgroundColor = UIColor(red: 249/255, green: 223/255, blue: 75/255, alpha: 1)
-//        moneyIcon.layer.cornerRadius = 25
+        //        moneyIcon = UIView()
+        //        moneyIcon.frame = CGRect(x: self.view.bounds.width - 150, y: 50, width: 50, height: 50)
+        //        moneyIcon.backgroundColor = UIColor(red: 249/255, green: 223/255, blue: 75/255, alpha: 1)
+        //        moneyIcon.layer.cornerRadius = 25
         let image = UIImage(named: "moneyIndicator.png")
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: self.view.bounds.width - 180, y: 30, width: 170, height: 100)
-
+        
         imageView.contentMode = .scaleAspectFit
         self.view.addSubview(imageView)
     }
@@ -194,28 +189,39 @@ class HSMapViewController: UIViewController {
         return arc4random_uniform(upper - lower) + lower
     }
     
-    @objc func startRoulette(_ sender: Any) {
+    //ルーレットを描画
+    func drawRoulette() {
+        rouletteImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: self.view.bounds.width / 1.5, height: self.view.bounds.width / 1.5))
+        rouletteImageView.center = self.view.center
+        let rouletteImage = UIImage(named: "no_handle_roulette.png")
+        rouletteImageView.image = rouletteImage
+        rouletteImageView.contentMode = .scaleAspectFit
+        view.addSubview(rouletteImageView)
         
-        let animation = CABasicAnimation(keyPath: "transform.rotation")
-        animation.isRemovedOnCompletion = false
-        animation.fillMode = CAMediaTimingFillMode.forwards
+        rouletteHandleImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: self.view.bounds.width / 3, height: self.view.bounds.width / 3))
+        rouletteHandleImageView.center = self.view.center
+        let handleImgae = UIImage(named: "roulette_handle.png")
+        rouletteHandleImageView.image = handleImgae
+        rouletteHandleImageView.contentMode = .scaleAspectFit
+        view.addSubview(rouletteHandleImageView)
         
-        if buttonStartFlg {
-            //startRouletteBtn.setImage(UIImage(named: "stop"), for: .normal)
-            rouletteImageView.layer.speed = 2
-            animation.toValue = .pi / 2.0
-            animation.duration = 0.1
-            animation.repeatCount = MAXFLOAT
-            animation.isCumulative = true
-            rouletteImageView.layer.add(animation, forKey: "ImageViewRotation")
-            buttonStartFlg = false
+        //ドラッグを検知する
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragStart(_:)))
+        self.view.addGestureRecognizer(panGesture)
+    }
+    
+    //ルーレットスタート
+    @objc func startRoulette() {
+        if (isRotating == false) {
+            HSRouletteAnimation(rouletteImageView: self.rouletteImageView, rouletteStartBtn: self.detailButton, mapVC: self)
         } else {
-            //startRouletteBtn.setImage(UIImage(named: "start"), for: .normal)
-            let pausedTime = rouletteImageView.layer.convertTime(CACurrentMediaTime(), from: nil)
-            rouletteImageView.layer.speed = 0.0
-            rouletteImageView.layer.timeOffset = pausedTime
-            buttonStartFlg = true
         }
     }
+    //ドラッグ開始
+    @objc func dragStart(_ sender: UIPanGestureRecognizer) {
+        startRoulette()
+    }
+    
+    
     
 }
