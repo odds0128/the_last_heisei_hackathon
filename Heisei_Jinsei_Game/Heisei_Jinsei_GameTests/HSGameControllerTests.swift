@@ -22,8 +22,8 @@ class HSGameControllerTests: XCTestCase {
     func createEventManager() -> HSSquareEventManager {
         let eventManager = HSSquareEventManager()
         
-        var events = (0...50).map{_ in
-            HSEraEvent(title: "タイトル1", description: "説明", imageName: "nil", action: nil)
+        var events = (0...50).map{i in
+            HSEraEvent(title: "タイトル1", heiseiYear: (i/4), eventDescription: "説明", imageName: "nil", action: nil)
         }
         // ます2を飛ばす様にする。
         events[2].action = HSEraEventSkipSquareAction(skippableSquareCount: 1)
@@ -46,7 +46,7 @@ class HSGameControllerTests: XCTestCase {
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
         // 確定で10 イベント発生
-        gameController.spinWheel(min:10, max: 10)
+        _=gameController.spinWheel(min:10, max: 10)
         
         XCTAssertEqual(10,       gameController.getPlayerPosition(gameController.currentPlayer))
         
@@ -62,7 +62,7 @@ class HSGameControllerTests: XCTestCase {
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
         // 確定で5 イベント発生
-        gameController.spinWheel(min:6, max: 6)
+        _=gameController.spinWheel(min:6, max: 6)
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(6,       gameController.getPlayerPosition(gameController.currentPlayer))
@@ -84,7 +84,7 @@ class HSGameControllerTests: XCTestCase {
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
         // 確定で5 イベント発生
-        gameController.spinWheel(min: 5, max: 5)
+        _=gameController.spinWheel(min: 5, max: 5)
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(5,       gameController.getPlayerPosition(gameController.currentPlayer))
@@ -105,7 +105,8 @@ class HSGameControllerTests: XCTestCase {
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
         // 確定で2 イベント発生
-        gameController.spinWheel(min: 2, max: 2)
+        _=gameController.spinWheel(min: 2, max: 2)
+        
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(2,       gameController.getPlayerPosition(gameController.currentPlayer))
         
@@ -127,7 +128,7 @@ class HSGameControllerTests: XCTestCase {
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         
         // 確定で1
-        gameController.spinWheel(min: 1, max: 1)
+        _=gameController.spinWheel(min: 1, max: 1)
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(1,       gameController.getPlayerPosition(gameController.currentPlayer))

@@ -15,12 +15,20 @@ import Foundation
 struct HSEraEvent{
     /// イベントのタイトルです。
     var title:String
+    /// 平成何年かです。
+    var heiseiYear:Int
     /// イベントの詳細です。何が起こったかを書いてください。
-    var description:String
+    var eventDescription:String
     /// 画像名です`UIImage(named: ...)`で使います。　　　画像URLになる...?
     var imageName:String
     
     /// マスのアクションです。
     /// あってもなくてもいいです。なければマスが白く、`.bad`ならマスが赤く、`.good`ならマスが緑になります。
     var action:HSEraEventAction?
+}
+
+extension HSEraEvent: CustomStringConvertible{
+    var description: String {
+        return "\(title) - 平成\(heiseiYear)年\n\(eventDescription)\(action.map{"\n" + $0.description} ?? "")"
+    }
 }

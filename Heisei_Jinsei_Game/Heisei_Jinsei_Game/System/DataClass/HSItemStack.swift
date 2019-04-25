@@ -16,6 +16,10 @@ class HSItemStack {
     let item:HSItem
     var count:Int
     
+    var totalValue:Int{
+        return self.item.price * count
+    }
+    
     init(item:HSItem, count:Int = 0) {
         self.item = item
         self.count = count

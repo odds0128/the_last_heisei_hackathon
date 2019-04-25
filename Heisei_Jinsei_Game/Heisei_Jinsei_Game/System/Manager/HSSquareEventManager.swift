@@ -13,14 +13,16 @@ class HSSquareEventManager {
     private var eraEvents = [HSEraEvent]()
     
     // MARK: - APIs
-    /// 全マスのイベントを返します。
+    /// 全マスのイベントを返します。 
     func getAllEraEvents() -> [HSEraEvent]{
         return eraEvents
     }
     
     /// Indexのマスのイベントを返します。
-    func getEraEvent(at index:Int) -> HSEraEvent?{
-        return eraEvents.at(index)
+    func getEraEvent(at index:Int) -> HSEraEvent{
+        guard let event = eraEvents.at(index) else {fatalError("不正な場所にプレイヤーがいます。")}
+        
+        return event
     }
     
     /// イベントを登録します。

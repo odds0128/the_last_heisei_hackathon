@@ -10,19 +10,19 @@ import Foundation
 
 /**
  プレイヤーを管理するクラスです。
- **4人までしか生成できません！**
+ Int.max人しか生成できません。
  */
-struct HSPlayer {
+class HSPlayer {
     /// 日本語のプレイヤー名です。
     let name:String
     /// プレーヤーの所持金です。0円以下にはなりません。
     var money:Int = 0{
-        didSet{
-            self.money = max(0, self.money)
-        }
+        didSet{self.money = max(0, self.money)}
     }
-    /// プレイヤーの家族数です。
-    var familyCount:Int = 0
+    // プレイヤーの全資本です。
+    var allEstate:Int{
+        return money + currentItems.map{$0.totalValue}.reduce(0, +)
+    }
     /// プレイヤーが持っているアイテム一覧です。
     var currentItems = [HSItemStack]()
     /// プレイヤーの`index`です。同一性保持のためにのみ使います。

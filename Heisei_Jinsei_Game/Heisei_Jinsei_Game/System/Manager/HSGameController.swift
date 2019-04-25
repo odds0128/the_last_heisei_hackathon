@@ -38,6 +38,12 @@ class HSGameController {
         return wheelValue
     }
     
+    /// 手番のプレイヤーを強制的に進めます。
+    /// 以降の動作は普通にルーレットを回した場合と同様です。
+    func advancePlayer(by value:Int){
+        self.spinWheel(min: value, max: value)
+    }
+    
     /// アニメーションが完了したら呼び出してください。
     /// マスのアクション・操作ユーザー更新を行います。
     /// アクションによるAnimation後も再度呼び出してください。
@@ -79,7 +85,7 @@ class HSGameController {
     private func _didPlayerPositionChangedByWheel(to position:Int) {
         NotificationCenter.default.post(name: .HSGameControllerDidPlayerPositionChanged, object: currentPlayer)
         
-        if let action = self.eventManager.getEraEvent(at: position)?.action{
+        if let action = self.eventManager.getEraEvent(at: position).action{
             self._didOccurActionByWheel(action)
         }
     }
