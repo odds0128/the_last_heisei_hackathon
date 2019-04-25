@@ -23,9 +23,7 @@ class HSMapViewController: UIViewController {
     var menuButton: UIButton!
     var moneyIcon: UIView!
     
-    var rouletteImageView: UIImageView!
-    var buttonStartFlg = true
-    
+
     var num = 0
     
     @IBOutlet weak var scrollView: UIView!
@@ -39,12 +37,7 @@ class HSMapViewController: UIViewController {
         generateMenuButton()
         generateMoneyIcon()
         
-        rouletteImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: self.view.bounds.width - 150, height: self.view.bounds.width - 150))
-        rouletteImageView.center = self.view.center
-        let rouletteImage = UIImage(named: "no_handle_roulette.png")
-        rouletteImageView.image = rouletteImage
-        rouletteImageView.contentMode = .scaleAspectFit
-        view.addSubview(rouletteImageView)
+        
     }
     
     
@@ -54,15 +47,12 @@ class HSMapViewController: UIViewController {
         for i in 0..<120 {
             eventPoint = UIButton()
             eventPoint.frame = CGRect(x: basePointX, y: basePointY, width: 60, height: 60)
-            eventPoint.backgroundColor = .white
+            eventPoint.backgroundColor = HSColor().blueColor
             eventPoint.layer.cornerRadius = 30
             eventPoint.tag = i
             eventPoint.addTarget(self, action: #selector(eventPointTapped), for: .touchUpInside)
             // 影の設定
-            eventPoint.layer.shadowOpacity = 0.5
-            eventPoint.layer.shadowRadius = 3
-            eventPoint.layer.shadowColor = UIColor.black.cgColor
-            eventPoint.layer.shadowOffset = CGSize(width: 2, height: 2)
+            HSShadow.init(layer: eventPoint.layer)
             scrollView.addSubview(eventPoint)
             //画面の端にきたら折り返す
             if (i % 8 == 0 && i != 0) {
@@ -111,7 +101,7 @@ class HSMapViewController: UIViewController {
         squareButton.setTitle("マス", for: .normal)
         squareButton.setTitleColor(.white, for: .normal)
         squareButton.titleLabel?.font = UIFont(name: "HiraMaruProN-W4", size: 17)
-
+        
         var familyNames: Array = UIFont.familyNames
         let len = familyNames.count
         
@@ -141,8 +131,7 @@ class HSMapViewController: UIViewController {
         detailButton.setTitle("詳細", for: .normal)
         detailButton.setTitleColor(.white, for: .normal)
         detailButton.titleLabel?.font = UIFont(name: "HiraMaruProN-W4", size: 17)
-        detailButton.addTarget(self, action: #selector(startRoulette(_:)), for: .touchUpInside)
-        
+        detailButton.addTarget(self, action: #selector(generateRoulette), for: .touchUpInside)
         let image = UIImage(named: "detail_icon.png")
         detailButton.setImage(image, for: .normal)
         detailButton.imageView?.contentMode = .scaleAspectFit
@@ -153,6 +142,7 @@ class HSMapViewController: UIViewController {
         detailButton.layer.shadowRadius = 3
         detailButton.layer.shadowColor = UIColor.black.cgColor
         detailButton.layer.shadowOffset = CGSize(width: 2, height: 2)
+        let layer = detailButton.layer
         self.view.addSubview(detailButton)
     }
     
@@ -170,23 +160,23 @@ class HSMapViewController: UIViewController {
         menuButton.layer.shadowOffset = CGSize(width: 2, height: 2)
         self.view.addSubview(menuButton)
     }
-
+    
     //所持金ラベルの生成
     func generateMoneyIcon() {
-//        moneyIcon = UIView()
-//        moneyIcon.frame = CGRect(x: self.view.bounds.width - 150, y: 50, width: 50, height: 50)
-//        moneyIcon.backgroundColor = UIColor(red: 249/255, green: 223/255, blue: 75/255, alpha: 1)
-//        moneyIcon.layer.cornerRadius = 25
+        //        moneyIcon = UIView()
+        //        moneyIcon.frame = CGRect(x: self.view.bounds.width - 150, y: 50, width: 50, height: 50)
+        //        moneyIcon.backgroundColor = UIColor(red: 249/255, green: 223/255, blue: 75/255, alpha: 1)
+        //        moneyIcon.layer.cornerRadius = 25
         let image = UIImage(named: "moneyIndicator.png")
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: self.view.bounds.width - 180, y: 30, width: 170, height: 100)
-
+        
         imageView.contentMode = .scaleAspectFit
         self.view.addSubview(imageView)
     }
     
     //範囲指定した間でランダムな数字を返す
-    func arc4random(lower: UInt32, upper: UInt32) -> UInt32 {
+    private func arc4random(lower: UInt32, upper: UInt32) -> UInt32 {
         guard upper >= lower else {
             return 0
         }
@@ -194,28 +184,23 @@ class HSMapViewController: UIViewController {
         return arc4random_uniform(upper - lower) + lower
     }
     
-    @objc func startRoulette(_ sender: Any) {
+    //ルーレットを生成
+    @objc private func generateRoulette() {
+        blackBackground()
         
-        let animation = CABasicAnimation(keyPath: "transform.rotation")
-        animation.isRemovedOnCompletion = false
-        animation.fillMode = CAMediaTimingFillMode.forwards
-        
-        if buttonStartFlg {
-            //startRouletteBtn.setImage(UIImage(named: "stop"), for: .normal)
-            rouletteImageView.layer.speed = 2
-            animation.toValue = .pi / 2.0
-            animation.duration = 0.1
-            animation.repeatCount = MAXFLOAT
-            animation.isCumulative = true
-            rouletteImageView.layer.add(animation, forKey: "ImageViewRotation")
-            buttonStartFlg = false
-        } else {
-            //startRouletteBtn.setImage(UIImage(named: "start"), for: .normal)
-            let pausedTime = rouletteImageView.layer.convertTime(CACurrentMediaTime(), from: nil)
-            rouletteImageView.layer.speed = 0.0
-            rouletteImageView.layer.timeOffset = pausedTime
-            buttonStartFlg = true
-        }
+        let rouletteView = HSRouletteCustomView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width / 1.7, height: self.view.bounds.width))
+        rouletteView.center = self.view.center
+        rouletteView.transform = CGAffineTransform(rotationAngle: .pi / 2)
+        rouletteView.fadeIn(type: .Normal, completed: nil)
+        self.view.addSubview(rouletteView)
+    }
+    
+    //背景を黒く透過する
+    func blackBackground() {
+        let blackView = UIView(frame: self.view.frame)
+        blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        blackView.fadeIn(type: .Normal, completed: nil)
+        self.view.addSubview(blackView)
     }
     
 }
