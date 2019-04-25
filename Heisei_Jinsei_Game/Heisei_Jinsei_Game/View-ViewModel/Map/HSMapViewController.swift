@@ -23,9 +23,7 @@ class HSMapViewController: UIViewController {
     var menuButton: UIButton!
     var moneyIcon: UIView!
     
-    var rouletteImageView: UIImageView!
-    var rouletteHandleImageView: UIImageView!
-    var isRotating: Bool = false
+
     var num = 0
     
     @IBOutlet weak var scrollView: UIView!
@@ -39,7 +37,7 @@ class HSMapViewController: UIViewController {
         generateMenuButton()
         generateMoneyIcon()
         
-        drawRoulette()
+        
     }
     
     
@@ -49,15 +47,12 @@ class HSMapViewController: UIViewController {
         for i in 0..<120 {
             eventPoint = UIButton()
             eventPoint.frame = CGRect(x: basePointX, y: basePointY, width: 60, height: 60)
-            eventPoint.backgroundColor = .white
+            eventPoint.backgroundColor = HSColor().blueColor
             eventPoint.layer.cornerRadius = 30
             eventPoint.tag = i
             eventPoint.addTarget(self, action: #selector(eventPointTapped), for: .touchUpInside)
             // 影の設定
-            eventPoint.layer.shadowOpacity = 0.5
-            eventPoint.layer.shadowRadius = 3
-            eventPoint.layer.shadowColor = UIColor.black.cgColor
-            eventPoint.layer.shadowOffset = CGSize(width: 2, height: 2)
+            HSShadow.init(layer: eventPoint.layer)
             scrollView.addSubview(eventPoint)
             //画面の端にきたら折り返す
             if (i % 8 == 0 && i != 0) {
@@ -136,8 +131,7 @@ class HSMapViewController: UIViewController {
         detailButton.setTitle("詳細", for: .normal)
         detailButton.setTitleColor(.white, for: .normal)
         detailButton.titleLabel?.font = UIFont(name: "HiraMaruProN-W4", size: 17)
-        detailButton.addTarget(self, action: #selector(startRoulette), for: .touchUpInside)
-        
+        detailButton.addTarget(self, action: #selector(generateRoulette), for: .touchUpInside)
         let image = UIImage(named: "detail_icon.png")
         detailButton.setImage(image, for: .normal)
         detailButton.imageView?.contentMode = .scaleAspectFit
@@ -148,6 +142,7 @@ class HSMapViewController: UIViewController {
         detailButton.layer.shadowRadius = 3
         detailButton.layer.shadowColor = UIColor.black.cgColor
         detailButton.layer.shadowOffset = CGSize(width: 2, height: 2)
+        let layer = detailButton.layer
         self.view.addSubview(detailButton)
     }
     
@@ -181,7 +176,7 @@ class HSMapViewController: UIViewController {
     }
     
     //範囲指定した間でランダムな数字を返す
-    func arc4random(lower: UInt32, upper: UInt32) -> UInt32 {
+    private func arc4random(lower: UInt32, upper: UInt32) -> UInt32 {
         guard upper >= lower else {
             return 0
         }
@@ -189,39 +184,23 @@ class HSMapViewController: UIViewController {
         return arc4random_uniform(upper - lower) + lower
     }
     
-    //ルーレットを描画
-    func drawRoulette() {
-        rouletteImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: self.view.bounds.width / 1.5, height: self.view.bounds.width / 1.5))
-        rouletteImageView.center = self.view.center
-        let rouletteImage = UIImage(named: "no_handle_roulette.png")
-        rouletteImageView.image = rouletteImage
-        rouletteImageView.contentMode = .scaleAspectFit
-        view.addSubview(rouletteImageView)
+    //ルーレットを生成
+    @objc private func generateRoulette() {
+        blackBackground()
         
-        rouletteHandleImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: self.view.bounds.width / 3, height: self.view.bounds.width / 3))
-        rouletteHandleImageView.center = self.view.center
-        let handleImgae = UIImage(named: "roulette_handle.png")
-        rouletteHandleImageView.image = handleImgae
-        rouletteHandleImageView.contentMode = .scaleAspectFit
-        view.addSubview(rouletteHandleImageView)
-        
-        //ドラッグを検知する
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragStart(_:)))
-        self.view.addGestureRecognizer(panGesture)
+        let rouletteView = HSRouletteCustomView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width / 1.7, height: self.view.bounds.width))
+        rouletteView.center = self.view.center
+        rouletteView.transform = CGAffineTransform(rotationAngle: .pi / 2)
+        rouletteView.fadeIn(type: .Normal, completed: nil)
+        self.view.addSubview(rouletteView)
     }
     
-    //ルーレットスタート
-    @objc func startRoulette() {
-        if (isRotating == false) {
-            HSRouletteAnimation(rouletteImageView: self.rouletteImageView, rouletteStartBtn: self.detailButton, mapVC: self)
-        } else {
-        }
+    //背景を黒く透過する
+    func blackBackground() {
+        let blackView = UIView(frame: self.view.frame)
+        blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        blackView.fadeIn(type: .Normal, completed: nil)
+        self.view.addSubview(blackView)
     }
-    //ドラッグ開始
-    @objc func dragStart(_ sender: UIPanGestureRecognizer) {
-        startRoulette()
-    }
-    
-    
     
 }
