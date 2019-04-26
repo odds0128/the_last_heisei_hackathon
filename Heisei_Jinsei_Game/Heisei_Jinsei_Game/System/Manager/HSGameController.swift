@@ -9,39 +9,210 @@
 import Foundation
 
 /**
- 
- HSGameControllerはシングルトンを提供しますが、最初から初期化されていません。
- Playerがゲームをスタートした後に
- HSGameController::initiarize(_:) で初期化する必要がありあマス。
- --通知--
- HSGameControllerは以下の通知を投げます。ViewModelはこれを受け取って、Viewに状態を反映させてください。
- `(object:...)`は `Notification`の`object`プロパティの中身です。
- 
- - HSGameControllerDidChangePlayerPosition (object: HSPlayer)
- - HSGameControllerDidEraEventActionOccur (object: HSEventAction)
+ このクラスが、ViewModelとの通信のほとんどを行います。
+ 詳細は System/README.md を参照してください。
  
  */
 class HSGameController {
-    static var `default`:HSGameController? = nil
-    static func initiarize(with gamingPlayers:[HSPlayer]){
-        
+    // MARK: - HSGameController Properties
+    
+    /// 現在手番のプレイヤーです。
+    private(set) var currentPlayer:HSPlayer
+    /// ゲーム中のプレイヤーです。
+    private(set) var gamingPlayers:[HSPlayer]
+    
+    /// ゲームが終了しているかどうかです。
+    var isGameEnded:Bool {
+        return gamingPlayers.allSatisfy{$0.reachesGoal}
     }
     
-    /// 手番のプレイヤーです。
-    var currentPlayer:HSPlayer
-    
-    /// ゲーム中のプレイヤーです。
-    var gamingPlayers:[HSPlayer]
-    
-    init(gamingPlayers:[HSPlayer]) {
-        precondition(gamingPlayers.count >= 2, "ゲームプレイヤーは2人以上必要です。")
-        
-        self.gamingPlayers = gamingPlayers
-        self.currentPlayer = gamingPlayers[0]
+    // MARK: - HSGameController Methods
+    /// プレイヤーの場所を返します。
+    func getPlayerPosition(_ player:HSPlayer) -> Int {
+        return self.playerManager.getPosition(of: player)
     }
     
     /// 手番のプレイヤーがルーレットを回します。
-    func spinWheel(){
+    /// 返り値はルーレットの出目です。
+    func spinWheel(min:Int = 1, max:Int = 12) -> Int {
+        let wheelValue = (min...max).randomElement()!
+        self.playerManager.didSpinWheel(for: currentPlayer, with: wheelValue)
         
+        self._didPlayerPositionChangedByWheel(to: self.playerManager.getPosition(of: currentPlayer))
+
+        return wheelValue
+    }
+    
+    /// 手番のプレイヤーを強制的に進めます。
+    /// 以降の動作は普通にルーレットを回した場合と同様です。
+    func advancePlayer(by value:Int){
+        _=self.spinWheel(min: value, max: value)
+    }
+    
+    /// アニメーションが完了したら呼び出してください。
+    /// マスのアクション・操作ユーザー更新を行います。
+    /// アクションによるAnimation後も再度呼び出してください。
+    func didAnimationEnd(){
+        if let watingAction = watingAction{
+            self.watingAction = nil
+            self._didUserAcceptEventAction(watingAction)
+        }else{
+            guard let currentPlayerIndex = gamingPlayers.firstIndex(of: currentPlayer) else {fatalError("存在しないぴプレイヤーが指定されました。")}
+            let nextIndex = (currentPlayerIndex + 1) % gamingPlayers.count
+            self.changeTurn(nextIndex: nextIndex)
+        }
+    }
+    
+    /// `index`番めのマス情報を返します。
+    /// 登録されていなかった場合は`nil`を返します。
+    func getEraEvent(at index:Int) -> HSEraEvent? {
+        return self.eventManager.getEraEvent(at: index)
+    }
+    
+    /// 全マスのイベントを返します。
+    func getAllEraEvents() -> [HSEraEvent]{
+        return self.eventManager.getAllEraEvents()
+    }
+    
+    // ====================================================================================================
+    // -----------------------------  HSGameController Private System  ------------------------------------
+    // ====================================================================================================
+    
+    /// プレーヤーマネージャーです。マス目一の管理をします。
+    private let playerManager:HSPlayerSquareManager
+    
+    /// イベントマネージャーです。
+    private let eventManager:HSSquareEventManager
+    
+    /// 待機中のアクションです。
+    private var watingAction:HSEraEventAction?
+    
+    /// ゴールに到着したプレイヤーです。
+    private var reachedGoalPlayers = [HSPlayer]()
+    
+    /// プレイヤーの位置がサイコロによって変更された時に呼び出してください。
+    /// アクションによる変更ではお呼び出さないでください。
+    private func _didPlayerPositionChangedByWheel(to position:Int) {
+        self._didPlayerSquareChanged()
+        
+        if let action = self.eventManager.getEraEvent(at: position).action{
+            self._didOccurActionByWheel(action)
+        }
+    }
+    
+    private func changeTurn(nextIndex:Int){
+        let nextEstimatedPlayer = gamingPlayers[nextIndex]
+        if nextEstimatedPlayer.reachesGoal{
+            if isGameEnded{
+                _checkIfGameEnded()
+            }else{
+                return changeTurn(nextIndex: nextIndex+1)
+            }
+        }
+        currentPlayer = nextEstimatedPlayer
+        
+        NotificationCenter.default.post(name: .HSGameControllerDidCurrentPlayerChanged, object: currentPlayer)
+    }
+    
+    /// アクションがサイコロによって発生した時に呼び出してください。
+    private func _didOccurActionByWheel(_ action:HSEraEventAction) {
+        self.watingAction = action
+        NotificationCenter.default.post(name: .HSGameControllerDidEventActionOccur, object: action)
+    }
+    
+    /// ユーザーがイベント発火を確認したら呼び出してください。
+    /// アクションを続行します。
+    private func _didUserAcceptEventAction(_ action:HSEraEventAction){
+        if let action = action as? HSEraEventMoneyReduceAction {
+            self._didMoneyChangingEventOccur(-action.reduceMoneyCount)
+            
+        }else if let action = action as? HSEraEventMoneyAppendAction {
+            self._didMoneyChangingEventOccur(action.appendMoneyCount)
+            
+        }else if let action = action as? HSEraEventSkipSquareAction {
+            self._didPlayerSquareChanginActionOccur(action.skippableSquareCount)
+            
+        }else if let action = action as? HSEraEventReturnSquareAction{
+            self._didPlayerSquareChanginActionOccur(-action.returnSquareCount)
+            
+        }else if let _ = action as? HSEraEventPlayerGoalAction {
+            self._didPlayerReachesGoal(currentPlayer)
+            
+        }
+    }
+    
+    /// ユーザーの所持金がアクションによって変動した時に呼び出してください。
+    private func _didMoneyChangingEventOccur(_ value:Int){
+        currentPlayer.money += value
+        
+        NotificationCenter.default.post(name: .HSGameControllerDidPlayerMoneyChanged, object: currentPlayer)
+    }
+    
+    /// ユーザーの場所がアクションによって変動した時に呼び出してください。
+    private func _didPlayerSquareChanginActionOccur(_ value:Int) {
+        self.playerManager.advancePlayer(for: currentPlayer, with: value)
+        
+        self._didPlayerSquareChanged()
+    }
+    
+    /// プレイヤーの場所が変更された場合に呼び出してください。
+    /// ルーレットびによっても・アクションによっても
+    private func _didPlayerSquareChanged(){
+        NotificationCenter.default.post(name: .HSGameControllerDidPlayerPositionChanged, object: currentPlayer)
+        
+        /// 2重チェックになるが...問題はない。
+        if let action = getEraEvent(at: getPlayerPosition(currentPlayer))?.action as? HSEraEventPlayerGoalAction{
+            self.watingAction = action
+        }
+    }
+    
+    /// プレイヤーがゴールに到達した場合に呼び出してください。
+    private func _didPlayerReachesGoal(_ player:HSPlayer) {
+        player.reachesGoal = true
+        
+        NotificationCenter.default.post(name: .HSGameControllerDidPlayerReachedTheGoal, object: player)
+        
+        _checkIfGameEnded()
+    }
+    private func _checkIfGameEnded(){
+        if gamingPlayers.allSatisfy({$0.reachesGoal}){
+            NotificationCenter.default.post(name: .HSGameControllerDidGameEnd, object: nil)
+        }
+    }
+    /// 初期化します。
+    init(playerManager:HSPlayerSquareManager, eventManager:HSSquareEventManager) {
+        self.gamingPlayers = playerManager.players
+        self.currentPlayer = playerManager.players[0]
+        self.playerManager = playerManager
+        self.eventManager = eventManager
     }
 }
+
+// MARK: - 通知用拡張
+extension Notification.Name{
+    /// 止まったマスにイベントアクションが発生した時に発火します。
+    /// `Notification::object`は`HSEventAction`です。
+    static let HSGameControllerDidEventActionOccur = Notification.Name("__HSGameControllerDidEventActionOccur__")
+    
+    /// プレイヤーの所持金が変化した時に発火します。
+    /// `Notification::object`は`HSPlayer`です。
+    static let HSGameControllerDidPlayerMoneyChanged = Notification.Name("__HSGameControllerDidPlayerMoneyChanged__")
+    
+    /// プレイヤーの場所が変化した時に発火します。
+    /// `Notification::object`は`HSPlayer`です。
+    static let HSGameControllerDidPlayerPositionChanged = Notification.Name("__HSGameControllerDidPlayerPositionChanged__")
+    
+    ///   操作ユーザーが更新された時に発火します。
+    /// `Notification::object`は更新後の`HSPlayer`です。
+    static let HSGameControllerDidCurrentPlayerChanged = Notification.Name("__HSGameControllerDidCurrentPlayerChanged__")
+    
+    /// プレイヤーがゴールに到達した時発火します。
+    /// `Notification::object`はゴールした`HSPlayer`です。
+    static let HSGameControllerDidPlayerReachedTheGoal = Notification.Name("__HSGameControllerDidPlayerReachedTheGoal__")
+    
+    /// ゲームが終了した時に発火します。
+    /// `Notification::object`は`nil`です。
+    static let HSGameControllerDidGameEnd = Notification.Name("__HSGameControllerDidGameEnd__")
+    
+}
+

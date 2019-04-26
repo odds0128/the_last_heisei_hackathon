@@ -8,38 +8,42 @@
 
 import Foundation
 
-private var HSPlayerCurrentLastIndex = 0
-
 /**
  プレイヤーを管理するクラスです。
- **4人までしか生成できません！**
+ Int.max人しか生成できません。
  */
-struct HSPlayer {
+class HSPlayer {
     /// 日本語のプレイヤー名です。
     let name:String
-    /// プレーヤーの所持金です。
-    var money:Int = 0
-    /// プレイヤーの家族数です。
-    var familyCount:Int = 0
+    /// プレーヤーの所持金です。0円以下にはなりません。
+    var money:Int = 0{
+        didSet{self.money = max(0, self.money)}
+    }
+    // プレイヤーの全資本です。
+    var allEstate:Int{
+        return money + currentItems.map{$0.totalValue}.reduce(0, +)
+    }
     /// プレイヤーが持っているアイテム一覧です。
-    //var currentItems = [HSItemStack]()
-    /// プレイヤーの色です。生成時に自動的に決定されます。
-    let color:Color
-    enum Color:Int { case red=0, blue=1, green=2, yellow=3}
+    var currentItems = [HSItemStack]()
+    
+    /// ゴールに到達しているかどうかです。
+    var reachesGoal = false
     
     /// プレイヤーの`index`です。同一性保持のためにのみ使います。
-    fileprivate var index:Int
+    private var index:Int
     
     init(name:String) {
-        precondition(HSPlayerCurrentLastIndex < 4 , "プレイヤーは4人以上生成できません。")
         self.name = name
-        self.index =  HSPlayerCurrentLastIndex
-        self.color = Color(rawValue: HSPlayerCurrentLastIndex)!
+        self.index =  HSPlayer._lastIndex
         
-        HSPlayerCurrentLastIndex += 1
+        HSPlayer._lastIndex += 1
     }
 }
 
+extension HSPlayer {
+    /// 同一性保持用`Index`
+    private static var _lastIndex:Int = 0
+}
 extension HSPlayer: Equatable {
     static func == (left:HSPlayer, right:HSPlayer) -> Bool{
         return left.index == right.index
