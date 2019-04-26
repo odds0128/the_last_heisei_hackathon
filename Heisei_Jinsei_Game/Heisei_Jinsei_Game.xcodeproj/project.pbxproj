@@ -47,6 +47,7 @@
 		CC1526A022719A09003CB391 /* TsukushiAMaruGothic.ttc in Resources */ = {isa = PBXBuildFile; fileRef = CC15269F22719A01003CB391 /* TsukushiAMaruGothic.ttc */; };
 		CC1526A22271A7F5003CB391 /* FadeInOutAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A12271A7F5003CB391 /* FadeInOutAnimation.swift */; };
 		CC1526A42271B588003CB391 /* HSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A32271B588003CB391 /* HSFont.swift */; };
+		CC1526A722732FA6003CB391 /* HSBalloonCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */; };
 		CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED28102270D13100B676BF /* HSRouletteAnimation.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,7 @@
 		CC15269F22719A01003CB391 /* TsukushiAMaruGothic.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = TsukushiAMaruGothic.ttc; sourceTree = "<group>"; };
 		CC1526A12271A7F5003CB391 /* FadeInOutAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInOutAnimation.swift; sourceTree = "<group>"; };
 		CC1526A32271B588003CB391 /* HSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSFont.swift; sourceTree = "<group>"; };
+		CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSBalloonCustomView.swift; sourceTree = "<group>"; };
 		CCED28102270D13100B676BF /* HSRouletteAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRouletteAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,6 +251,7 @@
 		B6929A56226C13A400042919 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				CC1526A522732F86003CB391 /* balloon */,
 				BFD8FE552271579F000EC11E /* Car */,
 				B6929A62226C141600042919 /* HSMapView.storyboard */,
 				B6929A57226C13B600042919 /* HSMapViewController.swift */,
@@ -329,6 +332,14 @@
 				CC15269F22719A01003CB391 /* TsukushiAMaruGothic.ttc */,
 			);
 			path = BaseUIDefinition;
+			sourceTree = "<group>";
+		};
+		CC1526A522732F86003CB391 /* balloon */ = {
+			isa = PBXGroup;
+			children = (
+				CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */,
+			);
+			path = balloon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +462,7 @@
 				CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */,
 				B6929A49226C11E500042919 /* RMStorage.swift in Sources */,
 				B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */,
+				CC1526A722732FA6003CB391 /* HSBalloonCustomView.swift in Sources */,
 				B6929A4D226C120200042919 /* IEView.swift in Sources */,
 				B6929A47226C11DF00042919 /* Ex+CoreGraphics.swift in Sources */,
 				B6929A58226C13B600042919 /* HSMapViewController.swift in Sources */,
