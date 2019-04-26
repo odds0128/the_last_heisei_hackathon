@@ -37,7 +37,9 @@ class HSMapViewController: UIViewController {
         generateDetailButton()
         generateMenuButton()
         generateMoneyIcon()
-        placePlayerCar(position: 1)
+        
+        // プレイヤーの車を配置。(TODO:- 全プレイヤーに対応)
+        placePlayerCar(playerNum: 1)
         
         
     }
@@ -221,12 +223,12 @@ class HSMapViewController: UIViewController {
         self.view.addSubview(blackView)
     }
     
-    /// プレイヤーの車をマス目番号のマスに配置します。
+    /// プレイヤーの車を開始地点に配置します。
     ///
-    /// - Parameter position: マス目番号
-    func placePlayerCar(position: Int) {
+    /// - Parameter playerNum: プレイヤーID
+    private func placePlayerCar(playerNum: Int) {
         //TODO:- 全ての車の初期化処理. システムマージ後に行う
-        let square = view.viewWithTag(position) as! UIButton
+        let square = view.viewWithTag(1) as! UIButton
         let car = Car(frame: CGRect(x: 0, y: 0, width: 80, height: 60))
         car.configure(carImage: .red)
         view.addSubview(car)
@@ -234,7 +236,7 @@ class HSMapViewController: UIViewController {
         
         /// プレイヤーの車オブジェクトを格納
         let playerCars = [
-            1 : car
+            playerNum : car
         ]
         self.playerCars = playerCars
     }
