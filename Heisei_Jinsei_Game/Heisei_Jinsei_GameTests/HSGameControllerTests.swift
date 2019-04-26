@@ -22,6 +22,7 @@ class HSGameControllerTests: XCTestCase {
     func createEventManager() -> HSSquareEventManager {
         let eventManager = HSSquareEventManager()
         
+        /// 仮初期化
         var events = (0...50).map{i in
             HSEraEvent(title: "タイトル1", heiseiYear: (i/4), eventDescription: "説明", imageName: "nil", action: nil)
         }
@@ -37,6 +38,9 @@ class HSGameControllerTests: XCTestCase {
         // ます10で所持金が減る。
         events[10].action = HSEraEventMoneyReduceAction(reduceMoneyCount: 1000)
         
+        // ます35でゴールまで飛ばされる。
+        events[35].action = HSEraEventSkipSquareAction(skippableSquareCount: 20)
+        
         // ます50でゴールする。
         events[50].action = HSEraEventPlayerGoalAction()
         
@@ -44,6 +48,48 @@ class HSGameControllerTests: XCTestCase {
         events.forEach{eventManager.registerEvent($0)}
         
         return eventManager
+    }
+    func testActionGoal(){
+        let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
+        
+        // Aliceがルーレットを回す。
+        _=gameController.spinWheel(min:35, max: 35)
+        
+        XCTAssertEqual(gameController.currentPlayer.name, "Alice")
+        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
+        
+        // マス上を動くアニメーション
+        gameController.didAnimationEnd()
+        
+        // 35マスでイベント発火
+        
+        // マス上を動くアニメーション
+        gameController.didAnimationEnd()
+        
+        XCTAssertEqual(gameController.currentPlayer.name, "Alice")
+        XCTAssertEqual(gameController.currentPlayer.reachesGoal, true)
+        
+        // ゴール後演出
+        gameController.didAnimationEnd()
+        
+        XCTAssertEqual(gameController.currentPlayer.name, "Bob")
+        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
+        
+        gameController.spinWheel(min: 50, max: 50)
+        
+        gameController.didAnimationEnd()
+        gameController.didAnimationEnd()
+        
+        XCTAssertEqual(gameController.currentPlayer.name, "Cathey")
+        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
+        
+        gameController.spinWheel(min: 50, max: 50)
+        
+        gameController.didAnimationEnd()
+        gameController.didAnimationEnd()
+        
+        XCTAssert(gameController.isGameEnded)
+        
     }
     func testGoal() {
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())

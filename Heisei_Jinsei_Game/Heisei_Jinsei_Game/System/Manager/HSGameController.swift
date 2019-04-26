@@ -161,7 +161,7 @@ class HSGameController {
         NotificationCenter.default.post(name: .HSGameControllerDidPlayerPositionChanged, object: currentPlayer)
         
         /// 2重チェックになるが...問題はない。
-        if let action = getEraEvent(at: getPlayerPosition(currentPlayer))?.action as? HSEraEventReturnSquareAction{
+        if let action = getEraEvent(at: getPlayerPosition(currentPlayer))?.action as? HSEraEventPlayerGoalAction{
             self.watingAction = action
         }
     }
