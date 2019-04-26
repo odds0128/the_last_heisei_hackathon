@@ -6,7 +6,6 @@
 //  Copyright © 2019 yuki. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class HSRouletteCustomView: UIView {
@@ -16,6 +15,8 @@ class HSRouletteCustomView: UIView {
     var panGesture: UIPanGestureRecognizer!
     
     var isRotating: Bool = false
+    
+    var delegate: RouletteDelegate?
     
     private var viewWidth: CGFloat!
     private var viewHeight: CGFloat!
@@ -27,6 +28,8 @@ class HSRouletteCustomView: UIView {
         viewHeight = frame.height
         drawRoulette()
         drawInstructLabel()
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,13 +67,14 @@ class HSRouletteCustomView: UIView {
         labelView.backgroundColor = HSColor().redColor
         labelView.layer.cornerRadius = labelView.frame.height / 2
         labelView.layer.borderColor = UIColor.white.cgColor
-        labelView.layer.borderWidth = 10
+        labelView.layer.borderWidth = 7
         HSShadow.init(layer: labelView.layer)
-        let text = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width / 1.2, height: self.bounds.height / 9))
+        let text = UILabel(frame: CGRect(x: (self.bounds.width) - (self.bounds.width/1.1), y: 0, width: self.bounds.width / 1.5, height: self.bounds.height / 9))
         text.text = "ルーレットを回せ！"
+        text.adjustsFontSizeToFitWidth = true
+        text.minimumScaleFactor = 0.3
         text.textColor = .white
-        text.textAlignment = NSTextAlignment.center
-        text.font = UIFont(name: HSFont().boldFont, size: 50)
+        text.font = UIFont(name: HSFont().boldFont, size: 40)
         labelView.addSubview(text)
         
         self.addSubview(labelView)
@@ -79,7 +83,7 @@ class HSRouletteCustomView: UIView {
     //ルーレットスタート
     @objc private func startRoulette() {
         if (isRotating == false) {
-            HSRouletteAnimation(sender: panGesture, rouletteImageView: rouletteImageView, rouletteVC: self)
+            HSRouletteAnimation(sender: panGesture, rouletteImageView: rouletteImageView, rouletteVC: self, delegate: delegate!)
         } else {
         }
     }
@@ -88,4 +92,6 @@ class HSRouletteCustomView: UIView {
     @objc private func dragStart(_ sender: UIPanGestureRecognizer) {
         startRoulette()
     }
+    
+    
 }

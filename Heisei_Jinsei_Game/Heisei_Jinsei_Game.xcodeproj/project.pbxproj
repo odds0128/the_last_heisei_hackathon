@@ -55,6 +55,9 @@
 		CC1526A022719A09003CB391 /* TsukushiAMaruGothic.ttc in Resources */ = {isa = PBXBuildFile; fileRef = CC15269F22719A01003CB391 /* TsukushiAMaruGothic.ttc */; };
 		CC1526A22271A7F5003CB391 /* FadeInOutAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A12271A7F5003CB391 /* FadeInOutAnimation.swift */; };
 		CC1526A42271B588003CB391 /* HSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A32271B588003CB391 /* HSFont.swift */; };
+		CC1526A722732FA6003CB391 /* HSBalloonCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */; };
+		CC1526A92273472B003CB391 /* HSInnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A82273472B003CB391 /* HSInnerShadow.swift */; };
+		CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */; };
 		CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED28102270D13100B676BF /* HSRouletteAnimation.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +125,9 @@
 		CC15269F22719A01003CB391 /* TsukushiAMaruGothic.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = TsukushiAMaruGothic.ttc; sourceTree = "<group>"; };
 		CC1526A12271A7F5003CB391 /* FadeInOutAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInOutAnimation.swift; sourceTree = "<group>"; };
 		CC1526A32271B588003CB391 /* HSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSFont.swift; sourceTree = "<group>"; };
+		CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSBalloonCustomView.swift; sourceTree = "<group>"; };
+		CC1526A82273472B003CB391 /* HSInnerShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSInnerShadow.swift; sourceTree = "<group>"; };
+		CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSBalloonCustomView.xib; sourceTree = "<group>"; };
 		CCED28102270D13100B676BF /* HSRouletteAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRouletteAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -276,6 +282,7 @@
 		B6929A56226C13A400042919 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				CC1526A522732F86003CB391 /* balloon */,
 				BF3333F62273675B00CB0F4F /* ActionAlert */,
 				BFD8FE552271579F000EC11E /* Car */,
 				B6929A62226C141600042919 /* HSMapView.storyboard */,
@@ -363,13 +370,31 @@
 		CC15269522718EF5003CB391 /* BaseUIDefinition */ = {
 			isa = PBXGroup;
 			children = (
+				CC1526AA22734752003CB391 /* Shadow */,
 				CC15269622718F7C003CB391 /* HSColor.swift */,
-				CC152698227191A4003CB391 /* HSShadow.swift */,
 				CC1526A32271B588003CB391 /* HSFont.swift */,
 				CC1526A12271A7F5003CB391 /* FadeInOutAnimation.swift */,
 				CC15269F22719A01003CB391 /* TsukushiAMaruGothic.ttc */,
 			);
 			path = BaseUIDefinition;
+			sourceTree = "<group>";
+		};
+		CC1526A522732F86003CB391 /* balloon */ = {
+			isa = PBXGroup;
+			children = (
+				CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */,
+				CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */,
+			);
+			path = balloon;
+			sourceTree = "<group>";
+		};
+		CC1526AA22734752003CB391 /* Shadow */ = {
+			isa = PBXGroup;
+			children = (
+				CC152698227191A4003CB391 /* HSShadow.swift */,
+				CC1526A82273472B003CB391 /* HSInnerShadow.swift */,
+			);
+			path = Shadow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,6 +481,7 @@
 				CC1526A022719A09003CB391 /* TsukushiAMaruGothic.ttc in Resources */,
 				B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */,
 				BFD8FE5922715CF7000EC11E /* Car.xib in Resources */,
+				CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */,
 				B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */,
 				B6929A23226C0FA300042919 /* LaunchScreen.storyboard in Resources */,
 				B6929A20226C0FA300042919 /* Assets.xcassets in Resources */,
@@ -494,8 +520,10 @@
 				CC152699227191A4003CB391 /* HSShadow.swift in Sources */,
 				B6929A45226C11DF00042919 /* Ex+UIKit.swift in Sources */,
 				CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */,
+				CC1526A92273472B003CB391 /* HSInnerShadow.swift in Sources */,
 				B6929A49226C11E500042919 /* RMStorage.swift in Sources */,
 				B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */,
+				CC1526A722732FA6003CB391 /* HSBalloonCustomView.swift in Sources */,
 				B6929A4D226C120200042919 /* IEView.swift in Sources */,
 				B6929A47226C11DF00042919 /* Ex+CoreGraphics.swift in Sources */,
 				B6929A58226C13B600042919 /* HSMapViewController.swift in Sources */,

@@ -22,11 +22,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="4000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Chp-eS-UY9">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="4000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="6000"/>
                                         <color key="backgroundColor" red="0.61047446729999999" green="0.89987421040000004" blue="0.33710551259999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" red="1" green="0.0" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="4000" id="m4B-Et-b5a"/>
+                                            <constraint firstAttribute="height" constant="6000" id="m4B-Et-b5a"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -55,7 +55,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7n-LF-89x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="184.80000000000001" y="152.95566502463055"/>
+            <point key="canvasLocation" x="184.27734375" y="152.8550512445095"/>
         </scene>
     </scenes>
 </document>
