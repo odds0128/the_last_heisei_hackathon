@@ -30,5 +30,9 @@ class HSEraEventAction {
         case bad
         /// マスが緑になります。
         case good
+        /// 特殊イベントです。
+        case special
+        /// ゴールマス用です。
+        case goal
     }
 }

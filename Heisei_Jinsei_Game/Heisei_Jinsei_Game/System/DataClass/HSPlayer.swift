@@ -25,6 +25,10 @@ class HSPlayer {
     }
     /// プレイヤーが持っているアイテム一覧です。
     var currentItems = [HSItemStack]()
+    
+    /// ゴールに到達しているかどうかです。
+    var reachesGoal = false
+    
     /// プレイヤーの`index`です。同一性保持のためにのみ使います。
     private var index:Int
     

@@ -16,6 +16,7 @@ class HSPlayerSquareManager{
     var players:[HSPlayer]
     // MARK: - HSPlayerSquareManager Priavate Properties
     private var playerPositions = [HSPlayer:Int]()
+    private var lastSquareIndex:Int
     
     // MARK: - HSPlayerSquareManager APIs
     
@@ -33,18 +34,20 @@ class HSPlayerSquareManager{
         self._setPosition(for: player, to: newPlayerPosition)
     }
     
-    /// 現在のプレイヤーの場所を返しあす。
+    /// 現在のプレイヤーの場所を返します。
     func getPosition(of player:HSPlayer) -> Int{
         return playerPositions[player]!
     }
     
     // MARK: - HSPlayerSquareManager Private Mathods
     private func _setPosition(for player:HSPlayer, to value:Int) {
-        self.playerPositions[player] = value
+        self.playerPositions[player] = min(lastSquareIndex, value)
     }
     
-    init(gamingPlayers:[HSPlayer]) {
-        players = gamingPlayers
+    init(gamingPlayers:[HSPlayer], lastSquareIndex:Int) {
+        self.players = gamingPlayers
+        self.lastSquareIndex = lastSquareIndex
+        
         for player in gamingPlayers{
             self.playerPositions[player] = 0
         }

@@ -15,7 +15,7 @@ class HSShopManagerTests: XCTestCase {
     let cathey = HSPlayer(name: "Cathey")
     
     func createPlayerManager() -> HSPlayerSquareManager {
-        let playerManager = HSPlayerSquareManager(gamingPlayers: [alice, bob, cathey])
+        let playerManager = HSPlayerSquareManager(gamingPlayers: [alice, bob, cathey], lastSquareIndex: 50)
         
         return playerManager
     }

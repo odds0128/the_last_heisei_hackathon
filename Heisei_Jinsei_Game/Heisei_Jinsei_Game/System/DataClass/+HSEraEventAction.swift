@@ -8,6 +8,13 @@
 
 import Foundation
 
+class HSEraEventPlayerGoalAction: HSEraEventAction {
+    
+    init() {
+        super.init(eventType: .goal, description: "ゴール!")
+    }
+}
+
 /// お金が減ります。
 class HSEraEventMoneyReduceAction: HSEraEventAction {
     

@@ -21,6 +21,11 @@ class HSGameController {
     /// ゲーム中のプレイヤーです。
     private(set) var gamingPlayers:[HSPlayer]
     
+    /// ゲームが終了しているかどうかです。
+    var isGameEnded:Bool {
+        return gamingPlayers.allSatisfy{$0.reachesGoal}
+    }
+    
     // MARK: - HSGameController Methods
     /// プレイヤーの場所を返します。
     func getPlayerPosition(_ player:HSPlayer) -> Int {
@@ -41,7 +46,7 @@ class HSGameController {
     /// 手番のプレイヤーを強制的に進めます。
     /// 以降の動作は普通にルーレットを回した場合と同様です。
     func advancePlayer(by value:Int){
-        self.spinWheel(min: value, max: value)
+        _=self.spinWheel(min: value, max: value)
     }
     
     /// アニメーションが完了したら呼び出してください。
@@ -52,7 +57,9 @@ class HSGameController {
             self.watingAction = nil
             self._didUserAcceptEventAction(watingAction)
         }else{
-            self.changeTurn()
+            guard let currentPlayerIndex = gamingPlayers.firstIndex(of: currentPlayer) else {fatalError("存在しないぴプレイヤーが指定されました。")}
+            let nextIndex = (currentPlayerIndex + 1) % gamingPlayers.count
+            self.changeTurn(nextIndex: nextIndex)
         }
     }
     
@@ -80,21 +87,29 @@ class HSGameController {
     /// 待機中のアクションです。
     private var watingAction:HSEraEventAction?
     
+    /// ゴールに到着したプレイヤーです。
+    private var reachedGoalPlayers = [HSPlayer]()
+    
     /// プレイヤーの位置がサイコロによって変更された時に呼び出してください。
     /// アクションによる変更ではお呼び出さないでください。
     private func _didPlayerPositionChangedByWheel(to position:Int) {
-        NotificationCenter.default.post(name: .HSGameControllerDidPlayerPositionChanged, object: currentPlayer)
+        self._didPlayerSquareChanged()
         
         if let action = self.eventManager.getEraEvent(at: position).action{
             self._didOccurActionByWheel(action)
         }
     }
     
-    private func changeTurn(){
-        guard let indexOfCurrentPlayer = gamingPlayers.firstIndex(of: currentPlayer) else {fatalError("存在しないユーザーが指定されました。")}
-        let nextIndex = (indexOfCurrentPlayer + 1) % gamingPlayers.count
-        
-        currentPlayer = gamingPlayers[nextIndex]
+    private func changeTurn(nextIndex:Int){
+        let nextEstimatedPlayer = gamingPlayers[nextIndex]
+        if nextEstimatedPlayer.reachesGoal{
+            if isGameEnded{
+                _checkIfGameEnded()
+            }else{
+                return changeTurn(nextIndex: nextIndex+1)
+            }
+        }
+        currentPlayer = nextEstimatedPlayer
         
         NotificationCenter.default.post(name: .HSGameControllerDidCurrentPlayerChanged, object: currentPlayer)
     }
@@ -109,16 +124,19 @@ class HSGameController {
     /// アクションを続行します。
     private func _didUserAcceptEventAction(_ action:HSEraEventAction){
         if let action = action as? HSEraEventMoneyReduceAction {
-            _didMoneyChangingEventOccur(-action.reduceMoneyCount)
+            self._didMoneyChangingEventOccur(-action.reduceMoneyCount)
             
         }else if let action = action as? HSEraEventMoneyAppendAction {
-            _didMoneyChangingEventOccur(action.appendMoneyCount)
+            self._didMoneyChangingEventOccur(action.appendMoneyCount)
             
         }else if let action = action as? HSEraEventSkipSquareAction {
-            self.playerManager.advancePlayer(for: currentPlayer, with: action.skippableSquareCount)
+            self._didPlayerSquareChanginActionOccur(action.skippableSquareCount)
             
         }else if let action = action as? HSEraEventReturnSquareAction{
-            self.playerManager.advancePlayer(for: currentPlayer, with: -action.returnSquareCount)
+            self._didPlayerSquareChanginActionOccur(-action.returnSquareCount)
+            
+        }else if let _ = action as? HSEraEventPlayerGoalAction {
+            self._didPlayerReachesGoal(currentPlayer)
             
         }
     }
@@ -134,9 +152,33 @@ class HSGameController {
     private func _didPlayerSquareChanginActionOccur(_ value:Int) {
         self.playerManager.advancePlayer(for: currentPlayer, with: value)
         
-        NotificationCenter.default.post(name: .HSGameControllerDidPlayerPositionChanged, object: currentPlayer)
+        self._didPlayerSquareChanged()
     }
     
+    /// プレイヤーの場所が変更された場合に呼び出してください。
+    /// ルーレットびによっても・アクションによっても
+    private func _didPlayerSquareChanged(){
+        NotificationCenter.default.post(name: .HSGameControllerDidPlayerPositionChanged, object: currentPlayer)
+        
+        /// 2重チェックになるが...問題はない。
+        if let action = getEraEvent(at: getPlayerPosition(currentPlayer))?.action as? HSEraEventReturnSquareAction{
+            self.watingAction = action
+        }
+    }
+    
+    /// プレイヤーがゴールに到達した場合に呼び出してください。
+    private func _didPlayerReachesGoal(_ player:HSPlayer) {
+        player.reachesGoal = true
+        
+        NotificationCenter.default.post(name: .HSGameControllerDidPlayerReachedTheGoal, object: player)
+        
+        _checkIfGameEnded()
+    }
+    private func _checkIfGameEnded(){
+        if gamingPlayers.allSatisfy({$0.reachesGoal}){
+            NotificationCenter.default.post(name: .HSGameControllerDidGameEnd, object: nil)
+        }
+    }
     /// 初期化します。
     init(playerManager:HSPlayerSquareManager, eventManager:HSSquareEventManager) {
         self.gamingPlayers = playerManager.players
@@ -146,6 +188,7 @@ class HSGameController {
     }
 }
 
+// MARK: - 通知用拡張
 extension Notification.Name{
     /// 止まったマスにイベントアクションが発生した時に発火します。
     /// `Notification::object`は`HSEventAction`です。
@@ -162,6 +205,14 @@ extension Notification.Name{
     ///   操作ユーザーが更新された時に発火します。
     /// `Notification::object`は更新後の`HSPlayer`です。
     static let HSGameControllerDidCurrentPlayerChanged = Notification.Name("__HSGameControllerDidCurrentPlayerChanged__")
+    
+    /// プレイヤーがゴールに到達した時発火します。
+    /// `Notification::object`はゴールした`HSPlayer`です。
+    static let HSGameControllerDidPlayerReachedTheGoal = Notification.Name("__HSGameControllerDidPlayerReachedTheGoal__")
+    
+    /// ゲームが終了した時に発火します。
+    /// `Notification::object`は`nil`です。
+    static let HSGameControllerDidGameEnd = Notification.Name("__HSGameControllerDidGameEnd__")
     
 }
 
