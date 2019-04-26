@@ -6,7 +6,6 @@
 //  Copyright © 2019 yuki. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class HSRouletteAnimation {
@@ -15,8 +14,11 @@ class HSRouletteAnimation {
     var slowStartDuration: Double! ///タイマー開始から3秒後に遅くなり始める
     var speed = 1.0
     
-    init(sender: UIPanGestureRecognizer, rouletteImageView: UIImageView, rouletteVC: HSRouletteCustomView) {
+    var delegate: RouletteDelegate?
+    
+    init(sender: UIPanGestureRecognizer, rouletteImageView: UIImageView, rouletteVC: HSRouletteCustomView, delegate: RouletteDelegate) {
         
+        self.delegate = delegate
         startRoulette(sender, rouletteImageView: rouletteImageView, rouletteVC: rouletteVC)
     }
     
@@ -52,6 +54,7 @@ class HSRouletteAnimation {
             if (speed < 0) {
                 sender.invalidate()
                 mapVC.isRotating = false
+                self.delegate?.endRouletteScene()
             }
         }
         

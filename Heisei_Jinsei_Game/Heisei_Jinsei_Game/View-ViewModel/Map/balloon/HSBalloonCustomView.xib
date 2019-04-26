@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="TsukushiAMaruGothic.ttc">
+            <string>TsukuARdGothic-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HSBalloonCustomView" customModule="Heisei_Jinsei_Game" customModuleProvider="target">
+            <connections>
+                <outlet property="comment" destination="FQ1-T5-9Mb" id="4Hn-Gh-old"/>
+                <outlet property="completionBtn" destination="bAe-Ct-2ia" id="LJn-uz-0Be"/>
+                <outlet property="imageView" destination="9ap-Ce-nik" id="t46-48-UrQ"/>
+                <outlet property="title" destination="xWw-uU-iat" id="4m5-Q4-U68"/>
+                <outlet property="view" destination="zf7-3Y-Uhb" id="FiV-IV-ChL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="zf7-3Y-Uhb">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWw-uU-iat">
+                    <rect key="frame" x="10" y="10" width="380" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="qYa-si-Etd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="30"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ap-Ce-nik">
+                    <rect key="frame" x="10" y="50" width="380" height="300"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAe-Ct-2ia">
+                    <rect key="frame" x="10" y="440" width="380" height="40"/>
+                    <color key="backgroundColor" red="0.94082731009999998" green="0.44853997229999998" blue="0.22102043029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="g2I-0g-2qF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="20"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="OK"/>
+                    <connections>
+                        <action selector="completionBtnTapped:" destination="-1" eventType="touchUpInside" id="j6e-9r-fNC"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQ1-T5-9Mb">
+                    <rect key="frame" x="10" y="350" width="380" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="pjT-23-W5c"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="bAe-Ct-2ia" firstAttribute="top" secondItem="FQ1-T5-9Mb" secondAttribute="bottom" constant="10" id="90q-cb-wuT"/>
+                <constraint firstItem="9ap-Ce-nik" firstAttribute="leading" secondItem="JAS-p4-aJN" secondAttribute="leading" constant="10" id="Bu0-Zu-crk"/>
+                <constraint firstItem="JAS-p4-aJN" firstAttribute="trailing" secondItem="FQ1-T5-9Mb" secondAttribute="trailing" constant="10" id="E6d-GT-jct"/>
+                <constraint firstItem="JAS-p4-aJN" firstAttribute="trailing" secondItem="xWw-uU-iat" secondAttribute="trailing" constant="10" id="UF0-Ic-snO"/>
+                <constraint firstItem="JAS-p4-aJN" firstAttribute="trailing" secondItem="bAe-Ct-2ia" secondAttribute="trailing" constant="10" id="YJ4-fy-5je"/>
+                <constraint firstItem="bAe-Ct-2ia" firstAttribute="leading" secondItem="JAS-p4-aJN" secondAttribute="leading" constant="10" id="aFX-BR-NKb"/>
+                <constraint firstItem="xWw-uU-iat" firstAttribute="leading" secondItem="JAS-p4-aJN" secondAttribute="leading" constant="10" id="mHQ-ea-4tF"/>
+                <constraint firstItem="JAS-p4-aJN" firstAttribute="bottom" secondItem="bAe-Ct-2ia" secondAttribute="bottom" constant="20" id="mtW-MP-LPA"/>
+                <constraint firstItem="FQ1-T5-9Mb" firstAttribute="top" secondItem="9ap-Ce-nik" secondAttribute="bottom" id="qj8-7b-yYR"/>
+                <constraint firstItem="9ap-Ce-nik" firstAttribute="top" secondItem="xWw-uU-iat" secondAttribute="bottom" id="qlV-tZ-RjO"/>
+                <constraint firstItem="xWw-uU-iat" firstAttribute="top" secondItem="zf7-3Y-Uhb" secondAttribute="top" constant="10" id="r7m-gd-XIf"/>
+                <constraint firstItem="FQ1-T5-9Mb" firstAttribute="leading" secondItem="JAS-p4-aJN" secondAttribute="leading" constant="10" id="u3V-bi-pHI"/>
+                <constraint firstItem="JAS-p4-aJN" firstAttribute="trailing" secondItem="9ap-Ce-nik" secondAttribute="trailing" constant="10" id="zyT-22-pwT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="JAS-p4-aJN"/>
+            <point key="canvasLocation" x="310" y="167"/>
+        </view>
+    </objects>
+</document>
