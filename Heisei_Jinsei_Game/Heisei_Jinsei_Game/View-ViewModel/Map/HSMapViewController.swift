@@ -16,6 +16,10 @@ class HSMapViewController: UIViewController {
     var centerPointY = 123
     var nextCenterPointX: Int!
     var nextCenterPointY: Int!
+    /// 端末の右側のプレイヤー時の回転
+    let rightPlayerTransform = CGAffineTransform(rotationAngle: .pi / -2)
+    /// 端末左側のプレイヤー時の回転
+    let leftPlayerTransform = CGAffineTransform(rotationAngle: .pi / 2)
     
     var eventPoint: UIButton!
     var squareButton: UIButton!
@@ -93,6 +97,7 @@ class HSMapViewController: UIViewController {
         let actionAlertVC = ActionAlertViewController()
         actionAlertVC.modalPresentationStyle = .overFullScreen
         actionAlertVC.modalTransitionStyle = .crossDissolve
+        actionAlertVC.view.transform = rightPlayerTransform
         present(actionAlertVC, animated: true, completion: nil)
         
     }
