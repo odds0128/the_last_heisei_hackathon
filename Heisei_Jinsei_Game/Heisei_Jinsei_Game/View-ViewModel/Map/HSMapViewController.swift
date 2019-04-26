@@ -16,6 +16,10 @@ class HSMapViewController: UIViewController {
     var centerPointY = 123
     var nextCenterPointX: Int!
     var nextCenterPointY: Int!
+    /// 端末の右側のプレイヤー時の回転
+    let rightPlayerTransform = CGAffineTransform(rotationAngle: .pi / -2)
+    /// 端末左側のプレイヤー時の回転
+    let leftPlayerTransform = CGAffineTransform(rotationAngle: .pi / 2)
     
     var eventPoint: UIButton!
     var squareButton: UIButton!
@@ -94,6 +98,11 @@ class HSMapViewController: UIViewController {
     //イベントマスが押されたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
+        let actionAlertVC = ActionAlertViewController()
+        actionAlertVC.modalPresentationStyle = .overFullScreen
+        actionAlertVC.modalTransitionStyle = .crossDissolve
+        actionAlertVC.view.transform = rightPlayerTransform
+        present(actionAlertVC, animated: true, completion: nil)
         guard let car = playerCars[1] else { return }
         
         let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
