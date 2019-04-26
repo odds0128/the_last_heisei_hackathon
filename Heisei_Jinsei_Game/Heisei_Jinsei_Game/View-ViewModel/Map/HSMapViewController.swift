@@ -100,6 +100,10 @@ class HSMapViewController: UIViewController {
     //イベントマスが押されたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
+        let actionAlertVC = ActionAlertViewController()
+        actionAlertVC.modalPresentationStyle = .overFullScreen
+        actionAlertVC.modalTransitionStyle = .crossDissolve
+        present(actionAlertVC, animated: true, completion: nil)
         
     }
     

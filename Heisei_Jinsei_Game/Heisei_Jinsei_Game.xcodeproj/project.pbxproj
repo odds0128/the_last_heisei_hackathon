@@ -38,6 +38,8 @@
 		B6929A73226C414F00042919 /* HSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A72226C414F00042919 /* HSItem.swift */; };
 		B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A74226C42DF00042919 /* HSItemStack.swift */; };
 		B6929A79226C581700042919 /* HSGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A78226C581700042919 /* HSGameController.swift */; };
+		BF08F4292272A6C800D2F93C /* ActionAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF08F4272272A6C800D2F93C /* ActionAlertViewController.swift */; };
+		BF08F42A2272A6C900D2F93C /* ActionAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF08F4282272A6C800D2F93C /* ActionAlertViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		B6929A74226C42DF00042919 /* HSItemStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSItemStack.swift; sourceTree = "<group>"; };
 		B6929A76226C48F800042919 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B6929A78226C581700042919 /* HSGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSGameController.swift; sourceTree = "<group>"; };
+		BF08F4272272A6C800D2F93C /* ActionAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionAlertViewController.swift; sourceTree = "<group>"; };
+		BF08F4282272A6C800D2F93C /* ActionAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionAlertViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +235,8 @@
 				B6929A62226C141600042919 /* HSMapView.storyboard */,
 				B6929A57226C13B600042919 /* HSMapViewController.swift */,
 				B6929A59226C13BF00042919 /* HSMapViewModel.swift */,
+				BF08F4272272A6C800D2F93C /* ActionAlertViewController.swift */,
+				BF08F4282272A6C800D2F93C /* ActionAlertViewController.xib */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -364,6 +370,7 @@
 				B6929A20226C0FA300042919 /* Assets.xcassets in Resources */,
 				B6929A1E226C0FA200042919 /* Main.storyboard in Resources */,
 				B6929A63226C141600042919 /* HSMapView.storyboard in Resources */,
+				BF08F42A2272A6C900D2F93C /* ActionAlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +412,7 @@
 				B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */,
 				B6929A71226C1B8C00042919 /* +HSEraEventAction.swift in Sources */,
 				B6929A43226C11DF00042919 /* Ex+Foundation.swift in Sources */,
+				BF08F4292272A6C800D2F93C /* ActionAlertViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
