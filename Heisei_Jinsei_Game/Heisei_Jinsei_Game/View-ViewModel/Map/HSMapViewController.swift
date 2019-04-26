@@ -29,6 +29,7 @@ class HSMapViewController: UIViewController {
     
 
     var num = 0
+    var playerCars: [Int:Car] = [:]
     
     @IBOutlet weak var scrollView: UIView!
     
@@ -40,6 +41,9 @@ class HSMapViewController: UIViewController {
         generateDetailButton()
         generateMenuButton()
         generateMoneyIcon()
+        
+        // プレイヤーの車を配置。(TODO:- 全プレイヤーに対応)
+        placePlayerCar(playerNum: 1)
         
         
     }
@@ -53,7 +57,7 @@ class HSMapViewController: UIViewController {
             eventPoint.frame = CGRect(x: basePointX, y: basePointY, width: 60, height: 60)
             eventPoint.backgroundColor = HSColor().blueColor
             eventPoint.layer.cornerRadius = 30
-            eventPoint.tag = i
+            eventPoint.tag = i + 1
             eventPoint.addTarget(self, action: #selector(eventPointTapped), for: .touchUpInside)
             // 影の設定
             HSShadow.init(layer: eventPoint.layer)
@@ -99,7 +103,23 @@ class HSMapViewController: UIViewController {
         actionAlertVC.modalTransitionStyle = .crossDissolve
         actionAlertVC.view.transform = rightPlayerTransform
         present(actionAlertVC, animated: true, completion: nil)
+        guard let car = playerCars[1] else { return }
         
+        let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
+    
+        /// 移動先の座標を詰めていく
+        var positions: [CGPoint] = []
+        for i in range {
+            print(i)
+            guard let moveTo = view.viewWithTag(i) else { return }
+            positions.append(moveTo.frame.origin)
+        }
+        var moveCount = positions.count
+        if car.currentPosition > sender.tag {
+            positions.reverse()
+            moveCount = -moveCount
+        }
+        car.moveTo(positions: positions, moveCount: moveCount)
     }
     
     //マスButton
@@ -212,4 +232,21 @@ class HSMapViewController: UIViewController {
         self.view.addSubview(blackView)
     }
     
+    /// プレイヤーの車を開始地点に配置します。
+    ///
+    /// - Parameter playerNum: プレイヤーID
+    private func placePlayerCar(playerNum: Int) {
+        //TODO:- 全ての車の初期化処理. システムマージ後に行う
+        let square = view.viewWithTag(1) as! UIButton
+        let car = Car(frame: CGRect(x: 0, y: 0, width: 80, height: 60))
+        car.configure(carImage: .red)
+        view.addSubview(car)
+        car.frame.origin = square.frame.origin
+        
+        /// プレイヤーの車オブジェクトを格納
+        let playerCars = [
+            playerNum : car
+        ]
+        self.playerCars = playerCars
+    }
 }
