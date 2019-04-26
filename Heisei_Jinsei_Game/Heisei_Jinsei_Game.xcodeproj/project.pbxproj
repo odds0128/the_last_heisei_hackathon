@@ -41,6 +41,13 @@
 		BFD8FE57227157BA000EC11E /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD8FE56227157BA000EC11E /* Car.swift */; };
 		BFD8FE5922715CF7000EC11E /* Car.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD8FE5822715CF7000EC11E /* Car.xib */; };
 		BFD8FE5D22727509000EC11E /* AnimateEachBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD8FE5C22727509000EC11E /* AnimateEachBlock.swift */; };
+		CC15269422717C5D003CB391 /* HSRouletteCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC15269322717C5D003CB391 /* HSRouletteCustomView.swift */; };
+		CC15269722718F7C003CB391 /* HSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC15269622718F7C003CB391 /* HSColor.swift */; };
+		CC152699227191A4003CB391 /* HSShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC152698227191A4003CB391 /* HSShadow.swift */; };
+		CC1526A022719A09003CB391 /* TsukushiAMaruGothic.ttc in Resources */ = {isa = PBXBuildFile; fileRef = CC15269F22719A01003CB391 /* TsukushiAMaruGothic.ttc */; };
+		CC1526A22271A7F5003CB391 /* FadeInOutAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A12271A7F5003CB391 /* FadeInOutAnimation.swift */; };
+		CC1526A42271B588003CB391 /* HSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A32271B588003CB391 /* HSFont.swift */; };
+		CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED28102270D13100B676BF /* HSRouletteAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +100,13 @@
 		BFD8FE56227157BA000EC11E /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		BFD8FE5822715CF7000EC11E /* Car.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Car.xib; sourceTree = "<group>"; };
 		BFD8FE5C22727509000EC11E /* AnimateEachBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateEachBlock.swift; sourceTree = "<group>"; };
+		CC15269322717C5D003CB391 /* HSRouletteCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRouletteCustomView.swift; sourceTree = "<group>"; };
+		CC15269622718F7C003CB391 /* HSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSColor.swift; sourceTree = "<group>"; };
+		CC152698227191A4003CB391 /* HSShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSShadow.swift; sourceTree = "<group>"; };
+		CC15269F22719A01003CB391 /* TsukushiAMaruGothic.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = TsukushiAMaruGothic.ttc; sourceTree = "<group>"; };
+		CC1526A12271A7F5003CB391 /* FadeInOutAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInOutAnimation.swift; sourceTree = "<group>"; };
+		CC1526A32271B588003CB391 /* HSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSFont.swift; sourceTree = "<group>"; };
+		CCED28102270D13100B676BF /* HSRouletteAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRouletteAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +150,7 @@
 			children = (
 				B6929A24226C0FA300042919 /* Info.plist */,
 				B6929A18226C0FA200042919 /* AppDelegate.swift */,
+				CC15269522718EF5003CB391 /* BaseUIDefinition */,
 				B6929A4F226C135900042919 /* Interface */,
 				B6929A38226C0FB000042919 /* CommonLib */,
 				B6929A66226C143A00042919 /* System */,
@@ -239,6 +254,7 @@
 				B6929A57226C13B600042919 /* HSMapViewController.swift */,
 				B6929A59226C13BF00042919 /* HSMapViewModel.swift */,
 				BFD8FE5C22727509000EC11E /* AnimateEachBlock.swift */,
+				CC152690227172D8003CB391 /* Roulette */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -292,6 +308,27 @@
 				BFD8FE5822715CF7000EC11E /* Car.xib */,
 			);
 			path = Car;
+			sourceTree = "<group>";
+		};
+		CC152690227172D8003CB391 /* Roulette */ = {
+			isa = PBXGroup;
+			children = (
+				CCED28102270D13100B676BF /* HSRouletteAnimation.swift */,
+				CC15269322717C5D003CB391 /* HSRouletteCustomView.swift */,
+			);
+			path = Roulette;
+			sourceTree = "<group>";
+		};
+		CC15269522718EF5003CB391 /* BaseUIDefinition */ = {
+			isa = PBXGroup;
+			children = (
+				CC15269622718F7C003CB391 /* HSColor.swift */,
+				CC152698227191A4003CB391 /* HSShadow.swift */,
+				CC1526A32271B588003CB391 /* HSFont.swift */,
+				CC1526A12271A7F5003CB391 /* FadeInOutAnimation.swift */,
+				CC15269F22719A01003CB391 /* TsukushiAMaruGothic.ttc */,
+			);
+			path = BaseUIDefinition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,6 +412,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC1526A022719A09003CB391 /* TsukushiAMaruGothic.ttc in Resources */,
 				B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */,
 				BFD8FE5922715CF7000EC11E /* Car.xib in Resources */,
 				B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */,
@@ -406,7 +444,11 @@
 				B6929A55226C13A000042919 /* HSMainMenuViewModel.swift in Sources */,
 				B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */,
 				B6929A73226C414F00042919 /* HSItem.swift in Sources */,
+				CC1526A42271B588003CB391 /* HSFont.swift in Sources */,
+				CC1526A22271A7F5003CB391 /* FadeInOutAnimation.swift in Sources */,
+				CC152699227191A4003CB391 /* HSShadow.swift in Sources */,
 				B6929A45226C11DF00042919 /* Ex+UIKit.swift in Sources */,
+				CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */,
 				B6929A49226C11E500042919 /* RMStorage.swift in Sources */,
 				B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */,
 				B6929A4D226C120200042919 /* IEView.swift in Sources */,
@@ -414,8 +456,10 @@
 				B6929A58226C13B600042919 /* HSMapViewController.swift in Sources */,
 				B6929A44226C11DF00042919 /* EX+SpriteKit.swift in Sources */,
 				B6929A42226C11DF00042919 /* Ex+Swift.swift in Sources */,
+				CC15269422717C5D003CB391 /* HSRouletteCustomView.swift in Sources */,
 				B6929A5A226C13BF00042919 /* HSMapViewModel.swift in Sources */,
 				B6929A53226C139500042919 /* HSMainMenuViewController.swift in Sources */,
+				CC15269722718F7C003CB391 /* HSColor.swift in Sources */,
 				B6929A68226C146E00042919 /* HSPlayerTroutManager.swift in Sources */,
 				B6929A6B226C14A600042919 /* HSPlayer.swift in Sources */,
 				B6929A5D226C13E400042919 /* HSMapDetailViewController.swift in Sources */,
@@ -597,7 +641,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -616,7 +660,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
