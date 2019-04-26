@@ -49,6 +49,7 @@
 		CC1526A42271B588003CB391 /* HSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A32271B588003CB391 /* HSFont.swift */; };
 		CC1526A722732FA6003CB391 /* HSBalloonCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */; };
 		CC1526A92273472B003CB391 /* HSInnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A82273472B003CB391 /* HSInnerShadow.swift */; };
+		CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */; };
 		CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED28102270D13100B676BF /* HSRouletteAnimation.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		CC1526A32271B588003CB391 /* HSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSFont.swift; sourceTree = "<group>"; };
 		CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSBalloonCustomView.swift; sourceTree = "<group>"; };
 		CC1526A82273472B003CB391 /* HSInnerShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSInnerShadow.swift; sourceTree = "<group>"; };
+		CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSBalloonCustomView.xib; sourceTree = "<group>"; };
 		CCED28102270D13100B676BF /* HSRouletteAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRouletteAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -340,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */,
+				CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */,
 			);
 			path = balloon;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				CC1526A022719A09003CB391 /* TsukushiAMaruGothic.ttc in Resources */,
 				B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */,
 				BFD8FE5922715CF7000EC11E /* Car.xib in Resources */,
+				CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */,
 				B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */,
 				B6929A23226C0FA300042919 /* LaunchScreen.storyboard in Resources */,
 				B6929A20226C0FA300042919 /* Assets.xcassets in Resources */,
