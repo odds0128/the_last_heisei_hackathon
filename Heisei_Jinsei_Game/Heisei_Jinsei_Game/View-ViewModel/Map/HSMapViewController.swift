@@ -28,12 +28,13 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var eventNumPerLine = 5  ///１行につき5つのイベントマス
     var tempNum = 0
     
-    var tappedEventPointX: CGFloat = 0 {
-        didSet {
-            print("tappedEventPointX:\(tappedEventPointX)")
-        }
-    }
+    var tappedEventPointX: CGFloat = 0
     var tappedEventPointY: CGFloat = 0
+    
+    /// 端末の右側のプレイヤー時の回転
+    let rightPlayerTransform = CGAffineTransform(rotationAngle: .pi / -2)
+    /// 端末左側のプレイヤー時の回転
+    let leftPlayerTransform = CGAffineTransform(rotationAngle: .pi / 2)
     
     var eventPoint: UIButton!
     var eventPointArray = [UIButton]()
@@ -61,6 +62,12 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     ///イベントマスがタップされたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
+        /// 検証用コードをコメント化
+        //        let actionAlertVC = ActionAlertViewController()
+        //        actionAlertVC.modalPresentationStyle = .overFullScreen
+        //        actionAlertVC.modalTransitionStyle = .crossDissolve
+        //        actionAlertVC.view.transform = rightPlayerTransform
+        //        present(actionAlertVC, animated: true, completion: nil)
         guard let car = playerCars[1] else { return }
         
         let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
@@ -80,25 +87,6 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         car.moveTo(positions: positions, moveCount: moveCount, completion: {(true) -> Void in
             self.generateBalloonView(animationEnded: true)
         })
-    }
-    
-    ///イベントマスが長押しされたとき
-    @objc func onLongPressed(_ gesture: UILongPressGestureRecognizer) {
-        guard let sender = gesture.view as? UIButton else {
-            print("Sender is not a button")
-            return
-        }
-        
-        switch (gesture.state) {
-        case .began:
-            print("longPress start")
-        case .ended:
-            print("longPress end")
-        default:
-            break
-        }
-        
-        // 長押しされたボタンは sender.tag で判別
     }
     
     ///ルーレットを生成
