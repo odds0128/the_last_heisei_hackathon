@@ -72,7 +72,7 @@ class Car: UIView {
     /// 指定した座標に移動します.
     ///
     /// - Parameter toPosition: 移動先の座標
-    func moveTo(positions toPositions: [CGPoint], moveCount: Int) {
+    func moveTo(positions toPositions: [CGPoint], moveCount: Int, completion: ((Bool) -> Void)?) {
         print(toPositions)
         self.currentPosition += moveCount
         let blocks = toPositions.map { (point) -> () -> Void in
@@ -80,6 +80,7 @@ class Car: UIView {
                 self?.frame.origin = point
             }
         }
-        UIView.animate(eachBlockDuration: 1, animationBlocks: blocks)
+        UIView.animate(eachBlockDuration: 1, animationBlocks: blocks, completion: completion)
+        
     }
 }
