@@ -44,8 +44,6 @@ class HSMapViewController: UIViewController {
         
         // プレイヤーの車を配置。(TODO:- 全プレイヤーに対応)
         placePlayerCar(playerNum: 1)
-        
-        
     }
     
     
@@ -98,28 +96,29 @@ class HSMapViewController: UIViewController {
     //イベントマスが押されたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
-        let actionAlertVC = ActionAlertViewController()
-        actionAlertVC.modalPresentationStyle = .overFullScreen
-        actionAlertVC.modalTransitionStyle = .crossDissolve
-        actionAlertVC.view.transform = rightPlayerTransform
-        present(actionAlertVC, animated: true, completion: nil)
-        guard let car = playerCars[1] else { return }
-        
-        let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
-    
-        /// 移動先の座標を詰めていく
-        var positions: [CGPoint] = []
-        for i in range {
-            print(i)
-            guard let moveTo = view.viewWithTag(i) else { return }
-            positions.append(moveTo.frame.origin)
-        }
-        var moveCount = positions.count
-        if car.currentPosition > sender.tag {
-            positions.reverse()
-            moveCount = -moveCount
-        }
-        car.moveTo(positions: positions, moveCount: moveCount)
+        /// 検証用コードをコメント化
+//        let actionAlertVC = ActionAlertViewController()
+//        actionAlertVC.modalPresentationStyle = .overFullScreen
+//        actionAlertVC.modalTransitionStyle = .crossDissolve
+//        actionAlertVC.view.transform = rightPlayerTransform
+//        present(actionAlertVC, animated: true, completion: nil)
+//        guard let car = playerCars[1] else { return }
+//
+//        let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
+//
+//        /// 移動先の座標を詰めていく
+//        var positions: [CGPoint] = []
+//        for i in range {
+//            print(i)
+//            guard let moveTo = view.viewWithTag(i) else { return }
+//            positions.append(moveTo.frame.origin)
+//        }
+//        var moveCount = positions.count
+//        if car.currentPosition > sender.tag {
+//            positions.reverse()
+//            moveCount = -moveCount
+//        }
+//        car.moveTo(positions: positions, moveCount: moveCount)
     }
     
     //マスButton
