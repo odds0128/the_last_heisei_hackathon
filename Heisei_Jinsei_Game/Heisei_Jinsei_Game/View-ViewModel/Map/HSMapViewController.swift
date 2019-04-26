@@ -27,6 +27,7 @@ class HSMapViewController: UIViewController {
     var buttonStartFlg = true
     
     var num = 0
+    var playerCars: [Int:Car] = [:]
     
     @IBOutlet weak var scrollView: UIView!
     
@@ -38,6 +39,7 @@ class HSMapViewController: UIViewController {
         generateDetailButton()
         generateMenuButton()
         generateMoneyIcon()
+        placePlayerCar(position: 1)
         
         rouletteImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: self.view.bounds.width - 150, height: self.view.bounds.width - 150))
         rouletteImageView.center = self.view.center
@@ -56,7 +58,7 @@ class HSMapViewController: UIViewController {
             eventPoint.frame = CGRect(x: basePointX, y: basePointY, width: 60, height: 60)
             eventPoint.backgroundColor = .white
             eventPoint.layer.cornerRadius = 30
-            eventPoint.tag = i
+            eventPoint.tag = i + 1
             eventPoint.addTarget(self, action: #selector(eventPointTapped), for: .touchUpInside)
             // 影の設定
             eventPoint.layer.shadowOpacity = 0.5
@@ -100,7 +102,23 @@ class HSMapViewController: UIViewController {
     //イベントマスが押されたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
+        guard let car = playerCars[1] else { return }
         
+        let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
+    
+        /// 移動先の座標を詰めていく
+        var positions: [CGPoint] = []
+        for i in range {
+            print(i)
+            guard let moveTo = view.viewWithTag(i) else { return }
+            positions.append(moveTo.frame.origin)
+        }
+        var moveCount = positions.count
+        if car.currentPosition > sender.tag {
+            positions.reverse()
+            moveCount = -moveCount
+        }
+        car.moveTo(positions: positions, moveCount: moveCount)
     }
     
     //マスButton
@@ -218,4 +236,21 @@ class HSMapViewController: UIViewController {
         }
     }
     
+    /// プレイヤーの車をマス目番号のマスに配置します。
+    ///
+    /// - Parameter position: マス目番号
+    func placePlayerCar(position: Int) {
+        //TODO:- 全ての車の初期化処理. システムマージ後に行う
+        let square = view.viewWithTag(position) as! UIButton
+        let car = Car(frame: CGRect(x: 0, y: 0, width: 80, height: 60))
+        car.configure(carImage: .red)
+        view.addSubview(car)
+        car.frame.origin = square.frame.origin
+        
+        /// プレイヤーの車オブジェクトを格納
+        let playerCars = [
+            1 : car
+        ]
+        self.playerCars = playerCars
+    }
 }

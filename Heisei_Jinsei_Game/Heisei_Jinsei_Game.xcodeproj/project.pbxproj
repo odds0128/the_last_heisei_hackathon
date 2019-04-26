@@ -38,6 +38,9 @@
 		B6929A73226C414F00042919 /* HSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A72226C414F00042919 /* HSItem.swift */; };
 		B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A74226C42DF00042919 /* HSItemStack.swift */; };
 		B6929A79226C581700042919 /* HSGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6929A78226C581700042919 /* HSGameController.swift */; };
+		BFD8FE57227157BA000EC11E /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD8FE56227157BA000EC11E /* Car.swift */; };
+		BFD8FE5922715CF7000EC11E /* Car.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD8FE5822715CF7000EC11E /* Car.xib */; };
+		BFD8FE5D22727509000EC11E /* AnimateEachBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD8FE5C22727509000EC11E /* AnimateEachBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,9 @@
 		B6929A74226C42DF00042919 /* HSItemStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSItemStack.swift; sourceTree = "<group>"; };
 		B6929A76226C48F800042919 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B6929A78226C581700042919 /* HSGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSGameController.swift; sourceTree = "<group>"; };
+		BFD8FE56227157BA000EC11E /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		BFD8FE5822715CF7000EC11E /* Car.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Car.xib; sourceTree = "<group>"; };
+		BFD8FE5C22727509000EC11E /* AnimateEachBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateEachBlock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,9 +234,11 @@
 		B6929A56226C13A400042919 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				BFD8FE552271579F000EC11E /* Car */,
 				B6929A62226C141600042919 /* HSMapView.storyboard */,
 				B6929A57226C13B600042919 /* HSMapViewController.swift */,
 				B6929A59226C13BF00042919 /* HSMapViewModel.swift */,
+				BFD8FE5C22727509000EC11E /* AnimateEachBlock.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -275,6 +283,15 @@
 				B6929A78226C581700042919 /* HSGameController.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		BFD8FE552271579F000EC11E /* Car */ = {
+			isa = PBXGroup;
+			children = (
+				BFD8FE56227157BA000EC11E /* Car.swift */,
+				BFD8FE5822715CF7000EC11E /* Car.xib */,
+			);
+			path = Car;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */,
+				BFD8FE5922715CF7000EC11E /* Car.xib in Resources */,
 				B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */,
 				B6929A23226C0FA300042919 /* LaunchScreen.storyboard in Resources */,
 				B6929A20226C0FA300042919 /* Assets.xcassets in Resources */,
@@ -383,6 +401,8 @@
 			files = (
 				B6929A6D226C155300042919 /* HSEraEvent.swift in Sources */,
 				B6929A46226C11DF00042919 /* Ex+UIColor.swift in Sources */,
+				BFD8FE5D22727509000EC11E /* AnimateEachBlock.swift in Sources */,
+				BFD8FE57227157BA000EC11E /* Car.swift in Sources */,
 				B6929A55226C13A000042919 /* HSMainMenuViewModel.swift in Sources */,
 				B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */,
 				B6929A73226C414F00042919 /* HSItem.swift in Sources */,
