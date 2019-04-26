@@ -111,6 +111,9 @@ class HSMapViewController: UIViewController {
             moveCount = -moveCount
         }
         car.moveTo(positions: positions, moveCount: moveCount)
+        
+        //吹き出しを表示
+        generateBalloonView()
     }
     
     //マスButton
@@ -239,5 +242,16 @@ class HSMapViewController: UIViewController {
             playerNum : car
         ]
         self.playerCars = playerCars
+    }
+    
+    private func generateBalloonView() {
+        
+        let balloonView = HSBalloonCustomView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width/2, height: self.view.bounds.width/1.8))
+        //balloonView.backgroundColor = .blue
+        balloonView.center = self.view.center
+        balloonView.transform = CGAffineTransform(rotationAngle: .pi / 2)
+        balloonView.fadeIn(type: .Normal, completed: nil)
+        self.view.addSubview(balloonView)
+        
     }
 }
