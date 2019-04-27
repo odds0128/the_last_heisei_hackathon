@@ -12,18 +12,30 @@ class ActionAlertViewController: UIViewController {
     
     private let actionLabelViewHeight: CGFloat = 80
     private let innerActionLabelViewHeight: CGFloat = 66
+    private let action: HSEraEventAction
 
-    @IBOutlet weak var actionLabel: UILabel!
-    @IBOutlet weak var actionLabelView: UIView!
-    @IBOutlet weak var innerActionLabelView: UIView!
-    @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak private var actionLabel: UILabel!
+    @IBOutlet weak private var actionLabelView: UIView!
+    @IBOutlet weak private var innerActionLabelView: UIView!
+    @IBOutlet weak private var infoView: UIView!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var detailLabel: UILabel!
+    @IBOutlet weak private var okButton: UIButton!
+    
+    init(action: HSEraEventAction) {
+        self.action = action
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        self.titleLabel.text = action.title
+        self.detailLabel.text = action.description
     }
 
     /// ビューのセットアップ
@@ -46,7 +58,7 @@ class ActionAlertViewController: UIViewController {
     /// OKボタンがタップされた時の処理(Touch up inside)
     ///
     /// - Parameter sender: 押されたボタン
-    @IBAction func okButtonDidTapped(_ sender: UIButton) {
+    @IBAction private func okButtonDidTapped(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

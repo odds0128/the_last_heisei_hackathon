@@ -57,17 +57,13 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         generateRoulette()
         // プレイヤーの車を配置。(TODO:- 全プレイヤーに対応)
         placePlayerCar(playerNum: 1)
+        addActionAlertObserver()
     }
     
     ///イベントマスがタップされたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
         /// 検証用コードをコメント化
-//        let actionAlertVC = ActionAlertViewController()
-//        actionAlertVC.modalPresentationStyle = .overFullScreen
-//        actionAlertVC.modalTransitionStyle = .crossDissolve
-//        actionAlertVC.view.transform = rightPlayerTransform
-//        present(actionAlertVC, animated: true, completion: nil)
 //         guard let car = playerCars[1] else { return }
 //        
 //         let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
@@ -286,5 +282,20 @@ extension UIView {
         recognizer.minimumPressDuration = duration
         self.addGestureRecognizer(recognizer)
         objc_setAssociatedObject(self, String(format: "[%d]", arc4random()), sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+    }
+}
+
+// MARK: - アクションアラート
+extension HSMapViewController {
+    private func addActionAlertObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didEventActionOccured(_:)), name: .HSGameControllerDidEventActionOccur, object: nil)
+    }
+    
+    @objc func didEventActionOccured(_ notification: Notification) {
+        let action = notification.object as! HSEraEventAction
+        let actionAlertVC = ActionAlertViewController(action: action)
+        actionAlertVC.modalPresentationStyle = .overFullScreen
+        actionAlertVC.modalTransitionStyle = .crossDissolve
+        present(actionAlertVC, animated: true, completion: nil)
     }
 }
