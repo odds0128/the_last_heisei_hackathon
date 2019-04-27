@@ -26,7 +26,7 @@ class HSShopManagerTests: XCTestCase {
         var events = (0...50).map{i in
             HSEraEvent(title: "マス\(i)", heiseiYear: (i/4), eventDescription: "説明", imageName: "nil", action: nil)
         }
-        events[4].action = HSEraEventMoneyAppendAction(appendMoneyCount: 1200)
+        events[4].action = HSEraEventMoneyAppendAction(title:"",appendMoneyCount: 1200)
         events.forEach(eventManager.registerEvent)
         
         return eventManager

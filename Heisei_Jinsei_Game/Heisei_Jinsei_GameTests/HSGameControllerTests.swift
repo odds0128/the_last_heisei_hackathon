@@ -27,19 +27,19 @@ class HSGameControllerTests: XCTestCase {
             HSEraEvent(title: "タイトル1", heiseiYear: (i/4), eventDescription: "説明", imageName: "nil", action: nil)
         }
         // ます2を飛ばす様にする。
-        events[2].action = HSEraEventSkipSquareAction(skippableSquareCount: 1)
+        events[2].action = HSEraEventSkipSquareAction(title:"", skippableSquareCount: 1)
         
         // ます5を飛ばす様にする。
-        events[5].action = HSEraEventReturnSquareAction(returnSquareCount: 2)
+        events[5].action = HSEraEventReturnSquareAction(title:"",returnSquareCount: 2)
         
         // ます6で所持金が増える。
-        events[6].action = HSEraEventMoneyAppendAction(appendMoneyCount: 1000)
+        events[6].action = HSEraEventMoneyAppendAction(title:"",appendMoneyCount: 1000)
         
         // ます10で所持金が減る。
-        events[10].action = HSEraEventMoneyReduceAction(reduceMoneyCount: 1000)
+        events[10].action = HSEraEventMoneyReduceAction(title:"",reduceMoneyCount: 1000)
         
         // ます35でゴールまで飛ばされる。
-        events[35].action = HSEraEventSkipSquareAction(skippableSquareCount: 20)
+        events[35].action = HSEraEventSkipSquareAction(title:"",skippableSquareCount: 20)
         
         // ます50でゴールする。
         events[50].action = HSEraEventPlayerGoalAction()
