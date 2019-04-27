@@ -34,11 +34,8 @@ enum CarImage {
         case .yellow:
             imageName = "car-yellow"
         }
-        guard let image = UIImage(named: imageName) else {
-            print("use default")
-            return defaultImage
-            
-        }
+        guard let image = UIImage(named: imageName) else
+            { return defaultImage }
         return image
     }
     
