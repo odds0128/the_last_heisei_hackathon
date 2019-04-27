@@ -70,7 +70,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
             HSPlayer(name: "Takashi"),
             HSPlayer(name: "Satoshi")
         ]
-        self.viewModel = HSMapViewViewModel(players: players, lastSquareIndex: eventPointArray.count)
+        self.viewModel = HSMapViewViewModel(players: players, lastSquareIndex: 60)
         super.init(coder: aDecoder)
     }
     
@@ -81,6 +81,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         generateRoulette()
         // プレイヤーの車を配置.
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
+        addCarAnimationObserver()
     }
     
     ///イベントマスがタップされたとき
@@ -293,5 +294,40 @@ extension UIView {
         recognizer.minimumPressDuration = duration
         self.addGestureRecognizer(recognizer)
         objc_setAssociatedObject(self, String(format: "[%d]", arc4random()), sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+    }
+}
+
+// MARK: - 車移動アニメーション
+extension HSMapViewController {
+    /// 車移動アニメーションのオブザーバーを登録する
+    func addCarAnimationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didPlayerPositionChanged(_:)), name: .HSGameControllerDidPlayerPositionChanged, object: nil)
+    }
+    
+    @objc func didPlayerPositionChanged(_ notification: Notification) {
+        /// プレイヤーの移動後の一取得
+        let player = notification.object as! HSPlayer
+        let toPosition = viewModel.gameController.getPlayerPosition(player) + 1
+        guard let car = playerCars[player] else { return }
+        
+        let range: ClosedRange<Int> = car.currentPosition < toPosition ? (car.currentPosition + 1)...(toPosition) : ((toPosition)...(car.currentPosition - 1))
+        
+        /// 移動先の座標を詰めていく
+        var positions: [CGPoint] = []
+        for i in range {
+            guard let moveTo = view.viewWithTag(i) else { return }
+            positions.append(moveTo.frame.origin)
+        }
+        var moveCount = positions.count
+        if car.currentPosition > toPosition {
+            positions.reverse()
+            moveCount = -moveCount
+        }
+        /// 移動処理
+        car.moveTo(positions: positions, moveCount: moveCount, completion: {[weak self] (true) -> Void in
+            /// 移動完了時吹き出しを出す
+            self?.generateBalloonView(animationEnded: true)
+            self?.viewModel.gameController.didAnimationEnd()
+        })
     }
 }
