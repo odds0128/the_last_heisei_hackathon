@@ -34,7 +34,11 @@ enum CarImage {
         case .yellow:
             imageName = "car-yellow"
         }
-        guard let image = UIImage(named: imageName) else { return defaultImage }
+        guard let image = UIImage(named: imageName) else {
+            print("use default")
+            return defaultImage
+            
+        }
         return image
     }
     
@@ -50,23 +54,30 @@ enum CarImage {
 class Car: UIView {
     
     @IBOutlet weak var carImageView: UIImageView!
+    
     var carImage: CarImage = .red
     var currentPosition: Int = 1
     
-    /// 初期化処理
-    ///
-    /// - Parameter carImage: 車画像
-    func configure(carImage: CarImage) {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    convenience init(frame: CGRect, carImage: CarImage) {
+        self.init(frame: frame)
         self.carImage = carImage
-        self.currentPosition = 1
-        self.carImageView = self.carImage.imageView()
         loadNib()
     }
     
-    private func loadNib() {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func loadNib() {
         guard let view = Bundle(for: type(of: self)).loadNibNamed("Car", owner: self, options: nil)?.first as? UIView else { return }
         view.frame = bounds
-        self.addSubview(view)
+        let v = view as! Car
+        v.carImageView.image = carImage.image()
+        self.addSubview(v)
     }
     
     /// 指定した座標に移動します.
