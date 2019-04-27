@@ -82,6 +82,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         // プレイヤーの車を配置.
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
+        addActionAlertObserver()
     }
     
     ///イベントマスがタップされたとき
@@ -329,5 +330,20 @@ extension HSMapViewController {
             self?.generateBalloonView(animationEnded: true)
             self?.viewModel.gameController.didAnimationEnd()
         })
+    }
+}
+
+// MARK: - アクションアラート
+extension HSMapViewController {
+    private func addActionAlertObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didEventActionOccured(_:)), name: .HSGameControllerDidEventActionOccur, object: nil)
+    }
+    
+    @objc func didEventActionOccured(_ notification: Notification) {
+        let action = notification.object as! HSEraEventAction
+        let actionAlertVC = ActionAlertViewController(action: action)
+        actionAlertVC.modalPresentationStyle = .overFullScreen
+        actionAlertVC.modalTransitionStyle = .crossDissolve
+        present(actionAlertVC, animated: true, completion: nil)
     }
 }

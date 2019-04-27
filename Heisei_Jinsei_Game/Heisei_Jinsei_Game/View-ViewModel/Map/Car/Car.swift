@@ -88,7 +88,7 @@ class Car: UIView {
                 self?.frame.origin = point
             }
         }
-        UIView.animate(eachBlockDuration: 1, animationBlocks: blocks, completion: completion)
+        UIView.animate(eachBlockDuration: 0.5, animationBlocks: blocks, completion: completion)
         
     }
 }
