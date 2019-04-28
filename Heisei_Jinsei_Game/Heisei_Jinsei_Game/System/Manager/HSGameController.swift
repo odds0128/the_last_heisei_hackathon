@@ -39,7 +39,7 @@ class HSGameController {
         self.playerManager.didSpinWheel(for: currentPlayer, with: wheelValue)
         
         isWatingRouletteAnimation = true
-        print("gameController randomNum: \(wheelValue)")
+        
         return wheelValue
     }
     
