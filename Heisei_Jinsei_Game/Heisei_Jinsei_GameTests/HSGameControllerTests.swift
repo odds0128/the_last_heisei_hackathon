@@ -55,124 +55,35 @@ class HSGameControllerTests: XCTestCase {
         // Aliceがルーレットを回す。
         _=gameController.spinWheel(min:35, max: 35)
         
-        XCTAssertEqual(gameController.currentPlayer.name, "Alice")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
+        XCTAssertEqual(gameController.getPlayerPosition(gameController.currentPlayer), 35)
         
-        // マス上を動くアニメーション
-        gameController.didAnimationEnd()
+        // ルーレットが回っている後
+        gameController.animationDidEnd()
+        // 移動通知発火
         
-        // 35マスでイベント発火
+        XCTAssertEqual(gameController.getPlayerPosition(gameController.currentPlayer), 35)
         
-        // マス上を動くアニメーション
-        gameController.didAnimationEnd()
+        // マス上を動くアニメーショ後
+        gameController.animationDidEnd()
+        // イベント通知発火
         
-        XCTAssertEqual(gameController.currentPlayer.name, "Alice")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, true)
+        XCTAssertEqual(gameController.getPlayerPosition(gameController.currentPlayer), 35)
         
-        // ゴール後演出
-        gameController.didAnimationEnd()
+        // イベントモーダル確認後
+        gameController.animationDidEnd()
+        // 移動通知発火
         
-        XCTAssertEqual(gameController.currentPlayer.name, "Bob")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
+        XCTAssertEqual(gameController.getPlayerPosition(gameController.currentPlayer), 50)
         
-        gameController.spinWheel(min: 50, max: 50)
+        // マス上を動くアニメーション後
+        gameController.animationDidEnd()
+        // ゴール通知発火
         
-        gameController.didAnimationEnd()
-        gameController.didAnimationEnd()
-        
-        XCTAssertEqual(gameController.currentPlayer.name, "Cathey")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
-        
-        gameController.spinWheel(min: 50, max: 50)
-        
-        gameController.didAnimationEnd()
-        gameController.didAnimationEnd()
-        
-        XCTAssert(gameController.isGameEnded)
-        
-    }
-    func testGoal() {
-        let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
-        
-        // Aliceがルーレットを回す。
-        _=gameController.spinWheel(min:51, max: 51)
-        
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
-        
-        // マス上を動くアニメーション
-        
-        gameController.didAnimationEnd()
-        
-        XCTAssertEqual(gameController.currentPlayer.name, "Alice")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, true)
-        
-        // ゴール後の演出
-        
-        gameController.didAnimationEnd()
-        
-        // ボブが続ける
-        XCTAssertEqual(gameController.currentPlayer.name, "Bob")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
-        
-        // ボブもゴールする。
-        _=gameController.spinWheel(min:51, max: 51)
-        
-        gameController.didAnimationEnd()
+        // ゴールアクション後
+        gameController.animationDidEnd()
+        // ユーザー変更通知発火
         
         XCTAssertEqual(gameController.currentPlayer.name, "Bob")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, true)
-        
-        // ゴール後の演出
-        
-        gameController.didAnimationEnd()
-        
-        // キャシーが続ける
-        XCTAssertEqual(gameController.currentPlayer.name, "Cathey")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
-        
-        // キャシーはゴールできない
-        _=gameController.spinWheel(min:40, max: 40)
-        
-        gameController.didAnimationEnd()
-        
-        // 残り二人はゴールしているので、またキャシーが回す。
-        
-        XCTAssertEqual(gameController.currentPlayer.name, "Cathey")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
-        
-        // キャシーはゴールできない
-        _=gameController.spinWheel(min:1, max: 1)
-        
-        gameController.didAnimationEnd()
-        
-        // 残り二人はゴールしているので、またキャシーが回す。
-        
-        XCTAssertEqual(gameController.currentPlayer.name, "Cathey")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
-        
-        // キャシーはゴールできない
-        _=gameController.spinWheel(min:1, max: 1)
-        
-        gameController.didAnimationEnd()
-        
-        // 残り二人はゴールしているので、またキャシーが回す。
-        
-        XCTAssertEqual(gameController.currentPlayer.name, "Cathey")
-        XCTAssertEqual(gameController.currentPlayer.reachesGoal, false)
-        
-        // キャシーもゴールする。
-        _=gameController.spinWheel(min:30, max: 30)
-        
-        // マス上を動くアニメーション
-        
-        gameController.didAnimationEnd()
-        
-        // ゴールアニメーション
-        
-        gameController.didAnimationEnd()
-        
-        
-        XCTAssertEqual(gameController.isGameEnded, true)
     }
     func testEventAction4(){
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
@@ -182,7 +93,7 @@ class HSGameControllerTests: XCTestCase {
         
         XCTAssertEqual(10,       gameController.getPlayerPosition(gameController.currentPlayer))
         
-        gameController.didAnimationEnd()
+        gameController.animationDidEnd()
         // イベント着火！1000円減る。0 -> 0
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
@@ -196,60 +107,57 @@ class HSGameControllerTests: XCTestCase {
         // 確定で5 イベント発生
         _=gameController.spinWheel(min:6, max: 6)
         
+        gameController.animationDidEnd() // ルーレット待機
+        
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(6,       gameController.getPlayerPosition(gameController.currentPlayer))
         
-        gameController.didAnimationEnd()
-        // イベント着火！1000円える。
+        gameController.animationDidEnd() // 移動待機
+        gameController.animationDidEnd() // アクション認証待機
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(1000,    gameController.currentPlayer.money)
-        XCTAssertEqual(6,     gameController.getPlayerPosition(gameController.currentPlayer))
         
-        gameController.didAnimationEnd()
+        gameController.animationDidEnd() // アクションアニメーション待機
         
         XCTAssertEqual("Bob", gameController.currentPlayer.name)
-        XCTAssertEqual(0,     gameController.getPlayerPosition(gameController.currentPlayer))
     }
     
     func testEventAction2(){
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
-        // 確定で5 イベント発生
         _=gameController.spinWheel(min: 5, max: 5)
+        gameController.animationDidEnd() // ルーレット待機
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(5,       gameController.getPlayerPosition(gameController.currentPlayer))
         
-        
-        gameController.didAnimationEnd()
-        // イベント着火！2ます戻る。
+        gameController.animationDidEnd() // 移動待機
+        gameController.animationDidEnd() // アクション認証待機
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(3,       gameController.getPlayerPosition(gameController.currentPlayer))
         
-        gameController.didAnimationEnd()
+        gameController.animationDidEnd() // マス移動待機
         
         XCTAssertEqual("Bob", gameController.currentPlayer.name)
-        XCTAssertEqual(0,     gameController.getPlayerPosition(gameController.currentPlayer))
     }
     func testEventAction1(){
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
-        // 確定で2 イベント発生
         _=gameController.spinWheel(min: 2, max: 2)
+        gameController.animationDidEnd() // ルーレット待機
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(2,       gameController.getPlayerPosition(gameController.currentPlayer))
         
-        gameController.didAnimationEnd()
-        // イベント着火！1マス進む
+        gameController.animationDidEnd() // 移動待機
+        gameController.animationDidEnd() // アクション認証待機
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(3,       gameController.getPlayerPosition(gameController.currentPlayer))
         
-        // ターン終了
-        gameController.didAnimationEnd()
+        gameController.animationDidEnd() // マス移動待機
         
         XCTAssertEqual("Bob", gameController.currentPlayer.name)
         XCTAssertEqual(0,     gameController.getPlayerPosition(gameController.currentPlayer))
@@ -259,15 +167,14 @@ class HSGameControllerTests: XCTestCase {
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         
-        // 確定で1
         _=gameController.spinWheel(min: 1, max: 1)
+        gameController.animationDidEnd() // ルーレット待機
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(1,       gameController.getPlayerPosition(gameController.currentPlayer))
         
-        gameController.didAnimationEnd()
+        gameController.animationDidEnd() // 移動待機
         
         XCTAssertEqual("Bob", gameController.currentPlayer.name)
-        XCTAssertEqual(0,     gameController.getPlayerPosition(gameController.currentPlayer))
     }
 }
