@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="TsukushiAMaruGothic.ttc">
+            <string>TsukuARdGothic-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HSItemCollectionViewCell" customModule="Heisei_Jinsei_Game" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HSItemCollectionViewCell" id="gTV-IL-0wX" customClass="HSItemCollectionViewCell" customModule="Heisei_Jinsei_Game" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hck-Cc-Zhc" userLabel="Background">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <color key="backgroundColor" white="0.81406071632420085" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-red" translatesAutoresizingMaskIntoConstraints="NO" id="wSF-9b-P5N">
+                        <rect key="frame" x="5" y="5" width="190" height="150"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金庫" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usd-0j-FS6">
+                        <rect key="frame" x="0.0" y="160" width="200" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="m1S-fP-cJX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RyY-i5-ioa">
+                        <rect key="frame" x="20" y="180" width="160" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="P5s-nl-cR7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Hck-Cc-Zhc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6lr-1k-tg1"/>
+                <constraint firstAttribute="trailing" secondItem="usd-0j-FS6" secondAttribute="trailing" id="6wZ-WN-d91"/>
+                <constraint firstItem="RyY-i5-ioa" firstAttribute="top" secondItem="usd-0j-FS6" secondAttribute="bottom" id="9hn-QP-J8Y"/>
+                <constraint firstItem="wSF-9b-P5N" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="CpS-mt-k67"/>
+                <constraint firstItem="usd-0j-FS6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="EDI-bR-RIH"/>
+                <constraint firstAttribute="trailing" secondItem="wSF-9b-P5N" secondAttribute="trailing" constant="5" id="F94-2x-hoI"/>
+                <constraint firstAttribute="bottom" secondItem="Hck-Cc-Zhc" secondAttribute="bottom" id="GHp-YP-8fy"/>
+                <constraint firstItem="wSF-9b-P5N" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Iht-Dx-w2b"/>
+                <constraint firstAttribute="trailing" secondItem="Hck-Cc-Zhc" secondAttribute="trailing" id="X0v-it-iTB"/>
+                <constraint firstItem="RyY-i5-ioa" firstAttribute="centerX" secondItem="wSF-9b-P5N" secondAttribute="centerX" id="bSG-1n-Mdc"/>
+                <constraint firstItem="usd-0j-FS6" firstAttribute="centerX" secondItem="wSF-9b-P5N" secondAttribute="centerX" id="cU5-U9-IH3"/>
+                <constraint firstAttribute="trailing" secondItem="RyY-i5-ioa" secondAttribute="trailing" constant="20" id="nzF-KW-zgS"/>
+                <constraint firstAttribute="bottom" secondItem="RyY-i5-ioa" secondAttribute="bottom" id="rbg-Zs-qR9"/>
+                <constraint firstItem="Hck-Cc-Zhc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rft-TI-Ajm"/>
+                <constraint firstItem="usd-0j-FS6" firstAttribute="top" secondItem="wSF-9b-P5N" secondAttribute="bottom" constant="5" id="s6N-Km-6Pu"/>
+                <constraint firstItem="RyY-i5-ioa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="yhK-jx-LiA"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="173" height="155"/>
+            <connections>
+                <outlet property="background" destination="Hck-Cc-Zhc" id="Qvt-DL-W0J"/>
+                <outlet property="itemImageView" destination="wSF-9b-P5N" id="XMa-fy-yPr"/>
+                <outlet property="itemNameLabel" destination="usd-0j-FS6" id="sgz-ZL-Z3B"/>
+                <outlet property="itemNumLabel" destination="RyY-i5-ioa" id="baK-zH-UOm"/>
+            </connections>
+            <point key="canvasLocation" x="150.40000000000001" y="95.352323838080963"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="car-red" width="103" height="67"/>
+    </resources>
+</document>

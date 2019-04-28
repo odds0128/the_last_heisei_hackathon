@@ -60,6 +60,12 @@
 		CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */; };
 		CC1526B22274275D003CB391 /* HSPlayerAreaCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526B12274275D003CB391 /* HSPlayerAreaCustomView.swift */; };
 		CC1526B62274337F003CB391 /* HSPlayerAreaCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526B52274337F003CB391 /* HSPlayerAreaCustomView.xib */; };
+		CC1526C72275E047003CB391 /* HSItemCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526C32275E047003CB391 /* HSItemCustomView.swift */; };
+		CC1526C82275E047003CB391 /* HSItemCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526C42275E047003CB391 /* HSItemCustomView.xib */; };
+		CC1526CE2275ECE5003CB391 /* HSItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526CC2275ECE5003CB391 /* HSItemCollectionViewCell.swift */; };
+		CC1526CF2275ECE5003CB391 /* HSItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526CD2275ECE5003CB391 /* HSItemCollectionViewCell.xib */; };
+		CC1526D4227625C4003CB391 /* HSShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526D2227625C4003CB391 /* HSShopCollectionViewCell.swift */; };
+		CC1526D5227625C4003CB391 /* HSShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526D3227625C4003CB391 /* HSShopCollectionViewCell.xib */; };
 		CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED28102270D13100B676BF /* HSRouletteAnimation.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +138,12 @@
 		CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSBalloonCustomView.xib; sourceTree = "<group>"; };
 		CC1526B12274275D003CB391 /* HSPlayerAreaCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSPlayerAreaCustomView.swift; sourceTree = "<group>"; };
 		CC1526B52274337F003CB391 /* HSPlayerAreaCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSPlayerAreaCustomView.xib; sourceTree = "<group>"; };
+		CC1526C32275E047003CB391 /* HSItemCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSItemCustomView.swift; sourceTree = "<group>"; };
+		CC1526C42275E047003CB391 /* HSItemCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItemCustomView.xib; sourceTree = "<group>"; };
+		CC1526CC2275ECE5003CB391 /* HSItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC1526CD2275ECE5003CB391 /* HSItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		CC1526D2227625C4003CB391 /* HSShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSShopCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC1526D3227625C4003CB391 /* HSShopCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSShopCollectionViewCell.xib; sourceTree = "<group>"; };
 		CCED28102270D13100B676BF /* HSRouletteAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRouletteAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,6 +298,7 @@
 		B6929A56226C13A400042919 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				CC1526C12275E047003CB391 /* Item */,
 				CC1526B022742738003CB391 /* playerArea */,
 				CC1526A522732F86003CB391 /* balloon */,
 				BF3333F62273675B00CB0F4F /* ActionAlert */,
@@ -411,6 +424,19 @@
 			path = playerArea;
 			sourceTree = "<group>";
 		};
+		CC1526C12275E047003CB391 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				CC1526C32275E047003CB391 /* HSItemCustomView.swift */,
+				CC1526C42275E047003CB391 /* HSItemCustomView.xib */,
+				CC1526CC2275ECE5003CB391 /* HSItemCollectionViewCell.swift */,
+				CC1526CD2275ECE5003CB391 /* HSItemCollectionViewCell.xib */,
+				CC1526D2227625C4003CB391 /* HSShopCollectionViewCell.swift */,
+				CC1526D3227625C4003CB391 /* HSShopCollectionViewCell.xib */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -494,13 +520,16 @@
 			files = (
 				CC1526A022719A09003CB391 /* TsukushiAMaruGothic.ttc in Resources */,
 				B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */,
+				CC1526D5227625C4003CB391 /* HSShopCollectionViewCell.xib in Resources */,
 				CC1526B62274337F003CB391 /* HSPlayerAreaCustomView.xib in Resources */,
+				CC1526CF2275ECE5003CB391 /* HSItemCollectionViewCell.xib in Resources */,
 				BFD8FE5922715CF7000EC11E /* Car.xib in Resources */,
 				CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */,
 				B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */,
 				B6929A23226C0FA300042919 /* LaunchScreen.storyboard in Resources */,
 				B6929A20226C0FA300042919 /* Assets.xcassets in Resources */,
 				B6929A1E226C0FA200042919 /* Main.storyboard in Resources */,
+				CC1526C82275E047003CB391 /* HSItemCustomView.xib in Resources */,
 				B6929A63226C141600042919 /* HSMapView.storyboard in Resources */,
 				BF08F42A2272A6C900D2F93C /* ActionAlertViewController.xib in Resources */,
 			);
@@ -528,6 +557,7 @@
 				BFD8FE57227157BA000EC11E /* Car.swift in Sources */,
 				B6929A55226C13A000042919 /* HSMainMenuViewModel.swift in Sources */,
 				B63AF2CF227040690069C54B /* HSNPCPlayer.swift in Sources */,
+				CC1526C72275E047003CB391 /* HSItemCustomView.swift in Sources */,
 				B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */,
 				B6929A73226C414F00042919 /* HSItem.swift in Sources */,
 				CC1526A42271B588003CB391 /* HSFont.swift in Sources */,
@@ -537,6 +567,7 @@
 				CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */,
 				CC1526A92273472B003CB391 /* HSInnerShadow.swift in Sources */,
 				B6929A49226C11E500042919 /* RMStorage.swift in Sources */,
+				CC1526CE2275ECE5003CB391 /* HSItemCollectionViewCell.swift in Sources */,
 				B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */,
 				CC1526A722732FA6003CB391 /* HSBalloonCustomView.swift in Sources */,
 				B6929A4D226C120200042919 /* IEView.swift in Sources */,
@@ -544,6 +575,7 @@
 				B6929A58226C13B600042919 /* HSMapViewController.swift in Sources */,
 				CC1526B22274275D003CB391 /* HSPlayerAreaCustomView.swift in Sources */,
 				B68686A4226EEF4200389CFB /* HSSquareEventManager.swift in Sources */,
+				CC1526D4227625C4003CB391 /* HSShopCollectionViewCell.swift in Sources */,
 				B6929A44226C11DF00042919 /* EX+SpriteKit.swift in Sources */,
 				B6929A42226C11DF00042919 /* Ex+Swift.swift in Sources */,
 				CC15269422717C5D003CB391 /* HSRouletteCustomView.swift in Sources */,

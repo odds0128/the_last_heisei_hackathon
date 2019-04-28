@@ -63,6 +63,7 @@ class HSPlayerAreaCustomView: UIView {
     
     @IBAction func shopBtnTapped(_ sender: Any) {
         print("shop tapped")
+        delegate?.generateItemView()
     }
     
     @IBAction func rouletteBtnTapped(_ sender: Any) {

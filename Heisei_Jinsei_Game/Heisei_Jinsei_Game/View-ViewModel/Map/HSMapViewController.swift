@@ -291,7 +291,7 @@ extension HSMapViewController {
     
     ///アイテム欄の生成
     func generateItemView() {
-        let width = view.frame.width/2
+        let width = view.frame.width/1.5
         let height = view.frame.height/1.5
         let name = viewModel.gameController.currentPlayer.name
         itemView = HSItemCustomView(frame: CGRect(x: view.frame.width/2-width/2, y: 0, width: width, height: height), name: name)
