@@ -16,7 +16,11 @@ protocol RouletteDelegate {
     func endRouletteScene()
 }
 
-class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate {
+protocol PlayerAreaDelegate {
+    func generateRoulette()
+}
+
+class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate, PlayerAreaDelegate {
     
     let viewModel: HSMapViewViewModel
     
@@ -45,6 +49,8 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var rouletteView: HSRouletteCustomView!
     var blackView: UIView!
     var balloonView: HSBalloonCustomView!
+    var playerAreaView: HSPlayerAreaCustomView!
+    
     
     var playerCars: [HSPlayer:Car] = [:]
     var eventPointXArray = [CGFloat]()
@@ -79,6 +85,8 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         
         generateEventPoint()
         generateRoulette()
+      　generatePlayerArea()
+
         // プレイヤーの車を配置.
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
@@ -88,10 +96,11 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     ///イベントマスがタップされたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
+
     }
     
     ///ルーレットを生成
-    @objc private func generateRoulette() {
+    @objc func generateRoulette() {
         blackBackground()
         
         rouletteView = HSRouletteCustomView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width/2.5, height: self.view.bounds.height))
@@ -272,6 +281,27 @@ extension HSMapViewController {
         }
         return arc4random_uniform(upper - lower) + lower
     }
+    
+    ///プレイヤーエリアの生成
+    private func generatePlayerArea() {
+        let playerAreaWidth = self.view.frame.width/4
+        let playerAreaHeight = self.view.frame.width/4
+        
+        setPlayerArea(x: -playerAreaWidth/2.55, y: self.view.frame.height - playerAreaHeight/1.3, radian: 45, tag: 0)
+        setPlayerArea(x: -playerAreaWidth/2.55, y: -playerAreaHeight/2.55, radian: 135, tag: 1)
+        setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: -playerAreaHeight/2.55, radian: -135, tag: 2)
+        setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: self.view.frame.height - playerAreaHeight/1.3, radian: -45, tag: 3)
+    }
+    ///プレイヤーエリアのセット
+    private func setPlayerArea(x: CGFloat, y: CGFloat, radian: Double, tag: Int) {
+        playerAreaView = HSPlayerAreaCustomView(frame: CGRect(x: x, y: y, width: self.view.bounds.width/3.5, height: self.view.bounds.width/3.5))
+        let angle = CGFloat((radian * M_PI) / 180.0)
+        playerAreaView.transform = CGAffineTransform(rotationAngle: angle)
+        playerAreaView.tag = tag
+        playerAreaView.delegate = self
+        self.view.addSubview(playerAreaView)
+    }
+    
 }
 ///===============================
 ///ボタン長押しExtention

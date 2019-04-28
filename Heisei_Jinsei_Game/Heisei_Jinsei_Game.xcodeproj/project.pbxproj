@@ -58,6 +58,8 @@
 		CC1526A722732FA6003CB391 /* HSBalloonCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */; };
 		CC1526A92273472B003CB391 /* HSInnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526A82273472B003CB391 /* HSInnerShadow.swift */; };
 		CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */; };
+		CC1526B22274275D003CB391 /* HSPlayerAreaCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526B12274275D003CB391 /* HSPlayerAreaCustomView.swift */; };
+		CC1526B62274337F003CB391 /* HSPlayerAreaCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526B52274337F003CB391 /* HSPlayerAreaCustomView.xib */; };
 		CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED28102270D13100B676BF /* HSRouletteAnimation.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +130,8 @@
 		CC1526A622732FA6003CB391 /* HSBalloonCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSBalloonCustomView.swift; sourceTree = "<group>"; };
 		CC1526A82273472B003CB391 /* HSInnerShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSInnerShadow.swift; sourceTree = "<group>"; };
 		CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSBalloonCustomView.xib; sourceTree = "<group>"; };
+		CC1526B12274275D003CB391 /* HSPlayerAreaCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSPlayerAreaCustomView.swift; sourceTree = "<group>"; };
+		CC1526B52274337F003CB391 /* HSPlayerAreaCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSPlayerAreaCustomView.xib; sourceTree = "<group>"; };
 		CCED28102270D13100B676BF /* HSRouletteAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRouletteAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,13 +286,14 @@
 		B6929A56226C13A400042919 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				CC1526B022742738003CB391 /* playerArea */,
 				CC1526A522732F86003CB391 /* balloon */,
 				BF3333F62273675B00CB0F4F /* ActionAlert */,
 				BFD8FE552271579F000EC11E /* Car */,
+				CC152690227172D8003CB391 /* Roulette */,
 				B6929A62226C141600042919 /* HSMapView.storyboard */,
 				B6929A57226C13B600042919 /* HSMapViewController.swift */,
 				B6929A59226C13BF00042919 /* HSMapViewModel.swift */,
-				CC152690227172D8003CB391 /* Roulette */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -397,6 +402,15 @@
 			path = Shadow;
 			sourceTree = "<group>";
 		};
+		CC1526B022742738003CB391 /* playerArea */ = {
+			isa = PBXGroup;
+			children = (
+				CC1526B12274275D003CB391 /* HSPlayerAreaCustomView.swift */,
+				CC1526B52274337F003CB391 /* HSPlayerAreaCustomView.xib */,
+			);
+			path = playerArea;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -480,6 +494,7 @@
 			files = (
 				CC1526A022719A09003CB391 /* TsukushiAMaruGothic.ttc in Resources */,
 				B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */,
+				CC1526B62274337F003CB391 /* HSPlayerAreaCustomView.xib in Resources */,
 				BFD8FE5922715CF7000EC11E /* Car.xib in Resources */,
 				CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */,
 				B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */,
@@ -527,6 +542,7 @@
 				B6929A4D226C120200042919 /* IEView.swift in Sources */,
 				B6929A47226C11DF00042919 /* Ex+CoreGraphics.swift in Sources */,
 				B6929A58226C13B600042919 /* HSMapViewController.swift in Sources */,
+				CC1526B22274275D003CB391 /* HSPlayerAreaCustomView.swift in Sources */,
 				B68686A4226EEF4200389CFB /* HSSquareEventManager.swift in Sources */,
 				B6929A44226C11DF00042919 /* EX+SpriteKit.swift in Sources */,
 				B6929A42226C11DF00042919 /* Ex+Swift.swift in Sources */,
