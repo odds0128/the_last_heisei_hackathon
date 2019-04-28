@@ -18,6 +18,8 @@ class HSRouletteCustomView: UIView {
     
     var delegate: RouletteDelegate?
     
+    var randomNum: Int!
+    
     private var viewWidth: CGFloat!
     private var viewHeight: CGFloat!
     
@@ -83,7 +85,7 @@ class HSRouletteCustomView: UIView {
     //ルーレットスタート
     @objc private func startRoulette() {
         if (isRotating == false) {
-            HSRouletteAnimation(sender: panGesture, rouletteImageView: rouletteImageView, rouletteVC: self, delegate: delegate!)
+            HSRouletteAnimation(sender: panGesture, rouletteImageView: rouletteImageView, rouletteVC: self, delegate: delegate!, randomNum: self.randomNum)
         } else {
         }
     }

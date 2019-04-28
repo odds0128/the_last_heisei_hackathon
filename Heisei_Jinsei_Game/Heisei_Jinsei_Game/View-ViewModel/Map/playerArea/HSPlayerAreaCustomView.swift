@@ -15,16 +15,24 @@ class HSPlayerAreaCustomView: UIView {
     @IBOutlet weak var smallRouletteImageView: UIImageView!
     @IBOutlet weak var shopBtn: UIButton!
     
+    private var playerName: String!
+    private var money: Int!
+    
     private var viewWidth: CGFloat!
     private var viewHeight: CGFloat!
     
     var delegate: PlayerAreaDelegate?
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, name: String, money: Int) {
         super.init(frame: frame)
         loadNib()
+        
         viewWidth = frame.width
         viewHeight = frame.height
+        
+        self.playerName = name
+        self.money = money
+        
         setPlaeyerArea()
     }
     
@@ -41,15 +49,16 @@ class HSPlayerAreaCustomView: UIView {
     
     private func setPlaeyerArea() {
         
+        self.playerNameLabel.text = playerName
+        self.moneyLabel.text = "¥\(self.money!)"
         smallRouletteImageView.contentMode = .scaleAspectFit
-        self.backgroundColor = UIColor(white: 0, alpha: 0)
         moneyLabel.layer.cornerRadius = 10
         moneyLabel.adjustsFontSizeToFitWidth = true
         moneyLabel.minimumScaleFactor = 0.3
         playerNameLabel.adjustsFontSizeToFitWidth = true
         playerNameLabel.minimumScaleFactor = 0.3
-        
         shopBtn.imageView?.contentMode = .scaleAspectFit
+        
     }
     
     @IBAction func shopBtnTapped(_ sender: Any) {
