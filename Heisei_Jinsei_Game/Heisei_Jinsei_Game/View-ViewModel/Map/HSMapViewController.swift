@@ -84,13 +84,14 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         super.viewDidLoad()
         
         generateEventPoint()
-        generateRoulette()
-      　generatePlayerArea()
+        //generateRoulette()
+        generatePlayerArea()
 
         // プレイヤーの車を配置.
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
         addActionAlertObserver()
+        addRouletteObserver()
     }
     
     ///イベントマスがタップされたとき
@@ -107,21 +108,8 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         rouletteView.center = self.view.center
         rouletteView.fadeIn(type: .Normal, completed: nil)
         rouletteView.delegate = self
+        rouletteView.randomNum = self.viewModel.gameController.spinWheel()
         self.view.addSubview(rouletteView)
-    }
-    
-    ///ルーレット画面を終了する
-    func endRouletteScene() {
-        ///1秒処理を遅らせる
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.rouletteView.fadeOut(duration: 0.5, completed: {
-                self.rouletteView.removeFromSuperview()
-            })
-            self.blackView.fadeOut(duration: 0.5, completed: {
-                self.blackView.removeFromSuperview()
-            })
-        }
-        
     }
     
     ///背景を黒く透過する
@@ -163,8 +151,6 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         
         let width = self.view.bounds.width/2.8
         let height = self.view.bounds.height/1.8
-        print("tappedEventPointY:\(tappedEventPointY)")
-        print("view.bounds.height/2:\(view.bounds.height/2)")
         if (tappedEventPointY < view.bounds.height/2) {
             balloonView = HSBalloonCustomView(frame: CGRect(x: tappedEventPointX - width/2, y: tappedEventPointY+50, width:width, height: height))
         } else {
@@ -212,20 +198,15 @@ extension HSMapViewController {
             eventPoint.longPress(duration: 0.3, { (gesture) in
                 
                 guard let sender = gesture.view as? UIButton else {
-                    print("Sender is not a button")
                     return
                 }
-                
                 switch (gesture.state) {
                 case .began:
-                    print("longPress start")
                     let location = gesture.location(in: self.view)
                     self.tappedEventPointX = location.x
                     self.tappedEventPointY = location.y
-                    print("longPress Location : \(location)")
                     self.generateBalloonView(animationEnded: false)
                 case .ended:
-                    print("longPress end")
                     self.removeBalloonView()
                 default:
                     break
@@ -375,5 +356,25 @@ extension HSMapViewController {
         actionAlertVC.modalPresentationStyle = .overFullScreen
         actionAlertVC.modalTransitionStyle = .crossDissolve
         present(actionAlertVC, animated: true, completion: nil)
+    }
+}
+
+extension HSMapViewController {
+    private func addRouletteObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(endRouletteScene), name: .HSGameControllerDidPlayerPositionChanged, object: nil)
+    }
+    
+    ///ルーレット画面を終了する
+    @objc func endRouletteScene() {
+        self.viewModel.gameController.didAnimationEnd()
+        ///1秒処理を遅らせる
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.rouletteView.fadeOut(duration: 0.5, completed: {
+                self.rouletteView.removeFromSuperview()
+            })
+            self.blackView.fadeOut(duration: 0.5, completed: {
+                self.blackView.removeFromSuperview()
+            })
+        }
     }
 }

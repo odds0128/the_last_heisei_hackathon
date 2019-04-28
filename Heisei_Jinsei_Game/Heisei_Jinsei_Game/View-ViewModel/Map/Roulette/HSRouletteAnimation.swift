@@ -16,14 +16,14 @@ class HSRouletteAnimation {
     
     var delegate: RouletteDelegate?
     
-    init(sender: UIPanGestureRecognizer, rouletteImageView: UIImageView, rouletteVC: HSRouletteCustomView, delegate: RouletteDelegate) {
+    init(sender: UIPanGestureRecognizer, rouletteImageView: UIImageView, rouletteVC: HSRouletteCustomView, delegate: RouletteDelegate, randomNum: Int) {
         
         self.delegate = delegate
-        startRoulette(sender, rouletteImageView: rouletteImageView, rouletteVC: rouletteVC)
+        startRoulette(sender, rouletteImageView: rouletteImageView, rouletteVC: rouletteVC, radomNum: randomNum)
     }
     
     ///ルーレットスタート
-    func startRoulette(_ sender: Any, rouletteImageView: UIImageView, rouletteVC: HSRouletteCustomView) {
+    func startRoulette(_ sender: Any, rouletteImageView: UIImageView, rouletteVC: HSRouletteCustomView, radomNum: Int) {
         
         ///システム側からの乱数に置換する予定
         let randomNum = (1...12).randomElement()!

@@ -39,7 +39,7 @@ class HSGameController {
         self.playerManager.didSpinWheel(for: currentPlayer, with: wheelValue)
         
         self._didPlayerPositionChangedByWheel(to: self.playerManager.getPosition(of: currentPlayer))
-
+        print("wheelValue:\(wheelValue)")
         return wheelValue
     }
     
