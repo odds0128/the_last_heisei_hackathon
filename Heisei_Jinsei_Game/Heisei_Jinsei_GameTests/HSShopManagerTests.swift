@@ -37,22 +37,24 @@ class HSShopManagerTests: XCTestCase {
         let playerManager = createPlayerManager()
         
         let shopManager = HSShopManager(playerManager: playerManager, eventManager: eventManager)
-        let gameManager = HSGameController(playerManager: playerManager, eventManager: eventManager)
+        let gameController = HSGameController(playerManager: playerManager, eventManager: eventManager)
         
-        gameManager.spinWheel(min: 4, max: 4)
+        _ = gameController.spinWheel(min: 4, max: 4)
+        gameController.animationDidEnd() // ルーレット待機
         
-        XCTAssertEqual(gameManager.getPlayerPosition(gameManager.currentPlayer), 4)
-        XCTAssertEqual(gameManager.currentPlayer, alice)
-        XCTAssertEqual(gameManager.currentPlayer.money, 0)
+        XCTAssertEqual(4, gameController.getPlayerPosition(gameController.currentPlayer))
+        XCTAssertEqual("Alice", gameController.currentPlayer.name)
+        XCTAssertEqual(0, gameController.currentPlayer.money)
         
-        gameManager.didAnimationEnd()
+        gameController.animationDidEnd() // 移動待機
+        gameController.animationDidEnd() // アクション認証待機
         
-        XCTAssertEqual(gameManager.currentPlayer.money, 1200)
+        XCTAssertEqual(gameController.currentPlayer.money, 1200)
         XCTAssertEqual(true, shopManager.canBuyItem(HSItemStack(item: .safe, count: 1), by: alice))
         
-        gameManager.didAnimationEnd()
+        gameController.animationDidEnd() // アクション完了待機
         
-        XCTAssertEqual(gameManager.currentPlayer, bob)
+        XCTAssertEqual(gameController.currentPlayer, bob)
     }
     
     func testMoney(){
