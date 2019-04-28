@@ -146,14 +146,15 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     }
     
     ///吹き出しViewを生成
-    private func generateBalloonView(animationEnded: Bool) {
+    private func generateBalloonView(animationEnded: Bool, squarePosition: Int) {
         
+        guard let event = viewModel.gameController.getEraEvent(at: squarePosition) else { return }
         let width = self.view.bounds.width/2.8
         let height = self.view.bounds.height/1.8
         if (tappedEventPointY < view.bounds.height/2) {
-            balloonView = HSBalloonCustomView(frame: CGRect(x: tappedEventPointX - width/2, y: tappedEventPointY+50, width:width, height: height))
+            balloonView = HSBalloonCustomView(frame: CGRect(x: tappedEventPointX - width/2, y: tappedEventPointY+50, width:width, height: height), event: event)
         } else {
-            balloonView = HSBalloonCustomView(frame: CGRect(x: tappedEventPointX - width/2, y: tappedEventPointY-height-50, width:width, height: height))
+            balloonView = HSBalloonCustomView(frame: CGRect(x: tappedEventPointX - width/2, y: tappedEventPointY-height-50, width:width, height: height), event: event)
         }
         
         if (animationEnded == true) {
@@ -219,7 +220,7 @@ extension HSMapViewController {
                     let location = gesture.location(in: self.view)
                     self.tappedEventPointX = location.x
                     self.tappedEventPointY = location.y
-                    self.generateBalloonView(animationEnded: false)
+                    self.generateBalloonView(animationEnded: false, squarePosition: sender.tag)
                 case .ended:
                     self.removeBalloonView()
                 default:
@@ -357,7 +358,7 @@ extension HSMapViewController {
         /// 移動処理
         car.moveTo(positions: positions, moveCount: moveCount, completion: {[weak self] (true) -> Void in
             /// 移動完了時吹き出しを出す
-            self?.generateBalloonView(animationEnded: true)
+            self?.generateBalloonView(animationEnded: true, squarePosition: toPosition)
             self?.viewModel.gameController.animationDidEnd()
         })
     }
