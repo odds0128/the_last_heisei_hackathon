@@ -16,13 +16,15 @@ class HSEraEventAction {
     /// イベントの種類です。`.bad`ならマスが赤く、`.good`ならマスが緑になります。
     let eventType:EventType
     
+    /// イベントのタイトルです。
+    let title:String?
     /// イベントの日本語の説明です。
     let description:String
     
-    init(eventType:EventType, description:String) {
+    init(eventType:EventType,title:String? = nil, description:String) {
         self.eventType = eventType
+        self.title = title
         self.description = description
-        
     }
     
     enum EventType {

@@ -20,10 +20,10 @@ class HSEraEventMoneyReduceAction: HSEraEventAction {
     
     let reduceMoneyCount:Int
     
-    init(reduceMoneyCount:Int) {
+    init(title:String,reduceMoneyCount:Int) {
         self.reduceMoneyCount = reduceMoneyCount
         
-        super.init(eventType: .bad, description: "所持金を\(reduceMoneyCount)円失う。")
+        super.init(eventType: .bad,title: title, description: "所持金を\(reduceMoneyCount)円失う。")
     }
 }
 
@@ -32,10 +32,10 @@ class HSEraEventMoneyAppendAction: HSEraEventAction {
     
     let appendMoneyCount:Int
     
-    init(appendMoneyCount:Int) {
+    init(title:String, appendMoneyCount:Int) {
         self.appendMoneyCount = appendMoneyCount
         
-        super.init(eventType: .good, description: "所持金が\(appendMoneyCount)円増える。")
+        super.init(eventType: .good,title:title, description: "所持金が\(appendMoneyCount)円増える。")
     }
 }
 
@@ -43,10 +43,10 @@ class HSEraEventMoneyAppendAction: HSEraEventAction {
 class HSEraEventItemGettingAction: HSEraEventAction {
     let gettableItem:HSItem
     
-    init(item:HSItem) {
+    init(title:String, item:HSItem) {
         self.gettableItem = item
         
-        super.init(eventType: .good, description: "\(item.name)をゲットできる。")
+        super.init(eventType: .good,title:title, description: "\(item.name)をゲットできる。")
     }
 }
 
@@ -54,10 +54,10 @@ class HSEraEventItemGettingAction: HSEraEventAction {
 class HSEraEventSkipSquareAction: HSEraEventAction{
     let skippableSquareCount:Int
     
-    init(skippableSquareCount:Int) {
+    init(title:String, skippableSquareCount:Int) {
         self.skippableSquareCount = skippableSquareCount
         
-        super.init(eventType: .good, description: "\(skippableSquareCount)マス先まで進める。")
+        super.init(eventType: .good,title:title, description: "\(skippableSquareCount)マス先まで進める。")
     }
 }
 
@@ -65,9 +65,9 @@ class HSEraEventSkipSquareAction: HSEraEventAction{
 class HSEraEventReturnSquareAction: HSEraEventAction{
     let returnSquareCount:Int
     
-    init(returnSquareCount:Int) {
+    init(title: String, returnSquareCount:Int) {
         self.returnSquareCount =  returnSquareCount
         
-        super.init(eventType: .bad, description: "\(returnSquareCount)マス戻る。")
+        super.init(eventType: .bad,title:title, description: "\(returnSquareCount)マス戻る。")
     }
 }
