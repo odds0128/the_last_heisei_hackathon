@@ -19,6 +19,7 @@
             <connections>
                 <outlet property="moneyLabel" destination="4RQ-eX-biN" id="FX8-Du-eMh"/>
                 <outlet property="playerNameLabel" destination="32D-hi-kqa" id="Gds-ft-6ZW"/>
+                <outlet property="rouletteBtn" destination="g2J-6d-iPM" id="5fL-iF-TTY"/>
                 <outlet property="shopBtn" destination="uHt-9V-Hua" id="W3K-jI-yEH"/>
                 <outlet property="smallRouletteImageView" destination="E1r-8s-9eS" id="gql-fR-0mN"/>
             </connections>

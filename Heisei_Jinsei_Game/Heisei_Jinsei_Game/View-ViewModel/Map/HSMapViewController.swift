@@ -50,6 +50,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var blackView: UIView!
     var balloonView: HSBalloonCustomView!
     var playerAreaView: HSPlayerAreaCustomView!
+    var playerAreaViewArr: [HSPlayerAreaCustomView] = []
     
     
     var playerCars: [HSPlayer:Car] = [:]
@@ -90,7 +91,9 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
         addActionAlertObserver()
-        addRouletteObserver()
+        addRouletteAnimationObserver()
+        addRouletteChangingObserver()
+        disableOthersRouletteBtn()
     }
     
     ///イベントマスがタップされたとき
@@ -271,6 +274,10 @@ extension HSMapViewController {
         setPlayerArea(x: -playerAreaWidth/2.55, y: -playerAreaHeight/2.55, radian: 135, tag: 1)
         setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: -playerAreaHeight/2.55, radian: -135, tag: 2)
         setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: self.view.frame.height - playerAreaHeight/1.3, radian: -45, tag: 3)
+        
+        for i in 0..<playerAreaViewArr.count {
+            self.view.addSubview(playerAreaViewArr[i])
+        }
     }
     ///プレイヤーエリアのセット
     private func setPlayerArea(x: CGFloat, y: CGFloat, radian: Double, tag: Int) {
@@ -283,8 +290,7 @@ extension HSMapViewController {
         playerAreaView.transform = CGAffineTransform(rotationAngle: angle)
         playerAreaView.tag = tag
         playerAreaView.delegate = self
-        
-        self.view.addSubview(playerAreaView)
+        self.playerAreaViewArr.append(playerAreaView)
     }
     
 }
@@ -363,9 +369,16 @@ extension HSMapViewController {
     }
 }
 
+
+//MARK: - ルーレット
 extension HSMapViewController {
-    private func addRouletteObserver() {
+    ///ルーレットアニメーション終了時に呼ばれる
+    private func addRouletteAnimationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(endRouletteScene), name: .HSGameControllerDidPlayerPositionChanged, object: nil)
+    }
+    ///手番更新時に呼ばれる
+    private func addRouletteChangingObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(disableOthersRouletteBtn), name: .HSGameControllerDidCurrentPlayerChanged, object: nil)
     }
     
     ///ルーレット画面を終了する
@@ -375,12 +388,24 @@ extension HSMapViewController {
             self.rouletteView.fadeOut(duration: 0.5, completed: {
                 self.rouletteView.removeFromSuperview()
                 self.viewModel.gameController.animationDidEnd()
-                self.viewModel.gameController.gamingPlayers[1].name
             })
             self.blackView.fadeOut(duration: 0.5, completed: {
                 self.blackView.removeFromSuperview()
             })
         }
-        
+    }
+    
+    ///手番ではないプレイヤーのルーレットボタンをタップできないようにする
+    @objc func disableOthersRouletteBtn() {
+        let currentPlayerIndex = viewModel.gameController.currentPlayer.index
+        print("currentPlayerIndex: \(currentPlayerIndex)")
+        for i in 0..<4 {
+            if (currentPlayerIndex != i) {
+                playerAreaViewArr[i].disableRouletteBtn()
+            }
+            if (currentPlayerIndex == i) {
+               playerAreaViewArr[i].enableRouletteBtn()
+            }
+        }
     }
 }

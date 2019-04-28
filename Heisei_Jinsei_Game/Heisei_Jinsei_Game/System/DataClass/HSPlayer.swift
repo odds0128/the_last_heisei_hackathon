@@ -30,7 +30,7 @@ class HSPlayer {
     var reachesGoal = false
     
     /// プレイヤーの`index`です。同一性保持のためにのみ使います。
-    private var index:Int
+    var index:Int
     
     init(name:String) {
         self.name = name
