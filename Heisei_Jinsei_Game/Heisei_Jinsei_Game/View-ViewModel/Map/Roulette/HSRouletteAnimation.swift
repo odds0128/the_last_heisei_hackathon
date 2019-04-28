@@ -19,14 +19,13 @@ class HSRouletteAnimation {
     init(sender: UIPanGestureRecognizer, rouletteImageView: UIImageView, rouletteVC: HSRouletteCustomView, delegate: RouletteDelegate, randomNum: Int) {
         
         self.delegate = delegate
-        startRoulette(sender, rouletteImageView: rouletteImageView, rouletteVC: rouletteVC, radomNum: randomNum)
+        startRoulette(sender, rouletteImageView: rouletteImageView, rouletteVC: rouletteVC, randomNum: randomNum)
     }
     
     ///ルーレットスタート
-    func startRoulette(_ sender: Any, rouletteImageView: UIImageView, rouletteVC: HSRouletteCustomView, radomNum: Int) {
+    func startRoulette(_ sender: Any, rouletteImageView: UIImageView, rouletteVC: HSRouletteCustomView, randomNum: Int) {
         
         ///システム側からの乱数に置換する予定
-        let randomNum = (1...12).randomElement()!
         slowStartDuration = 2.26 - (0.03 * Double(randomNum))
         print("randomNum : \(randomNum)")
         let userInfo = ["imageView":rouletteImageView, "rouletteVC":rouletteVC]
