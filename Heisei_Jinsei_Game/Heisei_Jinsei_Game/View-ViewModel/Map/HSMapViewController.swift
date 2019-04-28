@@ -18,6 +18,8 @@ protocol RouletteDelegate {
 
 class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate {
     
+    let viewModel: HSMapViewViewModel
+    
     var basePointX = 150
     var basePointY = 130
     var centerPointX = 185
@@ -44,45 +46,48 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var blackView: UIView!
     var balloonView: HSBalloonCustomView!
     
-    var playerCars: [Int:Car] = [:]
+    var playerCars: [HSPlayer:Car] = [:]
     var eventPointXArray = [CGFloat]()
     var eventPointYArray = [CGFloat]()
     
     @IBOutlet weak var scrollView: UIView!
+    
+    init() {
+        let players = [
+            HSPlayer(name: "Taro"),
+            HSPlayer(name: "Hanako"),
+            HSPlayer(name: "Takashi"),
+            HSPlayer(name: "Satoshi")
+        ]
+        self.viewModel = HSMapViewViewModel(players: players, lastSquareIndex: eventPointArray.count)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        let players = [
+            HSPlayer(name: "Taro"),
+            HSPlayer(name: "Hanako"),
+            HSPlayer(name: "Takashi"),
+            HSPlayer(name: "Satoshi")
+        ]
+        self.viewModel = HSMapViewViewModel(players: players, lastSquareIndex: 60)
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         generateEventPoint()
         generateRoulette()
-        // プレイヤーの車を配置。(TODO:- 全プレイヤーに対応)
-        placePlayerCar(playerNum: 1)
+        // プレイヤーの車を配置.
+        placePlayerCar(players: viewModel.gameController.gamingPlayers)
+        addCarAnimationObserver()
         addActionAlertObserver()
     }
     
     ///イベントマスがタップされたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
-        /// 検証用コードをコメント化
-//         guard let car = playerCars[1] else { return }
-//        
-//         let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
-//    
-//         /// 移動先の座標を詰めていく
-//         var positions: [CGPoint] = []
-//         for i in range {
-//             print(i)
-//             guard let moveTo = view.viewWithTag(i) else { return }
-//             positions.append(moveTo.frame.origin)
-//         }
-//         var moveCount = positions.count
-//         if car.currentPosition > sender.tag {
-//             positions.reverse()
-//             moveCount = -moveCount
-//         }
-//         car.moveTo(positions: positions, moveCount: moveCount, completion: {(true) -> Void in
-//             self.generateBalloonView(animationEnded: true)
-//         })
     }
     
     ///ルーレットを生成
@@ -121,19 +126,27 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     /// プレイヤーの車を開始地点に配置します。
     ///
     /// - Parameter playerNum: プレイヤーID
-    private func placePlayerCar(playerNum: Int) {
-        //TODO:- 全ての車の初期化処理. システムマージ後に行う
-        let square = view.viewWithTag(1) as! UIButton
-        let car = Car(frame: CGRect(x: 0, y: 0, width: 80, height: 60))
-        car.configure(carImage: .red)
+    private func placePlayerCar(players: [HSPlayer]) {
+        // 全ての車の初期化処理. システムマージ後に行う. 暫定的に色等決め打ち
+        let firstSquare = view.viewWithTag(1) as! UIButton
+        let firstSquarePoint = firstSquare.frame.origin
+        let car = Car(frame: CGRect(origin: firstSquarePoint, size: CGSize(width: 80, height: 60)), carImage: .red)
+        let car2 = Car(frame: CGRect(origin: firstSquarePoint, size: CGSize(width: 80, height: 60)), carImage: .blue)
+        let car3 = Car(frame: CGRect(origin: firstSquarePoint, size: CGSize(width: 80, height: 60)), carImage: .green)
+        let car4 = Car(frame: CGRect(origin: firstSquarePoint, size: CGSize(width: 80, height: 60)), carImage: .yellow)
         scrollView.addSubview(car)
-        car.frame.origin = square.frame.origin
-        
-        /// プレイヤーの車オブジェクトを格納
-        let playerCars = [
-            playerNum : car
+        scrollView.addSubview(car2)
+        scrollView.addSubview(car3)
+        scrollView.addSubview(car4)
+        let cars = [
+            car,
+            car2,
+            car3,
+            car4
         ]
-        self.playerCars = playerCars
+        
+        let zipped = zip(players, cars)
+        self.playerCars = Dictionary(uniqueKeysWithValues: zipped)
     }
     
     ///吹き出しViewを生成
@@ -282,6 +295,41 @@ extension UIView {
         recognizer.minimumPressDuration = duration
         self.addGestureRecognizer(recognizer)
         objc_setAssociatedObject(self, String(format: "[%d]", arc4random()), sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+    }
+}
+
+// MARK: - 車移動アニメーション
+extension HSMapViewController {
+    /// 車移動アニメーションのオブザーバーを登録する
+    func addCarAnimationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didPlayerPositionChanged(_:)), name: .HSGameControllerDidPlayerPositionChanged, object: nil)
+    }
+    
+    @objc func didPlayerPositionChanged(_ notification: Notification) {
+        /// プレイヤーの移動後の一取得
+        let player = notification.object as! HSPlayer
+        let toPosition = viewModel.gameController.getPlayerPosition(player) + 1
+        guard let car = playerCars[player] else { return }
+        
+        let range: ClosedRange<Int> = car.currentPosition < toPosition ? (car.currentPosition + 1)...(toPosition) : ((toPosition)...(car.currentPosition - 1))
+        
+        /// 移動先の座標を詰めていく
+        var positions: [CGPoint] = []
+        for i in range {
+            guard let moveTo = view.viewWithTag(i) else { return }
+            positions.append(moveTo.frame.origin)
+        }
+        var moveCount = positions.count
+        if car.currentPosition > toPosition {
+            positions.reverse()
+            moveCount = -moveCount
+        }
+        /// 移動処理
+        car.moveTo(positions: positions, moveCount: moveCount, completion: {[weak self] (true) -> Void in
+            /// 移動完了時吹き出しを出す
+            self?.generateBalloonView(animationEnded: true)
+            self?.viewModel.gameController.didAnimationEnd()
+        })
     }
 }
 
