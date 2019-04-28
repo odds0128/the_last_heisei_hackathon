@@ -18,6 +18,7 @@ protocol RouletteDelegate {
 
 protocol PlayerAreaDelegate {
     func generateRoulette()
+    func generateItemView()
 }
 
 class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate, PlayerAreaDelegate {
@@ -50,6 +51,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var blackView: UIView!
     var balloonView: HSBalloonCustomView!
     var playerAreaView: HSPlayerAreaCustomView!
+    var itemView: HSItemCustomView!
     
     
     var playerCars: [HSPlayer:Car] = [:]
@@ -285,6 +287,17 @@ extension HSMapViewController {
         playerAreaView.delegate = self
         
         self.view.addSubview(playerAreaView)
+    }
+    
+    ///アイテム欄の生成
+    func generateItemView() {
+        let width = view.frame.width/2
+        let height = view.frame.height/1.5
+        let name = viewModel.gameController.currentPlayer.name
+        itemView = HSItemCustomView(frame: CGRect(x: view.frame.width/2-width/2, y: 0, width: width, height: height), name: name)
+        HSShadow.init(layer: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
+        itemView.layer.cornerRadius = 50
+        view.addSubview(itemView)
     }
     
 }

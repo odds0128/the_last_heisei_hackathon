@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="TsukushiAMaruGothic.ttc">
+            <string>TsukuARdGothic-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HSItemCustomView" customModule="Heisei_Jinsei_Game" customModuleProvider="target">
+            <connections>
+                <outlet property="ItemScrollView" destination="W6o-l2-HXW" id="6Ln-Av-aWE"/>
+                <outlet property="itemScrollView" destination="W6o-l2-HXW" id="Lbs-If-mlY"/>
+                <outlet property="playersItemLabel" destination="dUw-Hc-XOd" id="ELr-9f-Lkt"/>
+                <outlet property="shopScrollView" destination="aPS-MD-C2u" id="L7P-K9-DDO"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6o-l2-HXW" userLabel="Item Scroll View">
+                    <rect key="frame" x="0.0" y="64.5" width="300" height="535.5"/>
+                </scrollView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aPS-MD-C2u" userLabel="Shop Scroll View">
+                    <rect key="frame" x="300" y="64.5" width="300" height="535.5"/>
+                </scrollView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショップ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph2-G9-61U">
+                    <rect key="frame" x="300" y="0.0" width="300" height="60"/>
+                    <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="30"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tossyのアイテム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUw-Hc-XOd">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                    <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="30"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dUw-Hc-XOd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2C0-qb-m3J"/>
+                <constraint firstItem="W6o-l2-HXW" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="4X9-9d-m1G"/>
+                <constraint firstItem="Ph2-G9-61U" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="4im-ky-tHK"/>
+                <constraint firstItem="Ph2-G9-61U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5bu-fu-DiK"/>
+                <constraint firstAttribute="trailing" secondItem="aPS-MD-C2u" secondAttribute="trailing" id="AQV-ri-gxH"/>
+                <constraint firstItem="Ph2-G9-61U" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:10" id="D6B-PF-Mci"/>
+                <constraint firstItem="dUw-Hc-XOd" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:10" id="FjE-qW-M5g"/>
+                <constraint firstItem="W6o-l2-HXW" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.12" id="NL2-Ar-gmA"/>
+                <constraint firstItem="aPS-MD-C2u" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.12" id="SGU-WA-iQO"/>
+                <constraint firstItem="W6o-l2-HXW" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="Zef-cY-VLd"/>
+                <constraint firstItem="W6o-l2-HXW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hxW-OD-8xf"/>
+                <constraint firstItem="aPS-MD-C2u" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="ifs-wu-Ax5"/>
+                <constraint firstItem="dUw-Hc-XOd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="rC6-La-TZl"/>
+                <constraint firstItem="aPS-MD-C2u" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="w7J-FZ-DwA"/>
+                <constraint firstItem="dUw-Hc-XOd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yfp-5b-SVF"/>
+                <constraint firstItem="Ph2-G9-61U" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="yqv-g2-WPh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.59999999999999" y="144.82758620689657"/>
+        </view>
+        <view contentMode="scaleToFill" id="TTY-2O-JHE">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="xcv-Ih-gAG">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bvg-JY-Uj3">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="xcv-Ih-gAG" firstAttribute="leading" secondItem="5Z0-jc-Ed3" secondAttribute="leading" id="Pu1-Vn-g8I"/>
+                <constraint firstItem="xcv-Ih-gAG" firstAttribute="bottom" secondItem="5Z0-jc-Ed3" secondAttribute="bottom" id="geI-SK-w65"/>
+                <constraint firstItem="xcv-Ih-gAG" firstAttribute="trailing" secondItem="5Z0-jc-Ed3" secondAttribute="trailing" id="j8P-GO-45F"/>
+                <constraint firstItem="xcv-Ih-gAG" firstAttribute="top" secondItem="TTY-2O-JHE" secondAttribute="top" id="rIO-5Y-dxG"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="5Z0-jc-Ed3"/>
+            <point key="canvasLocation" x="1062" y="105"/>
+        </view>
+    </objects>
+</document>
