@@ -41,13 +41,34 @@
   `Notification::object`は`HSEventAction`です。
 
 
-- `func didAnimationEnd()`
+- `func animationDidEnd()`
 
-アニメーションが完了したら呼び出してください。
+アニメーション完了後呼び出してください。
 
-マスのアクション・操作ユーザー更新を行います。
+以下のような動作をします。
 
-アクションによるAnimation後も再度呼び出してください。
+- ルーレットが回るアニメーション完了時
+
+→ 移動通知発火
+
+
+- マス移動完了時
+
+→ アクションがあればアクション発生通知
+
+→ なければPlayer交代通知
+
+
+- イベント発生モーダルが閉じられた時
+
+→ イベントの内容通知発火
+
+（移動・金額増減など）
+
+
+- イベント発生完了後（移動・金額増減）
+
+→ Player交代
 
 
 - `Notification:: HSGameControllerDidCurrentPlayerChanged (object:HSPlayer)`

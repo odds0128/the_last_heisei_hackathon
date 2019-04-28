@@ -38,7 +38,7 @@ class HSGameController {
         let wheelValue = (min...max).randomElement()!
         self.playerManager.didSpinWheel(for: currentPlayer, with: wheelValue)
         
-        self._didPlayerPositionChangedByWheel(to: self.playerManager.getPosition(of: currentPlayer))
+        isWatingRouletteAnimation = true
 
         return wheelValue
     }
@@ -52,15 +52,33 @@ class HSGameController {
     /// アニメーションが完了したら呼び出してください。
     /// マスのアクション・操作ユーザー更新を行います。
     /// アクションによるAnimation後も再度呼び出してください。
-    func didAnimationEnd(){
+    func animationDidEnd(){
+        // ルーレット待機後なら
+        if isWatingRouletteAnimation {
+            isWatingRouletteAnimation = false
+            self._willPlayerPositionChangedByWheel(to: self.playerManager.getPosition(of: currentPlayer))
+            return
+        }
+        
+        // ルーレットによる移動完了後なら
+        if isWatingFirstPlayerMoving {
+            isWatingFirstPlayerMoving = false
+            if let action = self.eventManager.getEraEvent(at: self.playerManager.getPosition(of: currentPlayer)).action{
+                self._didOccurActionByWheel(action)
+            }
+        }
+        
+        // アクション認証待機後なら
         if let watingAction = watingAction{
             self.watingAction = nil
             self._didUserAcceptEventAction(watingAction)
-        }else{
-            guard let currentPlayerIndex = gamingPlayers.firstIndex(of: currentPlayer) else {fatalError("存在しないぴプレイヤーが指定されました。")}
-            let nextIndex = (currentPlayerIndex + 1) % gamingPlayers.count
-            self.changeTurn(nextIndex: nextIndex)
+            return
         }
+        
+        // それ以外なら、順番交代
+        guard let currentPlayerIndex = gamingPlayers.firstIndex(of: currentPlayer) else {fatalError("存在しないぴプレイヤーが指定されました。")}
+        let nextIndex = (currentPlayerIndex + 1) % gamingPlayers.count
+        self.changeTurn(nextIndex: nextIndex)
     }
     
     /// `index`番めのマス情報を返します。
@@ -78,26 +96,36 @@ class HSGameController {
     // -----------------------------  HSGameController Private System  ------------------------------------
     // ====================================================================================================
     
+    // ===========================================================================
+    // ------------------  HSGameController Private Properties -------------------
+    
     /// プレーヤーマネージャーです。マス目一の管理をします。
     private let playerManager:HSPlayerSquareManager
     
     /// イベントマネージャーです。
     private let eventManager:HSSquareEventManager
     
-    /// 待機中のアクションです。
-    private var watingAction:HSEraEventAction?
-    
     /// ゴールに到着したプレイヤーです。
     private var reachedGoalPlayers = [HSPlayer]()
     
+    // ------------- アニメーション待機用フラグ --------------
+    
+    /// ルーレット待機中フラグ
+    private var isWatingRouletteAnimation = false
+    /// ルーレットによる移動の待機フラグ
+    private var isWatingFirstPlayerMoving = false
+    /// 待機中のアクションです。
+    private var watingAction:HSEraEventAction?
+    
+    // ===========================================================================
+    // -------------------  HSGameController Private Methods ---------------------
+    
     /// プレイヤーの位置がサイコロによって変更された時に呼び出してください。
     /// アクションによる変更ではお呼び出さないでください。
-    private func _didPlayerPositionChangedByWheel(to position:Int) {
-        self._didPlayerSquareChanged()
+    private func _willPlayerPositionChangedByWheel(to position:Int) {
+        self._willPlayerSquareChanged()
         
-        if let action = self.eventManager.getEraEvent(at: position).action{
-            self._didOccurActionByWheel(action)
-        }
+        isWatingFirstPlayerMoving = true
     }
     
     private func changeTurn(nextIndex:Int){
@@ -152,12 +180,12 @@ class HSGameController {
     private func _didPlayerSquareChanginActionOccur(_ value:Int) {
         self.playerManager.advancePlayer(for: currentPlayer, with: value)
         
-        self._didPlayerSquareChanged()
+        self._willPlayerSquareChanged()
     }
     
     /// プレイヤーの場所が変更された場合に呼び出してください。
     /// ルーレットびによっても・アクションによっても
-    private func _didPlayerSquareChanged(){
+    private func _willPlayerSquareChanged(){
         NotificationCenter.default.post(name: .HSGameControllerDidPlayerPositionChanged, object: currentPlayer)
         
         /// 2重チェックになるが...問題はない。
