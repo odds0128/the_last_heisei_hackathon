@@ -16,7 +16,11 @@ protocol RouletteDelegate {
     func endRouletteScene()
 }
 
-class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate {
+protocol PlayerAreaDelegate {
+    func generateRoulette()
+}
+
+class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate, PlayerAreaDelegate {
     
     var basePointX = 150
     var basePointY = 130
@@ -43,6 +47,8 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var rouletteView: HSRouletteCustomView!
     var blackView: UIView!
     var balloonView: HSBalloonCustomView!
+    var playerAreaView: HSPlayerAreaCustomView!
+    
     
     var playerCars: [Int:Car] = [:]
     var eventPointXArray = [CGFloat]()
@@ -55,8 +61,11 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         
         generateEventPoint()
         generateRoulette()
+        generatePlayerArea()
         // プレイヤーの車を配置。(TODO:- 全プレイヤーに対応)
         placePlayerCar(playerNum: 1)
+        
+        
     }
     
     ///イベントマスがタップされたとき
@@ -68,29 +77,29 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
 //        actionAlertVC.modalTransitionStyle = .crossDissolve
 //        actionAlertVC.view.transform = rightPlayerTransform
 //        present(actionAlertVC, animated: true, completion: nil)
-//         guard let car = playerCars[1] else { return }
-//        
-//         let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
-//    
-//         /// 移動先の座標を詰めていく
-//         var positions: [CGPoint] = []
-//         for i in range {
-//             print(i)
-//             guard let moveTo = view.viewWithTag(i) else { return }
-//             positions.append(moveTo.frame.origin)
-//         }
-//         var moveCount = positions.count
-//         if car.currentPosition > sender.tag {
-//             positions.reverse()
-//             moveCount = -moveCount
-//         }
-//         car.moveTo(positions: positions, moveCount: moveCount, completion: {(true) -> Void in
-//             self.generateBalloonView(animationEnded: true)
-//         })
+         guard let car = playerCars[1] else { return }
+        
+         let range: ClosedRange<Int> = car.currentPosition < sender.tag ?  (car.currentPosition + 1)...(sender.tag) : ((sender.tag)...(car.currentPosition - 1))
+    
+         /// 移動先の座標を詰めていく
+         var positions: [CGPoint] = []
+         for i in range {
+             print(i)
+             guard let moveTo = view.viewWithTag(i) else { return }
+             positions.append(moveTo.frame.origin)
+         }
+         var moveCount = positions.count
+         if car.currentPosition > sender.tag {
+             positions.reverse()
+             moveCount = -moveCount
+         }
+         car.moveTo(positions: positions, moveCount: moveCount, completion: {(true) -> Void in
+             self.generateBalloonView(animationEnded: true)
+         })
     }
     
     ///ルーレットを生成
-    @objc private func generateRoulette() {
+    @objc func generateRoulette() {
         blackBackground()
         
         rouletteView = HSRouletteCustomView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width/2.5, height: self.view.bounds.height))
@@ -263,6 +272,27 @@ extension HSMapViewController {
         }
         return arc4random_uniform(upper - lower) + lower
     }
+    
+    ///プレイヤーエリアの生成
+    private func generatePlayerArea() {
+        let playerAreaWidth = self.view.frame.width/4
+        let playerAreaHeight = self.view.frame.width/4
+        
+        setPlayerArea(x: -playerAreaWidth/2.55, y: self.view.frame.height - playerAreaHeight/1.3, radian: 45, tag: 0)
+        setPlayerArea(x: -playerAreaWidth/2.55, y: -playerAreaHeight/2.55, radian: 135, tag: 1)
+        setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: -playerAreaHeight/2.55, radian: -135, tag: 2)
+        setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: self.view.frame.height - playerAreaHeight/1.3, radian: -45, tag: 3)
+    }
+    ///プレイヤーエリアのセット
+    private func setPlayerArea(x: CGFloat, y: CGFloat, radian: Double, tag: Int) {
+        playerAreaView = HSPlayerAreaCustomView(frame: CGRect(x: x, y: y, width: self.view.bounds.width/3.5, height: self.view.bounds.width/3.5))
+        let angle = CGFloat((radian * M_PI) / 180.0)
+        playerAreaView.transform = CGAffineTransform(rotationAngle: angle)
+        playerAreaView.tag = tag
+        playerAreaView.delegate = self
+        self.view.addSubview(playerAreaView)
+    }
+    
 }
 ///===============================
 ///ボタン長押しExtention
