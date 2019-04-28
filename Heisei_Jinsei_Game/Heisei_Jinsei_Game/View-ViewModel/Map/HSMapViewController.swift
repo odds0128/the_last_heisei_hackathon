@@ -30,8 +30,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var centerPointY = 165
     var nextCenterPointX: Int!
     var nextCenterPointY: Int!
-  
-    var eventTotalNum = 120
+    
     var eventNumPerLine = 5  ///１行につき5つのイベントマス
     var tempNum = 0
     
@@ -65,7 +64,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
             HSPlayer(name: "Takashi"),
             HSPlayer(name: "Satoshi")
         ]
-        self.viewModel = HSMapViewViewModel(players: players, lastSquareIndex: eventPointArray.count)
+        self.viewModel = HSMapViewViewModel(players: players)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -76,7 +75,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
             HSPlayer(name: "Takashi"),
             HSPlayer(name: "Satoshi")
         ]
-        self.viewModel = HSMapViewViewModel(players: players, lastSquareIndex: 60)
+        self.viewModel = HSMapViewViewModel(players: players)
         super.init(coder: aDecoder)
     }
     
@@ -181,10 +180,25 @@ extension HSMapViewController {
     ///イベントボタン生成
     func generateEventPoint() {
         
-        for i in 0..<eventTotalNum {
+        for (i, event) in viewModel.gameController.getAllEraEvents().enumerated() {
             eventPoint = UIButton()
             eventPoint.frame = CGRect(x: basePointX, y: basePointY, width: 70, height: 70)
-            eventPoint.backgroundColor = HSColor().redColor
+            /// イベントのアクションによってマスの色を変える
+            switch event.action {
+            case .none:
+                eventPoint.backgroundColor = .white
+            case .some(let action):
+                switch action.eventType {
+                case .good:
+                    eventPoint.backgroundColor = HSColor().greenColor
+                case .bad:
+                    eventPoint.backgroundColor = HSColor().redColor
+                case .goal:
+                    break
+                case .special:
+                    break
+                }
+            }
             eventPoint.layer.cornerRadius = 35
             eventPoint.layer.borderColor = UIColor.white.cgColor
             eventPoint.layer.borderWidth = 12
