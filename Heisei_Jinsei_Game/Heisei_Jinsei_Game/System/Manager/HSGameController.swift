@@ -65,6 +65,7 @@ class HSGameController {
             isWatingFirstPlayerMoving = false
             if let action = self.eventManager.getEraEvent(at: self.playerManager.getPosition(of: currentPlayer)).action{
                 self._didOccurActionByWheel(action)
+                return 
             }
         }
         
