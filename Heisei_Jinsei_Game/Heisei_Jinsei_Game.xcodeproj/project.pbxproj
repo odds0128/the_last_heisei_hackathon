@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B60D72642275B8240025A08D /* +HSSquareEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60D72632275B8240025A08D /* +HSSquareEventManager.swift */; };
 		B616EC2F2271823C00D2B305 /* HSShopManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616EC2E2271823C00D2B305 /* HSShopManagerTests.swift */; };
 		B616EC3122718C6500D2B305 /* HSSpecialItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616EC3022718C6500D2B305 /* HSSpecialItem.swift */; };
 		B63AF2CF227040690069C54B /* HSNPCPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AF2CE227040690069C54B /* HSNPCPlayer.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B60D72632275B8240025A08D /* +HSSquareEventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+HSSquareEventManager.swift"; sourceTree = "<group>"; };
 		B616EC2E2271823C00D2B305 /* HSShopManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSShopManagerTests.swift; sourceTree = "<group>"; };
 		B616EC3022718C6500D2B305 /* HSSpecialItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSSpecialItem.swift; sourceTree = "<group>"; };
 		B63AF2CE227040690069C54B /* HSNPCPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSNPCPlayer.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 		B6929A77226C540E00042919 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				B60D72632275B8240025A08D /* +HSSquareEventManager.swift */,
 				B6929A78226C581700042919 /* HSGameController.swift */,
 				B6A20AEB22715EC40006765F /* HSShopManager.swift */,
 				B6929A67226C146E00042919 /* HSPlayerSquareManager.swift */,
@@ -528,6 +531,7 @@
 				BFD8FE57227157BA000EC11E /* Car.swift in Sources */,
 				B6929A55226C13A000042919 /* HSMainMenuViewModel.swift in Sources */,
 				B63AF2CF227040690069C54B /* HSNPCPlayer.swift in Sources */,
+				B60D72642275B8240025A08D /* +HSSquareEventManager.swift in Sources */,
 				B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */,
 				B6929A73226C414F00042919 /* HSItem.swift in Sources */,
 				CC1526A42271B588003CB391 /* HSFont.swift in Sources */,

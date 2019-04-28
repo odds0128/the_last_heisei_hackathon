@@ -85,6 +85,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         super.viewDidLoad()
         
         generateEventPoint()
+        generateRoulette()
         generatePlayerArea()
 
         // プレイヤーの車を配置.

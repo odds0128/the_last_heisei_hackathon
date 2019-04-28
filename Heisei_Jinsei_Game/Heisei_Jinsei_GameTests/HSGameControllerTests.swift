@@ -163,6 +163,9 @@ class HSGameControllerTests: XCTestCase {
         XCTAssertEqual(0,     gameController.getPlayerPosition(gameController.currentPlayer))
     }
     func testPlayerTurn(){
+        NotificationCenter.default.addObserver(forName: .HSGameControllerDidCurrentPlayerChanged){ notice in
+            print(notice.object)
+        }
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
@@ -172,9 +175,12 @@ class HSGameControllerTests: XCTestCase {
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(1,       gameController.getPlayerPosition(gameController.currentPlayer))
-        
+        print(1)
         gameController.animationDidEnd() // 移動待機
+        print(2)
         
         XCTAssertEqual("Bob", gameController.currentPlayer.name)
+        
+        print(3)
     }
 }
