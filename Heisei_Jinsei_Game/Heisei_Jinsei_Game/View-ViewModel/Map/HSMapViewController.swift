@@ -398,7 +398,8 @@ extension HSMapViewController {
     
     ///手番ではないプレイヤーのルーレットボタンをタップできないようにする
     @objc func disableOthersRouletteBtn() {
-        let currentPlayerIndex = viewModel.gameController.currentPlayer.index
+        let currentPlayer = viewModel.gameController.currentPlayer
+        let currentPlayerIndex = viewModel.gameController.getPlayerIndex(currentPlayer)
         print("currentPlayerIndex: \(currentPlayerIndex)")
         for i in 0..<4 {
             if (currentPlayerIndex != i) {
