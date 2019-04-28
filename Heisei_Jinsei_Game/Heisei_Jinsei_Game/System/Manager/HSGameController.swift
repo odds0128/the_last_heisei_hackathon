@@ -32,6 +32,12 @@ class HSGameController {
         return self.playerManager.getPosition(of: player)
     }
     
+    /// プレイヤーのIndexを返します。
+    func getPlayerIndex(_ player:HSPlayer) -> Int {
+        guard let index = self.gamingPlayers.firstIndex(of: player) else { fatalError("存在しないプレイヤーが指定されました。") }
+        return index
+    }
+    
     /// 手番のプレイヤーがルーレットを回します。
     /// 返り値はルーレットの出目です。
     func spinWheel(min:Int = 1, max:Int = 12) -> Int {
@@ -65,7 +71,7 @@ class HSGameController {
             isWatingFirstPlayerMoving = false
             if let action = self.eventManager.getEraEvent(at: self.playerManager.getPosition(of: currentPlayer)).action{
                 self._didOccurActionByWheel(action)
-                return 
+                return
             }
         }
         
@@ -77,9 +83,7 @@ class HSGameController {
         }
         
         // それ以外なら、順番交代
-        guard let currentPlayerIndex = gamingPlayers.firstIndex(of: currentPlayer) else {fatalError("存在しないぴプレイヤーが指定されました。")}
-        let nextIndex = (currentPlayerIndex + 1) % gamingPlayers.count
-        self.changeTurn(nextIndex: nextIndex)
+        self.changeTurn()
     }
     
     /// `index`番めのマス情報を返します。
@@ -129,16 +133,26 @@ class HSGameController {
         isWatingFirstPlayerMoving = true
     }
     
-    private func changeTurn(nextIndex:Int){
-        let nextEstimatedPlayer = gamingPlayers[nextIndex]
-        if nextEstimatedPlayer.reachesGoal{
-            if isGameEnded{
-                _checkIfGameEnded()
-            }else{
-                return changeTurn(nextIndex: nextIndex+1)
-            }
+    private func changeTurn(){
+        guard let currentPlayerIndex = gamingPlayers.firstIndex(of: currentPlayer) else {
+            fatalError("存在しないぴプレイヤーが指定されました。")
         }
-        currentPlayer = nextEstimatedPlayer
+        if isGameEnded{
+            return _checkIfGameEnded()
+        }
+        
+        let nextIndex = (currentPlayerIndex + 1) % gamingPlayers.count
+        
+        func _changeTurn(index:Int) {
+            let nextEstimatedPlayer = gamingPlayers[index]
+            
+            if nextEstimatedPlayer.reachesGoal {
+                return _changeTurn(index: index + 1)
+            }
+            currentPlayer = nextEstimatedPlayer
+        }
+        
+        _changeTurn(index: nextIndex)
         
         NotificationCenter.default.post(name: .HSGameControllerDidCurrentPlayerChanged, object: currentPlayer)
     }

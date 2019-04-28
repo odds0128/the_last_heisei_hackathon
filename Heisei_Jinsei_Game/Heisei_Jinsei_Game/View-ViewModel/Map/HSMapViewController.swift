@@ -85,7 +85,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         
         generateEventPoint()
         generateRoulette()
-      　generatePlayerArea()
+        generatePlayerArea()
 
         // プレイヤーの車を配置.
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
@@ -358,7 +358,7 @@ extension HSMapViewController {
         car.moveTo(positions: positions, moveCount: moveCount, completion: {[weak self] (true) -> Void in
             /// 移動完了時吹き出しを出す
             self?.generateBalloonView(animationEnded: true)
-            self?.viewModel.gameController.didAnimationEnd()
+            self?.viewModel.gameController.animationDidEnd()
         })
     }
 }
