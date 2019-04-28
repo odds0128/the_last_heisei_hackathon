@@ -388,7 +388,6 @@ extension HSMapViewController {
             self.rouletteView.fadeOut(duration: 0.5, completed: {
                 self.rouletteView.removeFromSuperview()
                 self.viewModel.gameController.animationDidEnd()
-                self.viewModel.gameController.gamingPlayers[1].name
             })
             self.blackView.fadeOut(duration: 0.5, completed: {
                 self.blackView.removeFromSuperview()
