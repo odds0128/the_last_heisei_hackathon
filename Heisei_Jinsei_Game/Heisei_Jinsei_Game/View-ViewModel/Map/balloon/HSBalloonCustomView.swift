@@ -24,6 +24,11 @@ class HSBalloonCustomView: UIView {
         setView()
     }
     
+    convenience init(frame: CGRect, event: HSEraEvent) {
+        self.init(frame: frame)
+        setView(event: event)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadNib()
@@ -33,6 +38,13 @@ class HSBalloonCustomView: UIView {
         let view1 = Bundle.main.loadNibNamed("HSBalloonCustomView", owner: self, options: nil)?.first as! UIView
         view1.frame = self.bounds
         self.addSubview(view1)
+    }
+    
+    private func setView(event: HSEraEvent) {
+        setView()
+        title.text = event.title
+        imageView.image = UIImage(named: event.imageName)
+        comment.text = event.eventDescription
     }
     
     private func setView() {
