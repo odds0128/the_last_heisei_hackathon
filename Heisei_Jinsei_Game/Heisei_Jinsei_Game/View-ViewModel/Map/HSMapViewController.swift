@@ -169,6 +169,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     ///BalloonCustomViewのOKボタンが呼ばれたらこれを実行
     func removeBalloonView() {
         self.balloonView.removeFromSuperview()
+        self.viewModel.gameController.animationDidEnd()
     }
     
 }
@@ -359,7 +360,6 @@ extension HSMapViewController {
         car.moveTo(positions: positions, moveCount: moveCount, completion: {[weak self] (true) -> Void in
             /// 移動完了時吹き出しを出す
             self?.generateBalloonView(animationEnded: true, squarePosition: toPosition)
-            self?.viewModel.gameController.animationDidEnd()
         })
     }
 }
