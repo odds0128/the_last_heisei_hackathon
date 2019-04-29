@@ -84,13 +84,13 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         super.viewDidLoad()
         
         generateEventPoint()
-        generateRoulette()
         generatePlayerArea()
 
         // プレイヤーの車を配置.
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
         addActionAlertObserver()
+        addRouletteChangingObserver()
         disableOthersRouletteBtn()
     }
     
@@ -101,7 +101,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     }
     
     ///ルーレットを生成
-    @objc func generateRoulette() {
+    func generateRoulette() {
         blackBackground()
         
         rouletteView = HSRouletteCustomView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width/2.5, height: self.view.bounds.height))
@@ -404,6 +404,10 @@ extension HSMapViewController:ActionAlertViewControllerBinder {
 
 //MARK: - ルーレット
 extension HSMapViewController {
+    ///手番更新時に呼ばれる
+    private func addRouletteChangingObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(disableOthersRouletteBtn), name: .HSGameControllerDidCurrentPlayerChanged, object: nil)
+    }
     ///ルーレット画面を終了する
     @objc func endRouletteScene() {
         ///1秒処理を遅らせる
