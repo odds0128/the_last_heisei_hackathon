@@ -59,7 +59,7 @@ class HSGameController {
     /// マスのアクション・操作ユーザー更新を行います。
     /// アクションによるAnimation後も再度呼び出してください。
     func animationDidEnd(){
-        print(isWatingRouletteAnimation, isWatingFirstPlayerMoving, watingAction == nil)
+        print(watingAction)
         // ルーレット待機後なら
         if isWatingRouletteAnimation {
             isWatingRouletteAnimation = false
@@ -80,7 +80,9 @@ class HSGameController {
         if let watingAction = watingAction{
             self.watingAction = nil
             self._didUserAcceptEventAction(watingAction)
-            return
+            if watingAction is HSEraEventSkipSquareAction || watingAction is HSEraEventReturnSquareAction{
+                return
+            }
         }
         
         // それ以外なら、順番交代
@@ -135,6 +137,7 @@ class HSGameController {
     }
     
     private func changeTurn(){
+        
         guard let currentPlayerIndex = gamingPlayers.firstIndex(of: currentPlayer) else {
             fatalError("存在しないぴプレイヤーが指定されました。")
         }
