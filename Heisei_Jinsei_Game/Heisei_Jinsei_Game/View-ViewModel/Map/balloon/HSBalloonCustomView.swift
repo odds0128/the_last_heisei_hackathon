@@ -16,7 +16,7 @@ class HSBalloonCustomView: UIView {
     @IBOutlet var comment: UILabel!
     @IBOutlet var completionBtn: UIButton!
     
-    var delegate: BalloonViewDelegate?
+    weak var delegate: BalloonViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,7 +50,7 @@ class HSBalloonCustomView: UIView {
     private func setView() {
         view.backgroundColor = .white
         view.layer.cornerRadius = 30
-        HSShadow.init(layer: view.layer, offset: CGSize.zero, opacity: 0.5, radius: 10)
+        HSShadow.makeShadow(to: view.layer, offset: .zero, opacity: 0.5, radius: 10)
         
         title.text = "元号発表"
         title.layer.cornerRadius = 30

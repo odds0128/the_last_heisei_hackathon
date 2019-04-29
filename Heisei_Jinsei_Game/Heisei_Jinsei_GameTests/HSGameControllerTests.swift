@@ -163,24 +163,22 @@ class HSGameControllerTests: XCTestCase {
         XCTAssertEqual(0,     gameController.getPlayerPosition(gameController.currentPlayer))
     }
     func testPlayerTurn(){
+        var counter = 0
         NotificationCenter.default.addObserver(forName: .HSGameControllerDidCurrentPlayerChanged){ notice in
-            print(notice.object)
+            counter += 1
         }
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         
         _=gameController.spinWheel(min: 1, max: 1)
-        gameController.animationDidEnd() // ルーレット待機
+        gameController.animationDidEnd() // ルーレット待機た後
         
-        XCTAssertEqual("Alice", gameController.currentPlayer.name)
-        XCTAssertEqual(1,       gameController.getPlayerPosition(gameController.currentPlayer))
-        print(1)
-        gameController.animationDidEnd() // 移動待機
-        print(2)
+        XCTAssertEqual(0,       counter)
         
+        gameController.animationDidEnd() // 移動待機後
+        
+        XCTAssertEqual(1,       counter)
         XCTAssertEqual("Bob", gameController.currentPlayer.name)
-        
-        print(3)
     }
 }

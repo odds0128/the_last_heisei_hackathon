@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol BalloonViewDelegate {
+protocol BalloonViewDelegate :class{
     func removeBalloonView()
 }
 
-protocol RouletteDelegate {
+protocol RouletteDelegate :class{
     func endRouletteScene()
 }
 
-protocol PlayerAreaDelegate {
+protocol PlayerAreaDelegate :class{
     func generateRoulette()
 }
 
@@ -90,7 +90,6 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
         addActionAlertObserver()
-        addRouletteObserver()
     }
     
     ///イベントマスがタップされたとき
@@ -204,7 +203,7 @@ extension HSMapViewController {
             eventPoint.layer.cornerRadius = 35
             eventPoint.layer.borderColor = UIColor.white.cgColor
             eventPoint.layer.borderWidth = 12
-            HSShadow.init(layer: eventPoint.layer)
+            HSShadow.makeShadow(to: eventPoint.layer)
             eventPoint.tag = i + 1
             
             eventPointXArray.append(eventPoint.frame.minX)
@@ -296,7 +295,7 @@ extension HSMapViewController {
         let money = self.viewModel.gameController.gamingPlayers[tag].money
         playerAreaView = HSPlayerAreaCustomView(frame: frame, name: name, money: money)
         
-        let angle = CGFloat((radian * M_PI) / 180.0)
+        let angle = CGFloat((radian * .pi) / 180.0)
         playerAreaView.transform = CGAffineTransform(rotationAngle: angle)
         playerAreaView.tag = tag
         playerAreaView.delegate = self
@@ -380,10 +379,6 @@ extension HSMapViewController {
 }
 
 extension HSMapViewController {
-    private func addRouletteObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(endRouletteScene), name: .HSGameControllerDidPlayerPositionChanged, object: nil)
-    }
-    
     ///ルーレット画面を終了する
     @objc func endRouletteScene() {
         ///1秒処理を遅らせる
@@ -391,7 +386,6 @@ extension HSMapViewController {
             self.rouletteView.fadeOut(duration: 0.5, completed: {
                 self.rouletteView.removeFromSuperview()
                 self.viewModel.gameController.animationDidEnd()
-                self.viewModel.gameController.gamingPlayers[1].name
             })
             self.blackView.fadeOut(duration: 0.5, completed: {
                 self.blackView.removeFromSuperview()

@@ -13,20 +13,11 @@
 import UIKit
 
 class HSShadow {
-    
-    init(layer: CALayer) {
+    static func makeShadow(to layer:CALayer, offset:CGSize = [0, 1], opacity:Float = 0.3, radius:CGFloat = 3) {
         layer.shadowOffset = CGSize(width: 0, height: 1)
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.3
         layer.shadowRadius = 3
-    }
-    
-    ///任意の大きさの影を作りたいとき
-    required init(layer: CALayer, offset: CGSize, opacity: Float, radius: CGFloat) {
-        layer.shadowOffset = offset
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = opacity
-        layer.shadowRadius = radius
     }
 }
 

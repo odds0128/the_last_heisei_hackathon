@@ -21,7 +21,7 @@ class HSPlayerAreaCustomView: UIView {
     private var viewWidth: CGFloat!
     private var viewHeight: CGFloat!
     
-    var delegate: PlayerAreaDelegate?
+    weak var delegate: PlayerAreaDelegate?
     
     init(frame: CGRect, name: String, money: Int) {
         super.init(frame: frame)
