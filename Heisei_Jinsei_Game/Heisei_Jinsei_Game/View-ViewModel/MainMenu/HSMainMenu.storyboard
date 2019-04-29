@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6ef-PT-NyK">
     <device id="ipad11_0rounded" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Menu View Controller-->
         <scene sceneID="OIO-5p-MQa">
             <objects>
-                <viewController id="6ef-PT-NyK" sceneMemberID="viewController">
+                <viewController id="6ef-PT-NyK" customClass="HSMainMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iwu-Db-syh">
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,10 +27,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vm2-JM-ijN">
                                         <rect key="frame" x="0.0" y="411" width="608" height="81"/>
                                         <state key="normal" image="main_menu_multipule"/>
+                                        <connections>
+                                            <segue destination="sWP-vh-dpg" kind="show" id="Eey-ry-xlg"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Enq-At-JMk">
                                         <rect key="frame" x="1" y="545" width="606" height="81"/>
                                         <state key="normal" image="main_menu_single"/>
+                                        <connections>
+                                            <segue destination="sWP-vh-dpg" kind="show" id="EkK-hB-fQJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -136,6 +142,16 @@
             </objects>
             <point key="canvasLocation" x="253.12499999999997" y="32.03125"/>
         </scene>
+        <!--HSMapView-->
+        <scene sceneID="o8U-Hh-Plz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HSMapView" id="sWP-vh-dpg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Wv8-nc-pW0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGH-X6-wJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="691" y="-227"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Logo" width="416" height="358"/>
@@ -150,4 +166,7 @@
         <image name="main_menu_single" width="606" height="81"/>
         <image name="menu_icon" width="144" height="144"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EkK-hB-fQJ"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+protocol HSMainMenuViewModelBinder:class {
+    
+}
+
+class HSMainMenuViewModel<Binder:HSMainMenuViewModelBinder>{
+    weak var binder:Binder!
+    
+    init(binder:Binder) {
+        self.binder = binder
+    }
+}
