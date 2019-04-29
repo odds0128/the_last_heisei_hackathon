@@ -43,8 +43,10 @@ class HSBalloonCustomView: UIView {
     private func setView(event: HSEraEvent) {
         setView()
         title.text = event.title
+        title.sizeToFit()
         imageView.image = UIImage(named: event.imageName)
         comment.text = event.eventDescription
+        comment.sizeToFit()
     }
     
     private func setView() {
@@ -53,8 +55,7 @@ class HSBalloonCustomView: UIView {
         HSShadow.makeShadow(to: view.layer, offset: .zero, opacity: 0.5, radius: 10)
         
         title.text = "元号発表"
-        title.layer.cornerRadius = 30
-        title.clipsToBounds = true
+        title.adjustsFontSizeToFitWidth = true
         
         imageView.layer.cornerRadius = 20
         imageView.layer.borderColor = HSColor().grayColor.cgColor
