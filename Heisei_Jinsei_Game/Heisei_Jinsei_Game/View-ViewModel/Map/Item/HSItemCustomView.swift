@@ -25,10 +25,13 @@ class HSItemCustomView: UIView, UICollectionViewDataSource {
     
     var delegate: ItemAlertDelegate!
     
-    init(frame: CGRect, name: String) {
+    var items: [HSItemStack]!
+    
+    init(frame: CGRect, name: String, items: [HSItemStack]) {
         super.init(frame: frame)
         loadNib()
         
+        self.items = items
         view.layer.cornerRadius = 30
         viewWidth = frame.width
         viewHeight = frame.height
@@ -83,7 +86,7 @@ extension HSItemCustomView {
     ///CollectionViewの数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView == itemCollectionView) {
-            return 4
+            return items.count
         } else {
             return 5
         }
@@ -94,10 +97,12 @@ extension HSItemCustomView {
         if (collectionView == itemCollectionView) {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HSItemCollectionViewCell", for: indexPath) as! HSItemCollectionViewCell
             cell.layer.cornerRadius = 10
-            cell.itemNameLabel.text = "ビットコイン"
+            cell.itemNameLabel.text = items![indexPath.row].item.name
             cell.itemNameLabel.adjustsFontSizeToFitWidth = true
             cell.itemNameLabel.sizeToFit()
-            cell.itemNumLabel.text = "x200"
+            cell.itemImageView.image = UIImage(named: items![indexPath.row].item.imageName)
+            
+            cell.itemNumLabel.text = "x\(items![indexPath.row].count)"
             cell.itemNumLabel.adjustsFontSizeToFitWidth = true
             cell.itemNumLabel.sizeToFit()
             cell.itemButton.addTarget(self, action: #selector(itemBtnTapped), for: .touchUpInside)

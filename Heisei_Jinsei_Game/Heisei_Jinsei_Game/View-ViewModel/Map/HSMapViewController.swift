@@ -38,7 +38,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var centerPointY = 165
     var nextCenterPointX: Int!
     var nextCenterPointY: Int!
-  
+    
     var eventTotalNum = 120
     var eventNumPerLine = 5  ///１行につき5つのイベントマス
     var tempNum = 0
@@ -79,8 +79,16 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     }
     
     required init?(coder aDecoder: NSCoder) {
+        
+        let currentItems: [HSItemStack] = [
+            HSItemStack.init(item: HSItem.ds, count: 1),
+            HSItemStack.init(item: HSItem.bit_coin, count: 200),
+            HSItemStack.init(item: HSItem.psp, count: 1),
+            HSItemStack.init(item: HSItem.pocket_bell, count: 1)
+        ]
+        
         let players = [
-            HSPlayer(name: "Taro"),
+            HSPlayer(name: "Taro", currentItems: currentItems),
             HSPlayer(name: "Hanako"),
             HSPlayer(name: "Takashi"),
             HSPlayer(name: "Satoshi")
@@ -97,7 +105,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         
         generateEventPoint()
         generatePlayerArea()
-
+        
         // プレイヤーの車を配置.
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
@@ -108,7 +116,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     ///イベントマスがタップされたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
-
+        
     }
     
     ///ルーレットを生成
@@ -331,8 +339,9 @@ extension HSMapViewController {
         let width = view.frame.width/1.5
         let height = view.frame.height/2
         let name = viewModel.gameController.currentPlayer.name
+        let items = viewModel.gameController.currentPlayer.currentItems
         let frame = CGRect(x: view.frame.width/2-width/2, y: view.frame.height, width: width, height: height)
-        itemView = HSItemCustomView(frame: frame, name: name)
+        itemView = HSItemCustomView(frame: frame, name: name, items: items)
         HSShadow.init(layer: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
         itemView.layer.cornerRadius = 50
         itemView.delegate = self
