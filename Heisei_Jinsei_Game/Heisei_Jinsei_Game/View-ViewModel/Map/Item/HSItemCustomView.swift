@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HSItemCustomView: UIView, UICollectionViewDataSource {
+class HSItemCustomView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet var view: UIView!
     
@@ -26,6 +26,8 @@ class HSItemCustomView: UIView, UICollectionViewDataSource {
     var delegate: ItemAlertDelegate!
     
     var items: [HSItemStack]!
+    
+    var selectedRow: Int!
     
     init(frame: CGRect, name: String, items: [HSItemStack]) {
         super.init(frame: frame)
@@ -57,12 +59,13 @@ class HSItemCustomView: UIView, UICollectionViewDataSource {
 //MARK: - CollectionViewの設定
 extension HSItemCustomView {
     
+    ///アイテムCollectionViewのサイズ設定など
     private func setupItemCollectionView() {
+        itemCollectionView.delegate = self
         itemCollectionView.dataSource = self
         
         itemCollectionView.register(UINib(nibName: "HSItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HSItemCollectionViewCell")
         
-        /// セルの大きさを設定
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         layout.minimumInteritemSpacing = 10
@@ -70,12 +73,13 @@ extension HSItemCustomView {
         itemCollectionView.collectionViewLayout = layout
     }
     
+    ///ショップCollectionViewのサイズ設定など
     private func setupShopCollectionView() {
+        shopCollectionView.delegate = self
         shopCollectionView.dataSource = self
         
         shopCollectionView.register(UINib(nibName: "HSShopCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HSShopCollectionViewCell")
         
-        /// セルの大きさを設定
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         layout.minimumInteritemSpacing = 10
@@ -95,35 +99,60 @@ extension HSItemCustomView {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         ///itemCollectionViewの場合
         if (collectionView == itemCollectionView) {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HSItemCollectionViewCell", for: indexPath) as! HSItemCollectionViewCell
-            cell.layer.cornerRadius = 10
-            cell.itemNameLabel.text = items![indexPath.row].item.name
-            cell.itemNameLabel.adjustsFontSizeToFitWidth = true
-            cell.itemNameLabel.sizeToFit()
-            cell.itemImageView.image = UIImage(named: items![indexPath.row].item.imageName)
-            
-            cell.itemNumLabel.text = "x\(items![indexPath.row].count)"
-            cell.itemNumLabel.adjustsFontSizeToFitWidth = true
-            cell.itemNumLabel.sizeToFit()
-            cell.itemButton.addTarget(self, action: #selector(itemBtnTapped), for: .touchUpInside)
-            
+            var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HSItemCollectionViewCell", for: indexPath) as! HSItemCollectionViewCell
+            cell = setupItemCollectionViewCell(cell: cell, indexPath: indexPath)
             return cell
+        ///shopCollectionViewの場合
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HSShopCollectionViewCell", for: indexPath) as! HSShopCollectionViewCell
-            cell.layer.cornerRadius = 10
-            cell.shopItemNameLabel.text = "ガラケー"
-            cell.shopItemNameLabel.adjustsFontSizeToFitWidth = true
-            cell.shopItemNameLabel.sizeToFit()
-            cell.shopItemPriceLabel.text = "¥15000"
-            cell.shopItemPriceLabel.adjustsFontSizeToFitWidth = true
-            cell.shopItemPriceLabel.sizeToFit()
-            cell.shopButton.addTarget(self, action: #selector(shopBtnTapped), for: .touchUpInside)
+            var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HSShopCollectionViewCell", for: indexPath) as! HSShopCollectionViewCell
+            cell = setupShopCollectionViewCell(cell: cell, indexPath: indexPath)
             return cell
         }
     }
     
+    ///アイテムのセルを設定
+    private func setupItemCollectionViewCell(cell: HSItemCollectionViewCell, indexPath: IndexPath) -> HSItemCollectionViewCell {
+        cell.layer.cornerRadius = 10
+        cell.itemNameLabel.text = items![indexPath.row].item.name
+        cell.itemNameLabel.adjustsFontSizeToFitWidth = true
+        cell.itemNameLabel.sizeToFit()
+        cell.itemImageView.image = UIImage(named: items![indexPath.row].item.imageName)
+        cell.itemNumLabel.text = "x\(items![indexPath.row].count)"
+        cell.itemNumLabel.adjustsFontSizeToFitWidth = true
+        cell.itemNumLabel.sizeToFit()
+        cell.itemButton.addTarget(self, action: #selector(itemBtnTapped), for: .touchUpInside)
+        
+        return cell
+    }
+    
+    
+    
+    ///ショップのセルを設定
+    private func setupShopCollectionViewCell(cell: HSShopCollectionViewCell, indexPath: IndexPath) -> HSShopCollectionViewCell {
+        
+        cell.layer.cornerRadius = 10
+        cell.shopItemNameLabel.text = "ガラケー"
+        cell.shopItemNameLabel.adjustsFontSizeToFitWidth = true
+        cell.shopItemNameLabel.sizeToFit()
+        cell.shopItemPriceLabel.text = "¥15000"
+        cell.shopItemPriceLabel.adjustsFontSizeToFitWidth = true
+        cell.shopItemPriceLabel.sizeToFit()
+        cell.shopButton.addTarget(self, action: #selector(shopBtnTapped), for: .touchUpInside)
+        return cell
+    }
+    
+    //Cell が選択された場合
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if (collectionView == itemCollectionView) {
+            self.selectedRow = indexPath.row
+        }
+    }
+    
     @objc func itemBtnTapped() {
-        delegate.generateItemAlert()
+        print("itemBtnTAPPED")
+        print("selectedRow:\(selectedRow)")
+        //delegate.generateItemAlert(row: selectedRow)
     }
     
     @objc func shopBtnTapped() {

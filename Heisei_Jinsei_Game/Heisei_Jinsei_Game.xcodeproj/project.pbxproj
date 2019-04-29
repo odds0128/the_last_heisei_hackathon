@@ -60,12 +60,16 @@
 		CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */; };
 		CC1526B22274275D003CB391 /* HSPlayerAreaCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526B12274275D003CB391 /* HSPlayerAreaCustomView.swift */; };
 		CC1526B62274337F003CB391 /* HSPlayerAreaCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526B52274337F003CB391 /* HSPlayerAreaCustomView.xib */; };
-		CC1526C72275E047003CB391 /* HSItemCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526C32275E047003CB391 /* HSItemCustomView.swift */; };
-		CC1526C82275E047003CB391 /* HSItemCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526C42275E047003CB391 /* HSItemCustomView.xib */; };
-		CC1526CE2275ECE5003CB391 /* HSItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526CC2275ECE5003CB391 /* HSItemCollectionViewCell.swift */; };
-		CC1526CF2275ECE5003CB391 /* HSItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526CD2275ECE5003CB391 /* HSItemCollectionViewCell.xib */; };
-		CC1526D4227625C4003CB391 /* HSShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1526D2227625C4003CB391 /* HSShopCollectionViewCell.swift */; };
-		CC1526D5227625C4003CB391 /* HSShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1526D3227625C4003CB391 /* HSShopCollectionViewCell.xib */; };
+		CC15272B2276DAFD003CB391 /* HSShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC15271D2276DAFC003CB391 /* HSShopCollectionViewCell.xib */; };
+		CC15272C2276DAFD003CB391 /* HSShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC15271E2276DAFC003CB391 /* HSShopCollectionViewCell.swift */; };
+		CC15272D2276DAFD003CB391 /* HSItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1527202276DAFC003CB391 /* HSItemCollectionViewCell.swift */; };
+		CC15272E2276DAFD003CB391 /* HSItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1527212276DAFC003CB391 /* HSItemCollectionViewCell.xib */; };
+		CC15272F2276DAFD003CB391 /* HSShopAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1527242276DAFC003CB391 /* HSShopAlert.swift */; };
+		CC1527302276DAFD003CB391 /* HSShopAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1527252276DAFC003CB391 /* HSShopAlert.xib */; };
+		CC1527312276DAFD003CB391 /* HSItemAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1527272276DAFC003CB391 /* HSItemAlert.xib */; };
+		CC1527322276DAFD003CB391 /* HSItemAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1527282276DAFC003CB391 /* HSItemAlert.swift */; };
+		CC1527332276DAFD003CB391 /* HSItemCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1527292276DAFC003CB391 /* HSItemCustomView.swift */; };
+		CC1527342276DAFD003CB391 /* HSItemCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC15272A2276DAFC003CB391 /* HSItemCustomView.xib */; };
 		CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED28102270D13100B676BF /* HSRouletteAnimation.swift */; };
 /* End PBXBuildFile section */
 
@@ -138,12 +142,16 @@
 		CC1526AB2273581D003CB391 /* HSBalloonCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSBalloonCustomView.xib; sourceTree = "<group>"; };
 		CC1526B12274275D003CB391 /* HSPlayerAreaCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSPlayerAreaCustomView.swift; sourceTree = "<group>"; };
 		CC1526B52274337F003CB391 /* HSPlayerAreaCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSPlayerAreaCustomView.xib; sourceTree = "<group>"; };
-		CC1526C32275E047003CB391 /* HSItemCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSItemCustomView.swift; sourceTree = "<group>"; };
-		CC1526C42275E047003CB391 /* HSItemCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItemCustomView.xib; sourceTree = "<group>"; };
-		CC1526CC2275ECE5003CB391 /* HSItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSItemCollectionViewCell.swift; sourceTree = "<group>"; };
-		CC1526CD2275ECE5003CB391 /* HSItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSItemCollectionViewCell.xib; sourceTree = "<group>"; };
-		CC1526D2227625C4003CB391 /* HSShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSShopCollectionViewCell.swift; sourceTree = "<group>"; };
-		CC1526D3227625C4003CB391 /* HSShopCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSShopCollectionViewCell.xib; sourceTree = "<group>"; };
+		CC15271D2276DAFC003CB391 /* HSShopCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSShopCollectionViewCell.xib; sourceTree = "<group>"; };
+		CC15271E2276DAFC003CB391 /* HSShopCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSShopCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC1527202276DAFC003CB391 /* HSItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC1527212276DAFC003CB391 /* HSItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		CC1527242276DAFC003CB391 /* HSShopAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSShopAlert.swift; sourceTree = "<group>"; };
+		CC1527252276DAFC003CB391 /* HSShopAlert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSShopAlert.xib; sourceTree = "<group>"; };
+		CC1527272276DAFC003CB391 /* HSItemAlert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItemAlert.xib; sourceTree = "<group>"; };
+		CC1527282276DAFC003CB391 /* HSItemAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSItemAlert.swift; sourceTree = "<group>"; };
+		CC1527292276DAFC003CB391 /* HSItemCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSItemCustomView.swift; sourceTree = "<group>"; };
+		CC15272A2276DAFC003CB391 /* HSItemCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItemCustomView.xib; sourceTree = "<group>"; };
 		CCED28102270D13100B676BF /* HSRouletteAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRouletteAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -298,7 +306,7 @@
 		B6929A56226C13A400042919 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				CC1526C12275E047003CB391 /* Item */,
+				CC15271A2276DAFC003CB391 /* Item */,
 				CC1526B022742738003CB391 /* playerArea */,
 				CC1526A522732F86003CB391 /* balloon */,
 				BF3333F62273675B00CB0F4F /* ActionAlert */,
@@ -424,17 +432,69 @@
 			path = playerArea;
 			sourceTree = "<group>";
 		};
-		CC1526C12275E047003CB391 /* Item */ = {
+		CC15271A2276DAFC003CB391 /* Item */ = {
 			isa = PBXGroup;
 			children = (
-				CC1526C32275E047003CB391 /* HSItemCustomView.swift */,
-				CC1526C42275E047003CB391 /* HSItemCustomView.xib */,
-				CC1526CC2275ECE5003CB391 /* HSItemCollectionViewCell.swift */,
-				CC1526CD2275ECE5003CB391 /* HSItemCollectionViewCell.xib */,
-				CC1526D2227625C4003CB391 /* HSShopCollectionViewCell.swift */,
-				CC1526D3227625C4003CB391 /* HSShopCollectionViewCell.xib */,
+				CC1527292276DAFC003CB391 /* HSItemCustomView.swift */,
+				CC15272A2276DAFC003CB391 /* HSItemCustomView.xib */,
+				CC15271B2276DAFC003CB391 /* CollectionView */,
+				CC1527222276DAFC003CB391 /* Alert */,
 			);
 			path = Item;
+			sourceTree = "<group>";
+		};
+		CC15271B2276DAFC003CB391 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				CC15271F2276DAFC003CB391 /* ItemCollectionView */,
+				CC15271C2276DAFC003CB391 /* ShopCollectionView */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		CC15271C2276DAFC003CB391 /* ShopCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				CC15271E2276DAFC003CB391 /* HSShopCollectionViewCell.swift */,
+				CC15271D2276DAFC003CB391 /* HSShopCollectionViewCell.xib */,
+			);
+			path = ShopCollectionView;
+			sourceTree = "<group>";
+		};
+		CC15271F2276DAFC003CB391 /* ItemCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				CC1527202276DAFC003CB391 /* HSItemCollectionViewCell.swift */,
+				CC1527212276DAFC003CB391 /* HSItemCollectionViewCell.xib */,
+			);
+			path = ItemCollectionView;
+			sourceTree = "<group>";
+		};
+		CC1527222276DAFC003CB391 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				CC1527262276DAFC003CB391 /* itemAlert */,
+				CC1527232276DAFC003CB391 /* shopAlert */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		CC1527232276DAFC003CB391 /* shopAlert */ = {
+			isa = PBXGroup;
+			children = (
+				CC1527242276DAFC003CB391 /* HSShopAlert.swift */,
+				CC1527252276DAFC003CB391 /* HSShopAlert.xib */,
+			);
+			path = shopAlert;
+			sourceTree = "<group>";
+		};
+		CC1527262276DAFC003CB391 /* itemAlert */ = {
+			isa = PBXGroup;
+			children = (
+				CC1527282276DAFC003CB391 /* HSItemAlert.swift */,
+				CC1527272276DAFC003CB391 /* HSItemAlert.xib */,
+			);
+			path = itemAlert;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,19 +578,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC1527302276DAFD003CB391 /* HSShopAlert.xib in Resources */,
+				CC15272B2276DAFD003CB391 /* HSShopCollectionViewCell.xib in Resources */,
 				CC1526A022719A09003CB391 /* TsukushiAMaruGothic.ttc in Resources */,
 				B6929A61226C13FD00042919 /* HSMapDetailView.storyboard in Resources */,
-				CC1526D5227625C4003CB391 /* HSShopCollectionViewCell.xib in Resources */,
+				CC1527342276DAFD003CB391 /* HSItemCustomView.xib in Resources */,
 				CC1526B62274337F003CB391 /* HSPlayerAreaCustomView.xib in Resources */,
-				CC1526CF2275ECE5003CB391 /* HSItemCollectionViewCell.xib in Resources */,
 				BFD8FE5922715CF7000EC11E /* Car.xib in Resources */,
 				CC1526AC2273581D003CB391 /* HSBalloonCustomView.xib in Resources */,
 				B6929A65226C142100042919 /* HSMainMenu.storyboard in Resources */,
 				B6929A23226C0FA300042919 /* LaunchScreen.storyboard in Resources */,
 				B6929A20226C0FA300042919 /* Assets.xcassets in Resources */,
 				B6929A1E226C0FA200042919 /* Main.storyboard in Resources */,
-				CC1526C82275E047003CB391 /* HSItemCustomView.xib in Resources */,
 				B6929A63226C141600042919 /* HSMapView.storyboard in Resources */,
+				CC15272E2276DAFD003CB391 /* HSItemCollectionViewCell.xib in Resources */,
+				CC1527312276DAFD003CB391 /* HSItemAlert.xib in Resources */,
 				BF08F42A2272A6C900D2F93C /* ActionAlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +612,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6A20AEC22715EC40006765F /* HSShopManager.swift in Sources */,
+				CC15272F2276DAFD003CB391 /* HSShopAlert.swift in Sources */,
 				B616EC3122718C6500D2B305 /* HSSpecialItem.swift in Sources */,
 				B6929A6D226C155300042919 /* HSEraEvent.swift in Sources */,
 				B6929A46226C11DF00042919 /* Ex+UIColor.swift in Sources */,
@@ -557,9 +620,9 @@
 				BFD8FE57227157BA000EC11E /* Car.swift in Sources */,
 				B6929A55226C13A000042919 /* HSMainMenuViewModel.swift in Sources */,
 				B63AF2CF227040690069C54B /* HSNPCPlayer.swift in Sources */,
-				CC1526C72275E047003CB391 /* HSItemCustomView.swift in Sources */,
 				B6929A75226C42DF00042919 /* HSItemStack.swift in Sources */,
 				B6929A73226C414F00042919 /* HSItem.swift in Sources */,
+				CC1527332276DAFD003CB391 /* HSItemCustomView.swift in Sources */,
 				CC1526A42271B588003CB391 /* HSFont.swift in Sources */,
 				CC1526A22271A7F5003CB391 /* FadeInOutAnimation.swift in Sources */,
 				CC152699227191A4003CB391 /* HSShadow.swift in Sources */,
@@ -567,7 +630,7 @@
 				CCED28112270D13100B676BF /* HSRouletteAnimation.swift in Sources */,
 				CC1526A92273472B003CB391 /* HSInnerShadow.swift in Sources */,
 				B6929A49226C11E500042919 /* RMStorage.swift in Sources */,
-				CC1526CE2275ECE5003CB391 /* HSItemCollectionViewCell.swift in Sources */,
+				CC15272C2276DAFD003CB391 /* HSShopCollectionViewCell.swift in Sources */,
 				B6929A41226C11DF00042919 /* Ex+UIImage.swift in Sources */,
 				CC1526A722732FA6003CB391 /* HSBalloonCustomView.swift in Sources */,
 				B6929A4D226C120200042919 /* IEView.swift in Sources */,
@@ -575,8 +638,8 @@
 				B6929A58226C13B600042919 /* HSMapViewController.swift in Sources */,
 				CC1526B22274275D003CB391 /* HSPlayerAreaCustomView.swift in Sources */,
 				B68686A4226EEF4200389CFB /* HSSquareEventManager.swift in Sources */,
-				CC1526D4227625C4003CB391 /* HSShopCollectionViewCell.swift in Sources */,
 				B6929A44226C11DF00042919 /* EX+SpriteKit.swift in Sources */,
+				CC1527322276DAFD003CB391 /* HSItemAlert.swift in Sources */,
 				B6929A42226C11DF00042919 /* Ex+Swift.swift in Sources */,
 				CC15269422717C5D003CB391 /* HSRouletteCustomView.swift in Sources */,
 				B6929A5A226C13BF00042919 /* HSMapViewModel.swift in Sources */,
@@ -590,6 +653,7 @@
 				B6929A6F226C1B2A00042919 /* HSEraEventAction.swift in Sources */,
 				B6929A5F226C13EA00042919 /* HSMapDetailViewModel.swift in Sources */,
 				B6929A19226C0FA200042919 /* AppDelegate.swift in Sources */,
+				CC15272D2276DAFD003CB391 /* HSItemCollectionViewCell.swift in Sources */,
 				B6929A71226C1B8C00042919 /* +HSEraEventAction.swift in Sources */,
 				B6929A43226C11DF00042919 /* Ex+Foundation.swift in Sources */,
 				BF08F4292272A6C800D2F93C /* ActionAlertViewController.swift in Sources */,

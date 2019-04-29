@@ -19,6 +19,8 @@ class HSItemAlert: UIView {
     private var viewWidth: CGFloat!
     private var viewHeight: CGFloat!
     
+    var item: HSItemStack!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNib()
@@ -41,6 +43,9 @@ class HSItemAlert: UIView {
     
     private func setupItemAlert() {
         
+        itemNameLabel.text = "\(item.item.name)を使用"
+        itemDescription.text = "次のターンでルーレットを自由な目に固定できる。"
+        itemImageView.image = UIImage(named: item.item.imageName)
         itemOKBtn.addTarget(self, action: #selector(itemOKBtnTapped), for: .touchUpInside)
         itemCancelBtn.addTarget(self, action: #selector(itemCancelBtnTapped), for: .touchUpInside)
     }

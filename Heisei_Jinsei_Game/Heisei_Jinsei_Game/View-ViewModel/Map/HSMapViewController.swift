@@ -22,7 +22,7 @@ protocol PlayerAreaDelegate {
 }
 
 protocol ItemAlertDelegate {
-    func generateItemAlert()
+    func generateItemAlert(row: Int)
 }
 
 class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate, PlayerAreaDelegate, ItemAlertDelegate {
@@ -331,7 +331,9 @@ extension UIView {
     }
 }
 
-//MARK: - アイテム使用時
+///===============================
+///アイテム系Extension
+///===============================
 extension HSMapViewController {
     
     ///アイテム欄の生成
@@ -352,13 +354,15 @@ extension HSMapViewController {
     }
     
     ///アイテム使用アラートの生成
-    func generateItemAlert() {
+    func generateItemAlert(row: Int) {
         print("itemBtntapped")
         let frame = CGRect(x: 0, y: 0, width: viewWidth/2.5, height: viewWidth/2.5)
         itemAlertView = HSItemAlert(frame: frame)
         itemAlertView.center = self.view.center
         itemAlertView.backgroundColor = .white
         itemAlertView.layer.cornerRadius = 30
+        let item: HSItemStack = viewModel.gameController.currentPlayer.currentItems[row]
+        itemAlertView.item = item
         blackBackground()
         self.view.addSubview(itemAlertView)
     }
