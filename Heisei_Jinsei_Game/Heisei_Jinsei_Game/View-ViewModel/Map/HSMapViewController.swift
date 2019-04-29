@@ -102,7 +102,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     }
     
     ///ルーレットを生成
-    @objc func generateRoulette() {
+    func generateRoulette() {
         blackBackground()
         
         rouletteView = HSRouletteCustomView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width/2.5, height: self.view.bounds.height))
