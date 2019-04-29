@@ -70,7 +70,7 @@ class HSRouletteCustomView: UIView {
         labelView.layer.cornerRadius = labelView.frame.height / 2
         labelView.layer.borderColor = UIColor.white.cgColor
         labelView.layer.borderWidth = 7
-        HSShadow.init(layer: labelView.layer)
+        HSShadow.makeShadow(to: labelView.layer)
         let text = UILabel(frame: CGRect(x: (self.bounds.width) - (self.bounds.width/1.1), y: 0, width: self.bounds.width / 1.5, height: self.bounds.height / 9))
         text.text = "ルーレットを回せ！"
         text.adjustsFontSizeToFitWidth = true
@@ -84,9 +84,14 @@ class HSRouletteCustomView: UIView {
     
     //ルーレットスタート
     @objc private func startRoulette() {
-        if (isRotating == false) {
-            HSRouletteAnimation(sender: panGesture, rouletteImageView: rouletteImageView, rouletteVC: self, delegate: delegate!, randomNum: self.randomNum)
-        } else {
+        if !isRotating {
+            _ = HSRouletteAnimation(
+                sender: panGesture,
+                rouletteImageView: rouletteImageView,
+                rouletteVC: self,
+                delegate: delegate!,
+                randomNum: self.randomNum
+            )
         }
     }
     
