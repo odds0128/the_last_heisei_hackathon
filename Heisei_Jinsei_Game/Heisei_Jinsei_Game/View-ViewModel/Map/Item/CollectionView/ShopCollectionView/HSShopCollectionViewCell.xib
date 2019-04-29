@@ -49,12 +49,16 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQa-eA-6Je">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                    </button>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="SfX-xl-WKf" secondAttribute="bottom" id="4Du-F9-FcA"/>
                 <constraint firstItem="XK3-jn-aXQ" firstAttribute="top" secondItem="AbZ-3c-6GP" secondAttribute="bottom" constant="5" id="8kb-XH-wKs"/>
                 <constraint firstItem="KMy-DE-kaA" firstAttribute="centerX" secondItem="AbZ-3c-6GP" secondAttribute="centerX" id="GeL-fo-O4J"/>
+                <constraint firstAttribute="trailing" secondItem="mQa-eA-6Je" secondAttribute="trailing" id="L8p-WJ-ify"/>
                 <constraint firstItem="AbZ-3c-6GP" firstAttribute="top" secondItem="zwT-lc-Iz7" secondAttribute="top" constant="5" id="PYn-pd-Tgk"/>
                 <constraint firstItem="KMy-DE-kaA" firstAttribute="leading" secondItem="zwT-lc-Iz7" secondAttribute="leading" constant="20" id="QmN-Dp-4ek"/>
                 <constraint firstItem="AbZ-3c-6GP" firstAttribute="leading" secondItem="zwT-lc-Iz7" secondAttribute="leading" constant="5" id="Rl2-bF-D1B"/>
@@ -63,8 +67,11 @@
                 <constraint firstAttribute="trailing" secondItem="AbZ-3c-6GP" secondAttribute="trailing" constant="5" id="Tsb-N6-Ea8"/>
                 <constraint firstAttribute="bottom" secondItem="KMy-DE-kaA" secondAttribute="bottom" id="VwC-Hg-TNL"/>
                 <constraint firstItem="XK3-jn-aXQ" firstAttribute="centerX" secondItem="AbZ-3c-6GP" secondAttribute="centerX" id="Xcp-8a-qTq"/>
+                <constraint firstAttribute="bottom" secondItem="mQa-eA-6Je" secondAttribute="bottom" id="Z4Z-3n-akI"/>
                 <constraint firstItem="KMy-DE-kaA" firstAttribute="top" secondItem="XK3-jn-aXQ" secondAttribute="bottom" id="gDx-Z1-Gae"/>
                 <constraint firstAttribute="trailing" secondItem="KMy-DE-kaA" secondAttribute="trailing" constant="20" id="kTJ-Cg-Nsm"/>
+                <constraint firstItem="mQa-eA-6Je" firstAttribute="top" secondItem="zwT-lc-Iz7" secondAttribute="top" id="mhR-ua-UYs"/>
+                <constraint firstItem="mQa-eA-6Je" firstAttribute="leading" secondItem="zwT-lc-Iz7" secondAttribute="leading" id="pOR-23-DkQ"/>
                 <constraint firstAttribute="trailing" secondItem="SfX-xl-WKf" secondAttribute="trailing" id="prG-Ta-1Zf"/>
                 <constraint firstItem="SfX-xl-WKf" firstAttribute="top" secondItem="zwT-lc-Iz7" secondAttribute="top" id="pxt-rz-D9u"/>
                 <constraint firstItem="SfX-xl-WKf" firstAttribute="leading" secondItem="zwT-lc-Iz7" secondAttribute="leading" id="s2f-yY-pdA"/>
@@ -72,6 +79,7 @@
             <viewLayoutGuide key="safeArea" id="GhJ-cN-6BV"/>
             <size key="customSize" width="173" height="155"/>
             <connections>
+                <outlet property="shopButton" destination="mQa-eA-6Je" id="1hi-XC-yoM"/>
                 <outlet property="shopItemImageView" destination="AbZ-3c-6GP" id="H0o-ui-FpB"/>
                 <outlet property="shopItemNameLabel" destination="XK3-jn-aXQ" id="jK2-CC-i5k"/>
                 <outlet property="shopItemPriceLabel" destination="KMy-DE-kaA" id="nNH-vW-GcM"/>

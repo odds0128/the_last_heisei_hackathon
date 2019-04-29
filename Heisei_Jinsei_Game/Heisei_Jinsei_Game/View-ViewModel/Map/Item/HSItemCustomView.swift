@@ -97,6 +97,7 @@ extension HSItemCustomView {
             cell.itemNumLabel.text = "x200"
             cell.itemNumLabel.adjustsFontSizeToFitWidth = true
             cell.itemNumLabel.sizeToFit()
+            cell.itemButton.addTarget(self, action: #selector(itemBtnTapped), for: .touchUpInside)
             
             return cell
         } else {
@@ -108,8 +109,18 @@ extension HSItemCustomView {
             cell.shopItemPriceLabel.text = "¥15000"
             cell.shopItemPriceLabel.adjustsFontSizeToFitWidth = true
             cell.shopItemPriceLabel.sizeToFit()
+            cell.shopButton.addTarget(self, action: #selector(shopBtnTapped), for: .touchUpInside)
             return cell
         }
+    }
+    
+    @objc func itemBtnTapped() {
+        print("itemBtntapped")
         
     }
+    
+    @objc func shopBtnTapped() {
+        print("shopBtnTapped")
+    }
+   
 }
