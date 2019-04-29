@@ -21,9 +21,16 @@ protocol PlayerAreaDelegate {
     func generateItemView()
 }
 
-class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate, PlayerAreaDelegate {
+protocol ItemAlertDelegate {
+    func generateItemAlert()
+}
+
+class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate, PlayerAreaDelegate, ItemAlertDelegate {
     
     let viewModel: HSMapViewViewModel
+    
+    var viewWidth: CGFloat!
+    var viewHeight: CGFloat!
     
     var basePointX = 150
     var basePointY = 130
@@ -52,7 +59,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var balloonView: HSBalloonCustomView!
     var playerAreaView: HSPlayerAreaCustomView!
     var itemView: HSItemCustomView!
-    
+    var itemAlertView: HSItemAlert!
     
     var playerCars: [HSPlayer:Car] = [:]
     var eventPointXArray = [CGFloat]()
@@ -84,6 +91,9 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewWidth = self.view.frame.width
+        viewHeight = self.view.frame.height
         
         generateEventPoint()
         generatePlayerArea()
@@ -280,28 +290,11 @@ extension HSMapViewController {
         let name = self.viewModel.gameController.gamingPlayers[tag].name
         let money = self.viewModel.gameController.gamingPlayers[tag].money
         playerAreaView = HSPlayerAreaCustomView(frame: frame, name: name, money: money)
-        
         let angle = CGFloat((radian * M_PI) / 180.0)
         playerAreaView.transform = CGAffineTransform(rotationAngle: angle)
         playerAreaView.tag = tag
         playerAreaView.delegate = self
-        
         self.view.addSubview(playerAreaView)
-    }
-    
-    ///アイテム欄の生成
-    func generateItemView() {
-        let width = view.frame.width/1.5
-        let height = view.frame.height/2
-        let name = viewModel.gameController.currentPlayer.name
-        let frame = CGRect(x: view.frame.width/2-width/2, y: view.frame.height, width: width, height: height)
-        itemView = HSItemCustomView(frame: frame, name: name)
-        HSShadow.init(layer: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
-        itemView.layer.cornerRadius = 50
-        view.addSubview(itemView)
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
-            self.itemView.frame.origin.y -= height
-        }, completion: nil)
     }
     
 }
@@ -327,6 +320,38 @@ extension UIView {
         recognizer.minimumPressDuration = duration
         self.addGestureRecognizer(recognizer)
         objc_setAssociatedObject(self, String(format: "[%d]", arc4random()), sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+    }
+}
+
+//MARK: - アイテム使用時
+extension HSMapViewController {
+    
+    ///アイテム欄の生成
+    func generateItemView() {
+        let width = view.frame.width/1.5
+        let height = view.frame.height/2
+        let name = viewModel.gameController.currentPlayer.name
+        let frame = CGRect(x: view.frame.width/2-width/2, y: view.frame.height, width: width, height: height)
+        itemView = HSItemCustomView(frame: frame, name: name)
+        HSShadow.init(layer: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
+        itemView.layer.cornerRadius = 50
+        itemView.delegate = self
+        view.addSubview(itemView)
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+            self.itemView.frame.origin.y -= height
+        }, completion: nil)
+    }
+    
+    ///アイテム使用アラートの生成
+    func generateItemAlert() {
+        print("itemBtntapped")
+        let frame = CGRect(x: 0, y: 0, width: viewWidth/2.5, height: viewHeight/2)
+        itemAlertView = HSItemAlert(frame: frame)
+        itemAlertView.center = self.view.center
+        itemAlertView.backgroundColor = .white
+        itemAlertView.layer.cornerRadius = 30
+        blackBackground()
+        self.view.addSubview(itemAlertView)
     }
 }
 

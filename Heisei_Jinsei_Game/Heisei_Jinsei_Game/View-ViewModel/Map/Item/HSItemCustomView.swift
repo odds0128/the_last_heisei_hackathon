@@ -15,12 +15,15 @@ class HSItemCustomView: UIView, UICollectionViewDataSource {
     @IBOutlet weak var playersItemLabel: UILabel!
     @IBOutlet weak var itemScrollView: UIScrollView!
     @IBOutlet weak var shopScrollView: UIScrollView!
-    
     @IBOutlet weak var itemCollectionView: UICollectionView!
     @IBOutlet weak var shopCollectionView: UICollectionView!
     
     private var viewWidth: CGFloat!
     private var viewHeight: CGFloat!
+    
+    private var itemAlertView: HSItemAlert!
+    
+    var delegate: ItemAlertDelegate!
     
     init(frame: CGRect, name: String) {
         super.init(frame: frame)
@@ -115,8 +118,7 @@ extension HSItemCustomView {
     }
     
     @objc func itemBtnTapped() {
-        print("itemBtntapped")
-        
+        delegate.generateItemAlert()
     }
     
     @objc func shopBtnTapped() {
