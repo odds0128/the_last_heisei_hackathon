@@ -49,6 +49,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var blackView: UIView!
     var balloonView: HSBalloonCustomView!
     var playerAreaView: HSPlayerAreaCustomView!
+    var playerAreaViewArr: [HSPlayerAreaCustomView] = []
     
     
     var playerCars: [HSPlayer:Car] = [:]
@@ -90,6 +91,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
         addActionAlertObserver()
+        disableOthersRouletteBtn()
     }
     
     ///イベントマスがタップされたとき
@@ -287,6 +289,10 @@ extension HSMapViewController {
         setPlayerArea(x: -playerAreaWidth/2.55, y: -playerAreaHeight/2.55, radian: 135, tag: 1)
         setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: -playerAreaHeight/2.55, radian: -135, tag: 2)
         setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: self.view.frame.height - playerAreaHeight/1.3, radian: -45, tag: 3)
+        
+        for i in 0..<playerAreaViewArr.count {
+            self.view.addSubview(playerAreaViewArr[i])
+        }
     }
     ///プレイヤーエリアのセット
     private func setPlayerArea(x: CGFloat, y: CGFloat, radian: Double, tag: Int) {
@@ -299,8 +305,7 @@ extension HSMapViewController {
         playerAreaView.transform = CGAffineTransform(rotationAngle: angle)
         playerAreaView.tag = tag
         playerAreaView.delegate = self
-        
-        self.view.addSubview(playerAreaView)
+        self.playerAreaViewArr.append(playerAreaView)
     }
     
 }
@@ -378,6 +383,8 @@ extension HSMapViewController {
     }
 }
 
+
+//MARK: - ルーレット
 extension HSMapViewController {
     ///ルーレット画面を終了する
     @objc func endRouletteScene() {
@@ -391,6 +398,19 @@ extension HSMapViewController {
                 self.blackView.removeFromSuperview()
             })
         }
-        
+    }
+    
+    ///手番ではないプレイヤーのルーレットボタンをタップできないようにする
+    @objc func disableOthersRouletteBtn() {
+        let currentPlayer = viewModel.gameController.currentPlayer
+        let currentPlayerIndex = viewModel.gameController.getPlayerIndex(currentPlayer)
+        for i in 0..<4 {
+            if (currentPlayerIndex != i) {
+                playerAreaViewArr[i].disableRouletteBtn()
+            }
+            if (currentPlayerIndex == i) {
+               playerAreaViewArr[i].enableRouletteBtn()
+            }
+        }
     }
 }
