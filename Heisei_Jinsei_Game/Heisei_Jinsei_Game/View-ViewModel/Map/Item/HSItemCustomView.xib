@@ -31,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6o-l2-HXW" userLabel="Item Scroll View">
-                    <rect key="frame" x="0.0" y="64.5" width="300" height="535.5"/>
+                    <rect key="frame" x="0.0" y="78.5" width="300" height="521.5"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jk3-2N-9Jb" userLabel="Item Collection View">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
@@ -56,7 +56,7 @@
                     </constraints>
                 </scrollView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aPS-MD-C2u" userLabel="Shop Scroll View">
-                    <rect key="frame" x="300" y="64.5" width="300" height="535.5"/>
+                    <rect key="frame" x="300" y="78.5" width="300" height="521.5"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qga-Hp-aUf" userLabel="Shop Collection View">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
@@ -88,13 +88,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショップ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph2-G9-61U">
-                    <rect key="frame" x="300" y="0.0" width="300" height="60"/>
+                    <rect key="frame" x="300" y="0.0" width="300" height="75"/>
                     <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tossyのアイテム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUw-Hc-XOd">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="75"/>
                     <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -108,12 +108,12 @@
                 <constraint firstItem="Ph2-G9-61U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5bu-fu-DiK"/>
                 <constraint firstItem="Jk3-2N-9Jb" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="5iF-KX-5ow"/>
                 <constraint firstAttribute="trailing" secondItem="aPS-MD-C2u" secondAttribute="trailing" id="AQV-ri-gxH"/>
-                <constraint firstItem="Ph2-G9-61U" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:10" id="D6B-PF-Mci"/>
+                <constraint firstItem="Ph2-G9-61U" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:8" id="D6B-PF-Mci"/>
                 <constraint firstItem="qga-Hp-aUf" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="FL2-o4-nCZ"/>
-                <constraint firstItem="dUw-Hc-XOd" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:10" id="FjE-qW-M5g"/>
-                <constraint firstItem="aPS-MD-C2u" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.12" id="Ijd-x4-EXY"/>
+                <constraint firstItem="dUw-Hc-XOd" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:8" id="FjE-qW-M5g"/>
+                <constraint firstItem="aPS-MD-C2u" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.15" id="Ijd-x4-EXY"/>
                 <constraint firstItem="ddJ-K1-8ct" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="K0c-Bb-9hX"/>
-                <constraint firstItem="W6o-l2-HXW" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.12" id="NL2-Ar-gmA"/>
+                <constraint firstItem="W6o-l2-HXW" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.15" id="NL2-Ar-gmA"/>
                 <constraint firstItem="W6o-l2-HXW" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="Zef-cY-VLd"/>
                 <constraint firstItem="ddJ-K1-8ct" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.2" id="aG8-Og-lOW"/>
                 <constraint firstItem="W6o-l2-HXW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hxW-OD-8xf"/>
