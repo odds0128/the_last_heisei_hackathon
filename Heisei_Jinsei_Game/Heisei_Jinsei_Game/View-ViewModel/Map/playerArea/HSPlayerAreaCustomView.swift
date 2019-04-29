@@ -23,8 +23,8 @@ class HSPlayerAreaCustomView: UIView {
     private var viewHeight: CGFloat!
     
     let image = UIImage(named: "roulette_button.png")
-    
-    var delegate: PlayerAreaDelegate?
+ 
+    weak var delegate: PlayerAreaDelegate?
     
     init(frame: CGRect, name: String, money: Int) {
         super.init(frame: frame)
