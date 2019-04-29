@@ -90,6 +90,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
         addActionAlertObserver()
+        addRouletteChangingObserver()
         disableOthersRouletteBtn()
     }
     
@@ -385,6 +386,10 @@ extension HSMapViewController {
 
 //MARK: - ルーレット
 extension HSMapViewController {
+    ///手番更新時に呼ばれる
+    private func addRouletteChangingObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(disableOthersRouletteBtn), name: .HSGameControllerDidCurrentPlayerChanged, object: nil)
+    }
     ///ルーレット画面を終了する
     @objc func endRouletteScene() {
         ///1秒処理を遅らせる
