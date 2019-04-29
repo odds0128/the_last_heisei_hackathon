@@ -83,6 +83,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        generateGrass()
         generateEventPoint()
         generatePlayerArea()
 
@@ -98,6 +99,11 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
 
+    }
+    
+    /// 背景の草を生成wwwww
+    func generateGrass(){
+        self.scrollView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "map_background_grass"))
     }
     
     ///ルーレットを生成
