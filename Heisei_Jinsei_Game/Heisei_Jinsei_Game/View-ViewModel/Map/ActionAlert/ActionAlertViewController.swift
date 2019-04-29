@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol ActionAlertViewControllerBinder:class {
+    func endActionAlertView()
+}
+
 class ActionAlertViewController: UIViewController {
     
     private let actionLabelViewHeight: CGFloat = 80
     private let innerActionLabelViewHeight: CGFloat = 66
     private let action: HSEraEventAction
+    private weak var binder:ActionAlertViewControllerBinder!
 
     @IBOutlet weak private var actionLabel: UILabel!
     @IBOutlet weak private var actionLabelView: UIView!
@@ -22,7 +27,8 @@ class ActionAlertViewController: UIViewController {
     @IBOutlet weak private var detailLabel: UILabel!
     @IBOutlet weak private var okButton: UIButton!
     
-    init(action: HSEraEventAction) {
+    init(binder:ActionAlertViewControllerBinder,action: HSEraEventAction) {
+        self.binder = binder
         self.action = action
         super.init(nibName: nil, bundle: nil)
     }
@@ -60,5 +66,6 @@ class ActionAlertViewController: UIViewController {
     /// - Parameter sender: 押されたボタン
     @IBAction private func okButtonDidTapped(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+        binder.endActionAlertView()
     }
 }
