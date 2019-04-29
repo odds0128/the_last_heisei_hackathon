@@ -90,21 +90,26 @@ class HSGameControllerTests: XCTestCase {
         
         // 確定で10 イベント発生
         _=gameController.spinWheel(min:10, max: 10)
+        gameController.animationDidEnd() // ルーレットを回した後
         
         XCTAssertEqual(10,       gameController.getPlayerPosition(gameController.currentPlayer))
         
-        gameController.animationDidEnd()
-        // イベント着火！1000円減る。0 -> 0
+        gameController.animationDidEnd() //移動後
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(0,    gameController.currentPlayer.money)
         XCTAssertEqual(10,     gameController.getPlayerPosition(gameController.currentPlayer))
         
+        gameController.animationDidEnd() // イベントモーダル終了
+        gameController.animationDidEnd() // 金額変更アニメーション
+        
+        XCTAssertEqual("Bob", gameController.currentPlayer.name)
     }
+    
     func testEventAction3(){
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
-        // 確定で5 イベント発生
+        // 確定で6 イベント発生
         _=gameController.spinWheel(min:6, max: 6)
         
         gameController.animationDidEnd() // ルーレット待機
@@ -113,12 +118,10 @@ class HSGameControllerTests: XCTestCase {
         XCTAssertEqual(6,       gameController.getPlayerPosition(gameController.currentPlayer))
         
         gameController.animationDidEnd() // 移動待機
+        
         gameController.animationDidEnd() // アクション認証待機
         
-        XCTAssertEqual("Alice", gameController.currentPlayer.name)
-        XCTAssertEqual(1000,    gameController.currentPlayer.money)
-        
-        gameController.animationDidEnd() // アクションアニメーション待機
+        gameController.animationDidEnd() // 金額変更アニメーション
         
         XCTAssertEqual("Bob", gameController.currentPlayer.name)
     }
@@ -142,6 +145,7 @@ class HSGameControllerTests: XCTestCase {
         
         XCTAssertEqual("Bob", gameController.currentPlayer.name)
     }
+    
     func testEventAction1(){
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         
