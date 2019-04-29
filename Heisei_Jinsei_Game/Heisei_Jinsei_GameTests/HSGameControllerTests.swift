@@ -90,17 +90,21 @@ class HSGameControllerTests: XCTestCase {
         
         // 確定で10 イベント発生
         _=gameController.spinWheel(min:10, max: 10)
+        gameController.animationDidEnd() // ルーレットを回した後
         
         XCTAssertEqual(10,       gameController.getPlayerPosition(gameController.currentPlayer))
         
-        gameController.animationDidEnd()
-        // イベント着火！1000円減る。0 -> 0
+        gameController.animationDidEnd() //移動後
         
         XCTAssertEqual("Alice", gameController.currentPlayer.name)
         XCTAssertEqual(0,    gameController.currentPlayer.money)
         XCTAssertEqual(10,     gameController.getPlayerPosition(gameController.currentPlayer))
         
+        gameController.animationDidEnd() // イベントモーダル終了
+        
+        XCTAssertEqual("Bob", gameController.currentPlayer.name)
     }
+    
     func testEventAction3(){
         let gameController = HSGameController(playerManager: createPlayerManager(), eventManager: createEventManager())
         

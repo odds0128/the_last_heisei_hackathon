@@ -69,7 +69,7 @@ class HSGameController {
         // ルーレットによる移動完了後なら
         if isWatingFirstPlayerMoving {
             isWatingFirstPlayerMoving = false
-            if let action = self.eventManager.getEraEvent(at: self.playerManager.getPosition(of: currentPlayer)).action{
+            if let action = self.eventManager.getEraEvent(at: self.playerManager.getPosition(of: currentPlayer)).action {
                 self._didOccurActionByWheel(action)
                 return
             }
@@ -79,7 +79,9 @@ class HSGameController {
         if let watingAction = watingAction{
             self.watingAction = nil
             self._didUserAcceptEventAction(watingAction)
-            return
+            if watingAction is HSEraEventSkipSquareAction || watingAction is HSEraEventReturnSquareAction {
+                return
+            }
         }
         
         // それ以外なら、順番交代
