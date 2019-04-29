@@ -334,6 +334,21 @@ extension UIView {
     }
 }
 
+// MARK: - 金額変更アニメーション
+extension HSMapViewController {
+    func addMoneyChangingObserver(){
+        NotificationCenter.default.addObserver(forName: .HSGameControllerDidPlayerMoneyChanged){[weak self] notice in
+            guard let player = notice.object as? HSPlayer else {return}
+            self?.didPlayerMoneyChanged(player: player)
+        }
+    }
+    func didPlayerMoneyChanged(player:HSPlayer){
+        let playerArea = playerAreaViewArr[viewModel.gameController.getPlayerIndex(player)]
+        playerArea.setMoney(player.money)
+        viewModel.gameController.animationDidEnd()
+    }
+}
+
 // MARK: - 車移動アニメーション
 extension HSMapViewController {
     /// 車移動アニメーションのオブザーバーを登録する

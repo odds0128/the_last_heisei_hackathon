@@ -41,7 +41,7 @@ class HSGameController {
     /// 手番のプレイヤーがルーレットを回します。
     /// 返り値はルーレットの出目です。
     func spinWheel(min:Int = 1, max:Int = 12) -> Int {
-        let wheelValue = (min...max).randomElement()!
+        let wheelValue = 8//(min...max).randomElement()!
         self.playerManager.didSpinWheel(for: currentPlayer, with: wheelValue)
         
         isWatingRouletteAnimation = true
@@ -59,6 +59,7 @@ class HSGameController {
     /// マスのアクション・操作ユーザー更新を行います。
     /// アクションによるAnimation後も再度呼び出してください。
     func animationDidEnd(){
+        print(isWatingRouletteAnimation, isWatingFirstPlayerMoving, watingAction == nil)
         // ルーレット待機後なら
         if isWatingRouletteAnimation {
             isWatingRouletteAnimation = false
@@ -79,9 +80,7 @@ class HSGameController {
         if let watingAction = watingAction{
             self.watingAction = nil
             self._didUserAcceptEventAction(watingAction)
-            if watingAction is HSEraEventSkipSquareAction || watingAction is HSEraEventReturnSquareAction {
-                return
-            }
+            return
         }
         
         // それ以外なら、順番交代
