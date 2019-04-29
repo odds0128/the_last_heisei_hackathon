@@ -345,7 +345,7 @@ extension HSMapViewController {
     ///アイテム使用アラートの生成
     func generateItemAlert() {
         print("itemBtntapped")
-        let frame = CGRect(x: 0, y: 0, width: viewWidth/2.5, height: viewHeight/2)
+        let frame = CGRect(x: 0, y: 0, width: viewWidth/2.5, height: viewWidth/2.5)
         itemAlertView = HSItemAlert(frame: frame)
         itemAlertView.center = self.view.center
         itemAlertView.backgroundColor = .white

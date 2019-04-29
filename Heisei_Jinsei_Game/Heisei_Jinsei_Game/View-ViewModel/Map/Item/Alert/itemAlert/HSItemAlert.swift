@@ -25,6 +25,7 @@ class HSItemAlert: UIView {
         
         viewWidth = frame.width
         viewHeight = frame.height
+        setupItemAlert()
     }
     
     required init?(coder aDecoder: NSCoder) {
