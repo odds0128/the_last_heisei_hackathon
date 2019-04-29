@@ -41,7 +41,7 @@ class HSGameController {
     /// 手番のプレイヤーがルーレットを回します。
     /// 返り値はルーレットの出目です。
     func spinWheel(min:Int = 1, max:Int = 12) -> Int {
-        let wheelValue = 8//(min...max).randomElement()!
+        let wheelValue = (min...max).randomElement()!
         self.playerManager.didSpinWheel(for: currentPlayer, with: wheelValue)
         
         isWatingRouletteAnimation = true
@@ -59,7 +59,6 @@ class HSGameController {
     /// マスのアクション・操作ユーザー更新を行います。
     /// アクションによるAnimation後も再度呼び出してください。
     func animationDidEnd(){
-        print(watingAction)
         // ルーレット待機後なら
         if isWatingRouletteAnimation {
             isWatingRouletteAnimation = false
