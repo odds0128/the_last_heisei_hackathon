@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "flav_PSP.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ぴー・えす・ぴー.png",
       "scale" : "2x"
     },
     {
