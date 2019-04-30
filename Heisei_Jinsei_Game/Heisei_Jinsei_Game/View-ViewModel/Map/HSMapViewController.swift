@@ -224,7 +224,11 @@ extension HSMapViewController {
                     self.tappedEventPointY = location.y
                     self.generateBalloonView(animationEnded: false, squarePosition: sender.tag)
                 case .ended:
-                    self.removeBalloonView()
+                    // ビューだけを消す
+                    self.balloonView.fadeOut(duration: 0.3) { [weak self] in
+                        self?.balloonView.removeFromSuperview()
+                    }
+                    self.balloonView.removeFromSuperview()
                 default:
                     break
                 }
