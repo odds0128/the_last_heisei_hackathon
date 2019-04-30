@@ -729,14 +729,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y475J6372H;
+				DEVELOPMENT_TEAM = DFY27HWN2G;
 				INFOPLIST_FILE = Heisei_Jinsei_Game/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-Game";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ry-itto.Heisei-Jinsei-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -748,14 +748,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y475J6372H;
+				DEVELOPMENT_TEAM = DFY27HWN2G;
 				INFOPLIST_FILE = Heisei_Jinsei_Game/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pielotopica.Heisei-Jinsei-Game";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ry-itto.Heisei-Jinsei-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
