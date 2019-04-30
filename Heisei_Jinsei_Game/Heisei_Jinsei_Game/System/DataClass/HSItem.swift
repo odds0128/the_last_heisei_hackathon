@@ -27,11 +27,14 @@ class HSItem {
     ///画像URL
     var imageName: String
     
-    init(name:String, price:Int, sellStartingYear:Int, imageName: String) {
+    var function: ((HSPlayer, Int, @escaping () -> Void) -> Void)
+    
+    init(name:String, price:Int, sellStartingYear:Int, imageName: String, function: @escaping ((HSPlayer, Int, @escaping () -> Void) -> Void)) {
         self.name = name
         self.price = price
         self.sellStartingYear = sellStartingYear
         self.imageName = imageName
+        self.function = function
     }
 }
 
@@ -45,18 +48,25 @@ extension HSItem: Equatable{
 
 /// 各アイテムの参照はここに持ちます。
 extension HSItem {
-    static let safe = HSItem(name: "金庫", price: 1000, sellStartingYear: 1, imageName: "safe.png")
-    static let bit_coin = HSItem(name: "ビットコイン", price: 100, sellStartingYear: 1, imageName: "bit_coin.png")
-    static let galapagos_phone = HSItem(name: "ガラケー", price: 15000, sellStartingYear: 1, imageName: "gara_phone.png")
-    static let ds = HSItem(name: "DS", price: 20000, sellStartingYear: 1, imageName: "DS.png")
-    static let airu = HSItem(name: "アイルー", price: 1000, sellStartingYear: 1, imageName: "airu.png")
-    static let devil_airu = HSItem(name: "悪魔アイルー", price: 100000, sellStartingYear: 1, imageName: "devil_airu.png")
-    static let game_boy = HSItem(name: "ゲームボーイ", price: 8000, sellStartingYear: 1, imageName: "game_boy.png")
-    static let egg_chi = HSItem(name: "たまごっち", price: 1980, sellStartingYear: 1, imageName: "egg_chi")
-    static let jobs = HSItem(name: "スティーブ・ジョブズ", price: 500000, sellStartingYear: 1, imageName: "jobs.png")
-    static let obuchi = HSItem(name: "小渕恵三", price: 50000, sellStartingYear: 1, imageName: "obuchi.png")
-    static let pocket_bell = HSItem(name: "ポケベル", price: 1000, sellStartingYear: 1, imageName: "pocket_bell.png")
-    static let psp = HSItem(name: "PSP", price: 20000, sellStartingYear: 1, imageName: "PSP.png")
+    static let safe = HSItem(name: "悪魔アイルー", price: 1000, sellStartingYear: 1, imageName: "devil_airu.png") { (currentPlayer: HSPlayer, randomNum: Int, completion: (() -> Void)) in
+        
+        let money = randomNum*50000
+        currentPlayer.money += money
+        completion()
+    }
+//    static let bit_coin = HSItem(name: "ビットコイン", price: 100, sellStartingYear: 1, imageName: "bit_coin.png")
+//    static let galapagos_phone = HSItem(name: "ガラケー", price: 15000, sellStartingYear: 1, imageName: "gara_phone.png")
+//    static let ds = HSItem(name: "DS", price: 20000, sellStartingYear: 1, imageName: "DS.png")
+//    static let airu = HSItem(name: "アイルー", price: 1000, sellStartingYear: 1, imageName: "airu.png")
+//    static let devil_airu = HSItem(name: "悪魔アイルー", price: 100000, sellStartingYear: 1, imageName: "devil_airu.png")
+//    static let game_boy = HSItem(name: "ゲームボーイ", price: 8000, sellStartingYear: 1, imageName: "game_boy.png")
+//    static let egg_chi = HSItem(name: "たまごっち", price: 1980, sellStartingYear: 1, imageName: "egg_chi")
+//    static let jobs = HSItem(name: "スティーブ・ジョブズ", price: 500000, sellStartingYear: 1, imageName: "jobs.png")
+//    static let obuchi = HSItem(name: "小渕恵三", price: 50000, sellStartingYear: 1, imageName: "obuchi.png")
+//    static let pocket_bell = HSItem(name: "ポケベル", price: 1000, sellStartingYear: 1, imageName: "pocket_bell.png")
+//    static let psp = HSItem(name: "PSP", price: 20000, sellStartingYear: 1, imageName: "PSP.png")
 }
 
-
+///実際のアイテムごとのメソッド
+extension HSItem {
+}

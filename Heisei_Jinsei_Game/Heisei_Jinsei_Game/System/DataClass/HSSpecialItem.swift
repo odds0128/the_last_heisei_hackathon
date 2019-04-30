@@ -10,6 +10,7 @@ import Foundation
 
 class HSSpecialItem: HSItem {
     
+    
 }
 
 class HSFreeWheelResultSpecialItem: HSSpecialItem {}

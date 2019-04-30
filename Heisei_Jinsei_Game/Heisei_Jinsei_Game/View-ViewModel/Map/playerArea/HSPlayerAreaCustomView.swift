@@ -47,7 +47,7 @@ class HSPlayerAreaCustomView: UIView {
         self.addSubview(view1)
     }
     
-    private func setPlaeyerArea() {
+    func setPlaeyerArea() {
         
         self.playerNameLabel.text = playerName
         self.moneyLabel.text = "¥\(self.money!)"
@@ -58,8 +58,11 @@ class HSPlayerAreaCustomView: UIView {
         playerNameLabel.adjustsFontSizeToFitWidth = true
         playerNameLabel.minimumScaleFactor = 0.3
         shopBtn.imageView?.contentMode = .scaleAspectFit
-        
     }
+    
+//    func reloadMoneyLabel() {
+//        self.moneyLabel.text = self.
+//    }
     
     @IBAction func shopBtnTapped(_ sender: Any) {
         print("shop tapped")

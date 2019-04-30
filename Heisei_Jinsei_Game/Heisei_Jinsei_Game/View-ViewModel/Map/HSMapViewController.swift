@@ -17,7 +17,7 @@ protocol RouletteDelegate {
 }
 
 protocol PlayerAreaDelegate {
-    func generateRoulette()
+    func generateRoulette() -> Int
     func generateItemView()
 }
 
@@ -26,6 +26,7 @@ protocol ItemAlertDelegate {
 }
 
 class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate, PlayerAreaDelegate, ItemAlertDelegate {
+    
     
     let viewModel: HSMapViewViewModel
     
@@ -60,10 +61,13 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var playerAreaView: HSPlayerAreaCustomView!
     var itemView: HSItemCustomView!
     var itemAlertView: HSItemAlert!
+    var playerAreaViewArr: [HSPlayer:HSPlayerAreaCustomView] = [:]
     
     var playerCars: [HSPlayer:Car] = [:]
     var eventPointXArray = [CGFloat]()
     var eventPointYArray = [CGFloat]()
+    
+    var isItemRouletteFlg = false
     
     @IBOutlet weak var scrollView: UIView!
     
@@ -81,10 +85,10 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     required init?(coder aDecoder: NSCoder) {
         
         let currentItems: [HSItemStack] = [
-            HSItemStack.init(item: HSItem.ds, count: 1),
-            HSItemStack.init(item: HSItem.bit_coin, count: 200),
-            HSItemStack.init(item: HSItem.psp, count: 1),
-            HSItemStack.init(item: HSItem.pocket_bell, count: 1)
+            HSItemStack.init(item: HSItem.safe, count: 1),
+            //            HSItemStack.init(item: HSItem.bit_coin, count: 200),
+            //            HSItemStack.init(item: HSItem.psp, count: 1),
+            //            HSItemStack.init(item: HSItem.pocket_bell, count: 1)
         ]
         
         let players = [
@@ -120,15 +124,17 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     }
     
     ///ルーレットを生成
-    @objc func generateRoulette() {
+    @objc func generateRoulette() -> Int {
         blackBackground()
         
         rouletteView = HSRouletteCustomView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width/2.5, height: self.view.bounds.height))
         rouletteView.center = self.view.center
         rouletteView.fadeIn(type: .Normal, completed: nil)
         rouletteView.delegate = self
-        rouletteView.randomNum = self.viewModel.gameController.spinWheel()
+        let randomNum = self.viewModel.gameController.spinWheel()
+        rouletteView.randomNum = randomNum
         self.view.addSubview(rouletteView)
+        return randomNum
     }
     
     ///背景を黒く透過する
@@ -287,21 +293,22 @@ extension HSMapViewController {
         let playerAreaWidth = self.view.frame.width/4
         let playerAreaHeight = self.view.frame.width/4
         
-        setPlayerArea(x: -playerAreaWidth/2.55, y: self.view.frame.height - playerAreaHeight/1.3, radian: 45, tag: 0)
-        setPlayerArea(x: -playerAreaWidth/2.55, y: -playerAreaHeight/2.55, radian: 135, tag: 1)
-        setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: -playerAreaHeight/2.55, radian: -135, tag: 2)
-        setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: self.view.frame.height - playerAreaHeight/1.3, radian: -45, tag: 3)
+        let players = viewModel.gameController.gamingPlayers
+        setPlayerArea(x: -playerAreaWidth/2.55, y: self.view.frame.height - playerAreaHeight/1.3, radian: 45, player: players[0])
+        setPlayerArea(x: -playerAreaWidth/2.55, y: -playerAreaHeight/2.55, radian: 135, player: players[1])
+        setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: -playerAreaHeight/2.55, radian: -135, player: players[2])
+        setPlayerArea(x: self.view.frame.width - playerAreaWidth/1.3, y: self.view.frame.height - playerAreaHeight/1.3, radian: -45, player: players[3])
     }
     ///プレイヤーエリアのセット
-    private func setPlayerArea(x: CGFloat, y: CGFloat, radian: Double, tag: Int) {
+    private func setPlayerArea(x: CGFloat, y: CGFloat, radian: Double, player: HSPlayer) {
         let frame = CGRect(x: x, y: y, width: self.view.bounds.width/3.5, height: self.view.bounds.width/3.5)
-        let name = self.viewModel.gameController.gamingPlayers[tag].name
-        let money = self.viewModel.gameController.gamingPlayers[tag].money
+        let name = player.name
+        let money = player.money
         playerAreaView = HSPlayerAreaCustomView(frame: frame, name: name, money: money)
         let angle = CGFloat((radian * M_PI) / 180.0)
         playerAreaView.transform = CGAffineTransform(rotationAngle: angle)
-        playerAreaView.tag = tag
         playerAreaView.delegate = self
+        self.playerAreaViewArr[player] = self.playerAreaView
         self.view.addSubview(playerAreaView)
     }
     
@@ -347,6 +354,7 @@ extension HSMapViewController {
         HSShadow.init(layer: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
         itemView.layer.cornerRadius = 50
         itemView.delegate = self
+        itemView.closeButton.addTarget(self, action: #selector(closeItemView), for: .touchUpInside)
         view.addSubview(itemView)
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
             self.itemView.frame.origin.y -= height
@@ -373,8 +381,35 @@ extension HSMapViewController {
         self.view.addSubview(itemAlertView)
     }
     
-    @objc func itemOKBtnTapped() {
-        print("OK")
+    @objc func closeItemView() {
+        print("閉じる")
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
+            self.itemView.frame.origin.y = self.view.frame.height
+        }, completion: nil)
+    }
+    
+    
+    @objc func itemOKBtnTapped(_ sender: UIButton) {
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.itemAlertView.fadeOut(duration: 0.2, completed: {
+                self.itemAlertView.removeFromSuperview()
+                //self.generateItemView()
+                self.isItemRouletteFlg = true
+                let randomNum = self.generateRoulette()
+                
+                let currentPlayer = self.viewModel.gameController.currentPlayer
+                print("randomNum: \(randomNum)")
+                currentPlayer.currentItems[sender.tag].item.function(currentPlayer, randomNum) { [weak self] in
+                    currentPlayer.currentItems.remove(at: sender.tag)
+                }
+            })
+            self.blackView.fadeOut(duration: 0.2, completed: {
+                self.blackView.removeFromSuperview()
+                self.closeItemView()
+            })
+        }
     }
     
     @objc func itemCancelBtnTapped() {
@@ -453,7 +488,12 @@ extension HSMapViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.rouletteView.fadeOut(duration: 0.5, completed: {
                 self.rouletteView.removeFromSuperview()
-                self.viewModel.gameController.animationDidEnd()
+                if (self.isItemRouletteFlg == false) {
+                    self.viewModel.gameController.animationDidEnd()
+                } else {
+                    let currentPlayer = self.viewModel.gameController.currentPlayer
+                    self.playerAreaViewArr[currentPlayer]!.moneyLabel.text = "¥\(currentPlayer.money)"
+                }
             })
             self.blackView.fadeOut(duration: 0.5, completed: {
                 self.blackView.removeFromSuperview()

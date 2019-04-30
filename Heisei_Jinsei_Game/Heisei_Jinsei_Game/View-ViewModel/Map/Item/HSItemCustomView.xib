@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HSItemCustomView" customModule="Heisei_Jinsei_Game" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="TyH-hp-Owh" id="uF2-gb-idD"/>
                 <outlet property="itemCollectionView" destination="Jk3-2N-9Jb" id="njc-gc-5uY"/>
                 <outlet property="itemScrollView" destination="W6o-l2-HXW" id="Lbs-If-mlY"/>
                 <outlet property="playersItemLabel" destination="dUw-Hc-XOd" id="ELr-9f-Lkt"/>
@@ -99,6 +100,17 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyH-hp-Owh">
+                    <rect key="frame" x="519" y="0.0" width="81" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="81" id="TB4-WX-u4K"/>
+                        <constraint firstAttribute="height" constant="30" id="vnN-sB-Aj0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="17"/>
+                    <state key="normal" title="閉じる">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.19341591" green="0.45147925620000001" blue="0.96475452179999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
@@ -114,12 +126,14 @@
                 <constraint firstItem="aPS-MD-C2u" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.15" id="Ijd-x4-EXY"/>
                 <constraint firstItem="ddJ-K1-8ct" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="K0c-Bb-9hX"/>
                 <constraint firstItem="W6o-l2-HXW" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.15" id="NL2-Ar-gmA"/>
+                <constraint firstItem="TyH-hp-Owh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QKn-IF-YVU"/>
                 <constraint firstItem="W6o-l2-HXW" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="Zef-cY-VLd"/>
                 <constraint firstItem="ddJ-K1-8ct" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1.2" id="aG8-Og-lOW"/>
                 <constraint firstItem="W6o-l2-HXW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hxW-OD-8xf"/>
                 <constraint firstItem="aPS-MD-C2u" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="ifs-wu-Ax5"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ddJ-K1-8ct" secondAttribute="bottom" id="nuh-dX-MYa"/>
                 <constraint firstItem="dUw-Hc-XOd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="rC6-La-TZl"/>
+                <constraint firstItem="TyH-hp-Owh" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="sps-Vy-BRp"/>
                 <constraint firstItem="aPS-MD-C2u" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="w7J-FZ-DwA"/>
                 <constraint firstItem="dUw-Hc-XOd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yfp-5b-SVF"/>
                 <constraint firstItem="Ph2-G9-61U" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="yqv-g2-WPh"/>

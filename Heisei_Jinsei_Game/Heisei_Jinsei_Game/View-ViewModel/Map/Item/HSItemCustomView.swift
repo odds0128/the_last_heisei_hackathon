@@ -17,6 +17,7 @@ class HSItemCustomView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
     @IBOutlet weak var shopScrollView: UIScrollView!
     @IBOutlet weak var itemCollectionView: UICollectionView!
     @IBOutlet weak var shopCollectionView: UICollectionView!
+    @IBOutlet weak var closeButton: UIButton!
     
     private var viewWidth: CGFloat!
     private var viewHeight: CGFloat!
