@@ -18,6 +18,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j37-5J-8Ed">
+                                <rect key="frame" x="36" y="247" width="385" height="546.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="flav_garakey" translatesAutoresizingMaskIntoConstraints="NO" id="PuO-om-cGe">
+                                        <rect key="frame" x="0.0" y="0.0" width="235" height="546.5"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2w5-yM-UtI">
+                                        <rect key="frame" x="235" y="0.0" width="150" height="546.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flav_bit_coin" translatesAutoresizingMaskIntoConstraints="NO" id="Yhk-SL-mDs">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="246.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="n4l-IQ-Q0e"/>
+                                                </constraints>
+                                                <edgeInsets key="layoutMargins" top="8" left="6" bottom="8" right="8"/>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIF-xA-Gkx">
+                                                <rect key="frame" x="0.0" y="246.5" width="150" height="300"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="p4o-cc-H6w"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="95m-Wv-pwY">
                                 <rect key="frame" x="293" y="104" width="608" height="626"/>
                                 <subviews>
@@ -43,38 +69,6 @@
                                     <constraint firstAttribute="width" constant="608" id="46X-rc-GYt"/>
                                     <constraint firstAttribute="height" constant="626" id="ate-Rs-9gx"/>
                                 </constraints>
-                            </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flav_DS" translatesAutoresizingMaskIntoConstraints="NO" id="pdZ-tv-PHa">
-                                <rect key="frame" x="36" y="95" width="208" height="207"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="207" id="7By-Vf-WMP"/>
-                                    <constraint firstAttribute="width" constant="208" id="lNw-Eu-9Jd"/>
-                                </constraints>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j37-5J-8Ed">
-                                <rect key="frame" x="36" y="247" width="385" height="546.5"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flav_garakey" translatesAutoresizingMaskIntoConstraints="NO" id="PuO-om-cGe">
-                                        <rect key="frame" x="0.0" y="0.0" width="235" height="546.5"/>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2w5-yM-UtI">
-                                        <rect key="frame" x="235" y="0.0" width="150" height="546.5"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flav_bit_coin" translatesAutoresizingMaskIntoConstraints="NO" id="Yhk-SL-mDs">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="246.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="n4l-IQ-Q0e"/>
-                                                </constraints>
-                                            </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIF-xA-Gkx">
-                                                <rect key="frame" x="0.0" y="246.5" width="150" height="300"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="300" id="p4o-cc-H6w"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flav_PSP" translatesAutoresizingMaskIntoConstraints="NO" id="K7B-cE-6cV">
                                 <rect key="frame" x="934" y="95" width="240" height="128"/>
@@ -110,6 +104,13 @@
                                 </constraints>
                                 <state key="normal" image="menu_icon"/>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="flav_DS" translatesAutoresizingMaskIntoConstraints="NO" id="pdZ-tv-PHa">
+                                <rect key="frame" x="136" y="56" width="208" height="207"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="207" id="7By-Vf-WMP"/>
+                                    <constraint firstAttribute="width" constant="208" id="lNw-Eu-9Jd"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.49529450229999999" green="0.87642766500000002" blue="0.1962676434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -140,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjZ-uc-ia8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253.12499999999997" y="32.03125"/>
+            <point key="canvasLocation" x="500" y="8"/>
         </scene>
         <!--HSMapView-->
         <scene sceneID="o8U-Hh-Plz">

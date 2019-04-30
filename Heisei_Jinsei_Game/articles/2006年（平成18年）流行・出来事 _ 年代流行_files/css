@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Mplus 1p';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Mplus 1p Light'), local('Mplus1p-Light'), url(https://fonts.gstatic.com/l/font?kit=k3kUo8oPIeJRyV8MHcZkKWHEA6CF8T2GES0e-JYNXg3ri3V1H_HhE7bCzMtUt0bQw-2cWd66NO2A7CUtuhrnOPb9YZCwOR-eVN5jDaYHyq2BBHX2fnUOPTalvFL9gKZ_WDbM3oIDAFvE39F-4adQK86c_lDdwhwV0okVBPVxGwXhJ1a9iSImTou_6AJ71R-7&skey=1f5b7326409871c7&v=v14) format('woff2');
+}
+@font-face {
+  font-family: 'Mplus 1p';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Mplus 1p'), local('Mplus1p-Regular'), url(https://fonts.gstatic.com/l/font?kit=k3kTo8oPIeJRyV8MHf7NAUPJKZD1Eo56ES0R-JYKXg3Bi3V7H_HnE7bSzMhrt0bYw-2fWd6iNO227CUuuhrsOPb-YZCoOR-WVN9dDaYFyq2LBHXofnUqPTaqu2v7gKBEWQLK3oEbAF7o3_Jr4p1TK_yU_kXnwzgd0r8wBOBrFBjMJn2IiTgYTruh7hVi&skey=ce6b3497355c8867&v=v14) format('woff2');
+}
+@font-face {
+  font-family: 'Mplus 1p';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Mplus 1p Bold'), local('Mplus1p-Bold'), url(https://fonts.gstatic.com/l/font?kit=k3kUo8oPIeJRyV8MHcZ0LmHEA6CF8T2GES0e-JYNXg3ri3V1H_HhE7bCzMtUt0bQw-2cWd66NO2A7CUtuhrnOPb9YZCwOR-eVN5jDaYHyq2BBHX2fnUOPTalvFL9gKZ_WDbM3oIDAFvE39F-4adQK86c_lDdwhwV0okVBPVxGwXhJ1a9iSImTou_6AJ71R-7&skey=a5b3b794406ad1a2&v=v14) format('woff2');
+}
