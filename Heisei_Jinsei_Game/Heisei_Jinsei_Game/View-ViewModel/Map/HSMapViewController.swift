@@ -382,7 +382,8 @@ extension HSMapViewController {
         let items = viewModel.gameController.currentPlayer.currentItems
         let frame = CGRect(x: view.frame.width/2-width/2, y: view.frame.height, width: width, height: height)
         itemView = HSItemCustomView(frame: frame, name: name, items: items)
-        HSShadow.init(layer: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
+        //HSShadow.init(layer: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
+        HSShadow.makeShadow(to: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
         itemView.layer.cornerRadius = 50
         itemView.delegate = self
         itemView.closeButton.addTarget(self, action: #selector(closeItemView), for: .touchUpInside)
@@ -454,9 +455,7 @@ extension HSMapViewController {
             })
         }
     }
-    
-    
-=======
+}
 // MARK: - 金額変更アニメーション
 extension HSMapViewController {
     func addMoneyChangingObserver(){
@@ -466,8 +465,8 @@ extension HSMapViewController {
         }
     }
     func didPlayerMoneyChanged(player:HSPlayer){
-        let playerArea = playerAreaViewArr[viewModel.gameController.getPlayerIndex(player)]
-        playerArea.setMoney(player.money)
+        let playerArea = playerAreaViewArr[player]
+        playerArea!.setMoney(player.money)
         viewModel.gameController.animationDidEnd()
     }
 }
@@ -542,6 +541,7 @@ extension HSMapViewController {
                 } else {
                     let currentPlayer = self.viewModel.gameController.currentPlayer
                     self.playerAreaViewArr[currentPlayer]!.moneyLabel.text = "¥\(currentPlayer.money)"
+                    self.isItemRouletteFlg = false
                 }
             })
             self.blackView.fadeOut(duration: 0.5, completed: {
@@ -554,12 +554,13 @@ extension HSMapViewController {
     @objc func disableOthersRouletteBtn() {
         let currentPlayer = viewModel.gameController.currentPlayer
         let currentPlayerIndex = viewModel.gameController.getPlayerIndex(currentPlayer)
+        let allPlayers = viewModel.gameController.gamingPlayers
         for i in 0..<4 {
             if (currentPlayerIndex != i) {
-                playerAreaViewArr[i].disableRouletteBtn()
+                self.playerAreaViewArr[allPlayers[i]]!.disableRouletteBtn()
             }
             if (currentPlayerIndex == i) {
-               playerAreaViewArr[i].enableRouletteBtn()
+               playerAreaViewArr[currentPlayer]!.enableRouletteBtn()
             }
         }
     }
