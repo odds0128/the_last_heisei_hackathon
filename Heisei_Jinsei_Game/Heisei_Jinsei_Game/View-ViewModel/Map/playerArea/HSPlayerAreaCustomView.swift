@@ -44,6 +44,11 @@ class HSPlayerAreaCustomView: UIView {
         loadNib()
     }
     
+    func setMoney(_ money:Int){
+        self.money = money
+        moneyLabel.text = "¥\(money)"
+    }
+    
     func loadNib(){
         let view1 = Bundle.main.loadNibNamed("HSPlayerAreaCustomView", owner: self, options: nil)?.first as! UIView
         view1.frame = self.bounds
@@ -53,8 +58,8 @@ class HSPlayerAreaCustomView: UIView {
     private func setPlaeyerArea() {
         
         self.playerNameLabel.text = playerName
-        self.moneyLabel.text = "¥\(self.money!)"
         smallRouletteImageView.contentMode = .scaleAspectFit
+        moneyLabel.text = "¥\(self.money!)"
         moneyLabel.layer.cornerRadius = 10
         moneyLabel.adjustsFontSizeToFitWidth = true
         moneyLabel.minimumScaleFactor = 0.3

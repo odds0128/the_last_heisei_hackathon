@@ -83,6 +83,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        generateGrass()
         generateEventPoint()
         generatePlayerArea()
 
@@ -98,6 +99,11 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
 
+    }
+    
+    /// 背景の草を生成wwwww
+    func generateGrass(){
+        self.scrollView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "map_background_grass"))
     }
     
     ///ルーレットを生成
@@ -338,6 +344,21 @@ extension UIView {
     }
 }
 
+// MARK: - 金額変更アニメーション
+extension HSMapViewController {
+    func addMoneyChangingObserver(){
+        NotificationCenter.default.addObserver(forName: .HSGameControllerDidPlayerMoneyChanged){[weak self] notice in
+            guard let player = notice.object as? HSPlayer else {return}
+            self?.didPlayerMoneyChanged(player: player)
+        }
+    }
+    func didPlayerMoneyChanged(player:HSPlayer){
+        let playerArea = playerAreaViewArr[viewModel.gameController.getPlayerIndex(player)]
+        playerArea.setMoney(player.money)
+        viewModel.gameController.animationDidEnd()
+    }
+}
+
 // MARK: - 車移動アニメーション
 extension HSMapViewController {
     /// 車移動アニメーションのオブザーバーを登録する
@@ -373,14 +394,17 @@ extension HSMapViewController {
 }
 
 // MARK: - アクションアラート
-extension HSMapViewController {
+extension HSMapViewController:ActionAlertViewControllerBinder {
     private func addActionAlertObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(didEventActionOccured(_:)), name: .HSGameControllerDidEventActionOccur, object: nil)
+    }
+    func endActionAlertView() {
+        self.viewModel.gameController.animationDidEnd()
     }
     
     @objc func didEventActionOccured(_ notification: Notification) {
         let action = notification.object as! HSEraEventAction
-        let actionAlertVC = ActionAlertViewController(action: action)
+        let actionAlertVC = ActionAlertViewController(binder: self,action: action)
         actionAlertVC.modalPresentationStyle = .overFullScreen
         actionAlertVC.modalTransitionStyle = .crossDissolve
         present(actionAlertVC, animated: true, completion: nil)
