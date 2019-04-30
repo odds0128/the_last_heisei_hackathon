@@ -228,7 +228,7 @@ extension HSMapViewController {
                     let location = gesture.location(in: self.view)
                     self.tappedEventPointX = location.x
                     self.tappedEventPointY = location.y
-                    self.generateBalloonView(animationEnded: false, squarePosition: sender.tag)
+                    self.generateBalloonView(animationEnded: false, squarePosition: sender.tag - 1)
                 case .ended:
                     // ビューだけを消す
                     self.balloonView.fadeOut(duration: 0.3) { [weak self] in
