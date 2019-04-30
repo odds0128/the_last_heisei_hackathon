@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="TsukushiAMaruGothic.ttc">
+            <string>TsukuARdGothic-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HSShopCollectionViewCell" customModule="Heisei_Jinsei_Game" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HSShopCollectionViewCell" id="zwT-lc-Iz7" customClass="HSShopCollectionViewCell" customModule="Heisei_Jinsei_Game" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SfX-xl-WKf" userLabel="Background">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <color key="backgroundColor" white="0.81406071629999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-red" translatesAutoresizingMaskIntoConstraints="NO" id="AbZ-3c-6GP">
+                        <rect key="frame" x="5" y="5" width="190" height="150"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ガラケー" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XK3-jn-aXQ">
+                        <rect key="frame" x="0.0" y="160" width="200" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="XfN-3p-eoU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥10000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMy-DE-kaA">
+                        <rect key="frame" x="20" y="180" width="160" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="X5E-J6-cLI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TsukuARdGothic-Bold" family="Tsukushi A Round Gothic" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQa-eA-6Je">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="SfX-xl-WKf" secondAttribute="bottom" id="4Du-F9-FcA"/>
+                <constraint firstItem="XK3-jn-aXQ" firstAttribute="top" secondItem="AbZ-3c-6GP" secondAttribute="bottom" constant="5" id="8kb-XH-wKs"/>
+                <constraint firstItem="KMy-DE-kaA" firstAttribute="centerX" secondItem="AbZ-3c-6GP" secondAttribute="centerX" id="GeL-fo-O4J"/>
+                <constraint firstAttribute="trailing" secondItem="mQa-eA-6Je" secondAttribute="trailing" id="L8p-WJ-ify"/>
+                <constraint firstItem="AbZ-3c-6GP" firstAttribute="top" secondItem="zwT-lc-Iz7" secondAttribute="top" constant="5" id="PYn-pd-Tgk"/>
+                <constraint firstItem="KMy-DE-kaA" firstAttribute="leading" secondItem="zwT-lc-Iz7" secondAttribute="leading" constant="20" id="QmN-Dp-4ek"/>
+                <constraint firstItem="AbZ-3c-6GP" firstAttribute="leading" secondItem="zwT-lc-Iz7" secondAttribute="leading" constant="5" id="Rl2-bF-D1B"/>
+                <constraint firstItem="XK3-jn-aXQ" firstAttribute="leading" secondItem="zwT-lc-Iz7" secondAttribute="leading" id="Ska-13-Vvp"/>
+                <constraint firstAttribute="trailing" secondItem="XK3-jn-aXQ" secondAttribute="trailing" id="Tr4-Dx-hoe"/>
+                <constraint firstAttribute="trailing" secondItem="AbZ-3c-6GP" secondAttribute="trailing" constant="5" id="Tsb-N6-Ea8"/>
+                <constraint firstAttribute="bottom" secondItem="KMy-DE-kaA" secondAttribute="bottom" id="VwC-Hg-TNL"/>
+                <constraint firstItem="XK3-jn-aXQ" firstAttribute="centerX" secondItem="AbZ-3c-6GP" secondAttribute="centerX" id="Xcp-8a-qTq"/>
+                <constraint firstAttribute="bottom" secondItem="mQa-eA-6Je" secondAttribute="bottom" id="Z4Z-3n-akI"/>
+                <constraint firstItem="KMy-DE-kaA" firstAttribute="top" secondItem="XK3-jn-aXQ" secondAttribute="bottom" id="gDx-Z1-Gae"/>
+                <constraint firstAttribute="trailing" secondItem="KMy-DE-kaA" secondAttribute="trailing" constant="20" id="kTJ-Cg-Nsm"/>
+                <constraint firstItem="mQa-eA-6Je" firstAttribute="top" secondItem="zwT-lc-Iz7" secondAttribute="top" id="mhR-ua-UYs"/>
+                <constraint firstItem="mQa-eA-6Je" firstAttribute="leading" secondItem="zwT-lc-Iz7" secondAttribute="leading" id="pOR-23-DkQ"/>
+                <constraint firstAttribute="trailing" secondItem="SfX-xl-WKf" secondAttribute="trailing" id="prG-Ta-1Zf"/>
+                <constraint firstItem="SfX-xl-WKf" firstAttribute="top" secondItem="zwT-lc-Iz7" secondAttribute="top" id="pxt-rz-D9u"/>
+                <constraint firstItem="SfX-xl-WKf" firstAttribute="leading" secondItem="zwT-lc-Iz7" secondAttribute="leading" id="s2f-yY-pdA"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="GhJ-cN-6BV"/>
+            <size key="customSize" width="173" height="155"/>
+            <connections>
+                <outlet property="shopButton" destination="mQa-eA-6Je" id="1hi-XC-yoM"/>
+                <outlet property="shopItemImageView" destination="AbZ-3c-6GP" id="H0o-ui-FpB"/>
+                <outlet property="shopItemNameLabel" destination="XK3-jn-aXQ" id="jK2-CC-i5k"/>
+                <outlet property="shopItemPriceLabel" destination="KMy-DE-kaA" id="nNH-vW-GcM"/>
+            </connections>
+            <point key="canvasLocation" x="150.40000000000001" y="95.352323838080963"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="car-red" width="103" height="67"/>
+    </resources>
+</document>

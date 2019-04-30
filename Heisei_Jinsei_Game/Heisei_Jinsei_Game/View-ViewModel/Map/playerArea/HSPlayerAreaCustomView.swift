@@ -24,7 +24,7 @@ class HSPlayerAreaCustomView: UIView {
     
     let image = UIImage(named: "roulette_button.png")
  
-    weak var delegate: PlayerAreaDelegate?
+    var delegate: PlayerAreaDelegate?
     
     init(frame: CGRect, name: String, money: Int) {
         super.init(frame: frame)
@@ -55,7 +55,7 @@ class HSPlayerAreaCustomView: UIView {
         self.addSubview(view1)
     }
     
-    private func setPlaeyerArea() {
+    func setPlaeyerArea() {
         
         self.playerNameLabel.text = playerName
         smallRouletteImageView.contentMode = .scaleAspectFit
@@ -66,11 +66,15 @@ class HSPlayerAreaCustomView: UIView {
         playerNameLabel.adjustsFontSizeToFitWidth = true
         playerNameLabel.minimumScaleFactor = 0.3
         shopBtn.imageView?.contentMode = .scaleAspectFit
-        
     }
+    
+//    func reloadMoneyLabel() {
+//        self.moneyLabel.text = self.
+//    }
     
     @IBAction func shopBtnTapped(_ sender: Any) {
         print("shop tapped")
+        delegate?.generateItemView()
     }
     
     @IBAction func rouletteBtnTapped(_ sender: Any) {

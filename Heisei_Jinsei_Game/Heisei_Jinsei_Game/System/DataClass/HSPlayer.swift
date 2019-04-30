@@ -38,6 +38,14 @@ class HSPlayer {
         
         HSPlayer._lastIndex += 1
     }
+    
+    required init(name: String, currentItems: [HSItemStack]) {
+        self.name = name
+        self.index =  HSPlayer._lastIndex
+        self.currentItems = currentItems
+        
+        HSPlayer._lastIndex += 1
+    }
 }
 
 extension HSPlayer {
