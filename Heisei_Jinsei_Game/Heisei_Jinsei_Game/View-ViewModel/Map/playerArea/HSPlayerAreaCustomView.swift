@@ -13,6 +13,7 @@ class HSPlayerAreaCustomView: UIView {
     @IBOutlet weak var playerNameLabel: UILabel!
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var smallRouletteImageView: UIImageView!
+    @IBOutlet weak var rouletteBtn: UIButton!
     @IBOutlet weak var shopBtn: UIButton!
     
     private var playerName: String!
@@ -21,7 +22,9 @@ class HSPlayerAreaCustomView: UIView {
     private var viewWidth: CGFloat!
     private var viewHeight: CGFloat!
     
-    var delegate: PlayerAreaDelegate?
+    let image = UIImage(named: "roulette_button.png")
+ 
+    weak var delegate: PlayerAreaDelegate?
     
     init(frame: CGRect, name: String, money: Int) {
         super.init(frame: frame)
@@ -41,6 +44,11 @@ class HSPlayerAreaCustomView: UIView {
         loadNib()
     }
     
+    func setMoney(_ money:Int){
+        self.money = money
+        moneyLabel.text = "¥\(money)"
+    }
+    
     func loadNib(){
         let view1 = Bundle.main.loadNibNamed("HSPlayerAreaCustomView", owner: self, options: nil)?.first as! UIView
         view1.frame = self.bounds
@@ -50,8 +58,8 @@ class HSPlayerAreaCustomView: UIView {
     func setPlaeyerArea() {
         
         self.playerNameLabel.text = playerName
-        self.moneyLabel.text = "¥\(self.money!)"
         smallRouletteImageView.contentMode = .scaleAspectFit
+        moneyLabel.text = "¥\(self.money!)"
         moneyLabel.layer.cornerRadius = 10
         moneyLabel.adjustsFontSizeToFitWidth = true
         moneyLabel.minimumScaleFactor = 0.3
@@ -73,6 +81,39 @@ class HSPlayerAreaCustomView: UIView {
         delegate?.generateRoulette()
     }
     
+    ///ルーレットボタンを黒くして使用できなくする
+    func disableRouletteBtn() {
+        rouletteBtn.isEnabled = false
+        let blackImage = darken(image: image!, level: 0.5)
+        smallRouletteImageView.image = blackImage
+    }
     
+    //ルーレットボタンを使用可能にする
+    func enableRouletteBtn() {
+        rouletteBtn.isEnabled = true
+        smallRouletteImageView.image = image
+    }
+    
+    func darken(image:UIImage, level:CGFloat) -> UIImage{
+        
+        let frame = CGRect(origin:CGPoint(x:smallRouletteImageView.bounds.minX,y:smallRouletteImageView.bounds.minY),size:image.size)
+        let tempView = UIView(frame:frame)
+        tempView.backgroundColor = UIColor.black
+        tempView.alpha = level
+        
+        UIGraphicsBeginImageContext(frame.size)
+        let context = UIGraphicsGetCurrentContext()
+        image.draw(in: frame)
+        
+        context!.translateBy(x: 0, y: frame.size.height)
+        context!.scaleBy(x: 1.0, y: -1.0)
+        context!.clip(to: frame, mask: image.cgImage!)
+        tempView.layer.render(in: context!)
+        
+        let imageRef = context!.makeImage()
+        let toReturn = UIImage(cgImage:imageRef!)
+        UIGraphicsEndImageContext()
+        return toReturn
+    }
 
 }

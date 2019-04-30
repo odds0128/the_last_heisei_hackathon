@@ -8,17 +8,19 @@
 
 import UIKit
 
-protocol BalloonViewDelegate {
+protocol BalloonViewDelegate :class{
     func removeBalloonView()
 }
 
-protocol RouletteDelegate {
+protocol RouletteDelegate :class{
     func endRouletteScene()
 }
+
 
 protocol PlayerAreaDelegate {
     func generateRoulette() -> Int
     func generateItemView()
+
 }
 
 protocol ItemAlertDelegate {
@@ -40,7 +42,6 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var nextCenterPointX: Int!
     var nextCenterPointY: Int!
     
-    var eventTotalNum = 120
     var eventNumPerLine = 5  ///１行につき5つのイベントマス
     var tempNum = 0
     
@@ -59,6 +60,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     var blackView: UIView!
     var balloonView: HSBalloonCustomView!
     var playerAreaView: HSPlayerAreaCustomView!
+
     var itemView: HSItemCustomView!
     var itemAlertView: HSItemAlert!
     var playerAreaViewArr: [HSPlayer:HSPlayerAreaCustomView] = [:]
@@ -78,7 +80,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
             HSPlayer(name: "Takashi"),
             HSPlayer(name: "Satoshi")
         ]
-        self.viewModel = HSMapViewViewModel(players: players, lastSquareIndex: eventPointArray.count)
+        self.viewModel = HSMapViewViewModel(players: players)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -97,16 +99,18 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
             HSPlayer(name: "Takashi"),
             HSPlayer(name: "Satoshi")
         ]
-        self.viewModel = HSMapViewViewModel(players: players, lastSquareIndex: 60)
+        self.viewModel = HSMapViewViewModel(players: players)
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         viewWidth = self.view.frame.width
         viewHeight = self.view.frame.height
-        
+        generateGrass()
+
         generateEventPoint()
         generatePlayerArea()
         
@@ -114,13 +118,19 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
         placePlayerCar(players: viewModel.gameController.gamingPlayers)
         addCarAnimationObserver()
         addActionAlertObserver()
-        addRouletteObserver()
+        addRouletteChangingObserver()
+        disableOthersRouletteBtn()
     }
     
     ///イベントマスがタップされたとき
     @objc func eventPointTapped(_ sender: UIButton) {
         print("タップされた。ButtonTag: \(sender.tag)")
         
+    }
+    
+    /// 背景の草を生成wwwww
+    func generateGrass(){
+        self.scrollView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "map_background_grass"))
     }
     
     ///ルーレットを生成
@@ -172,14 +182,15 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     }
     
     ///吹き出しViewを生成
-    private func generateBalloonView(animationEnded: Bool) {
+    private func generateBalloonView(animationEnded: Bool, squarePosition: Int) {
         
+        guard let event = viewModel.gameController.getEraEvent(at: squarePosition) else { return }
         let width = self.view.bounds.width/2.8
         let height = self.view.bounds.height/1.8
         if (tappedEventPointY < view.bounds.height/2) {
-            balloonView = HSBalloonCustomView(frame: CGRect(x: tappedEventPointX - width/2, y: tappedEventPointY+50, width:width, height: height))
+            balloonView = HSBalloonCustomView(frame: CGRect(x: tappedEventPointX - width/2, y: tappedEventPointY+50, width:width, height: height), event: event)
         } else {
-            balloonView = HSBalloonCustomView(frame: CGRect(x: tappedEventPointX - width/2, y: tappedEventPointY-height-50, width:width, height: height))
+            balloonView = HSBalloonCustomView(frame: CGRect(x: tappedEventPointX - width/2, y: tappedEventPointY-height-50, width:width, height: height), event: event)
         }
         
         if (animationEnded == true) {
@@ -194,6 +205,7 @@ class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelega
     ///BalloonCustomViewのOKボタンが呼ばれたらこれを実行
     func removeBalloonView() {
         self.balloonView.removeFromSuperview()
+        self.viewModel.gameController.animationDidEnd()
     }
     
 }
@@ -206,14 +218,29 @@ extension HSMapViewController {
     ///イベントボタン生成
     func generateEventPoint() {
         
-        for i in 0..<eventTotalNum {
+        for (i, event) in viewModel.gameController.getAllEraEvents().enumerated() {
             eventPoint = UIButton()
             eventPoint.frame = CGRect(x: basePointX, y: basePointY, width: 70, height: 70)
-            eventPoint.backgroundColor = HSColor().redColor
+            /// イベントのアクションによってマスの色を変える
+            switch event.action {
+            case .none:
+                eventPoint.backgroundColor = .white
+            case .some(let action):
+                switch action.eventType {
+                case .good:
+                    eventPoint.backgroundColor = HSColor().greenColor
+                case .bad:
+                    eventPoint.backgroundColor = HSColor().redColor
+                case .goal:
+                    break
+                case .special:
+                    break
+                }
+            }
             eventPoint.layer.cornerRadius = 35
             eventPoint.layer.borderColor = UIColor.white.cgColor
             eventPoint.layer.borderWidth = 12
-            HSShadow.init(layer: eventPoint.layer)
+            HSShadow.makeShadow(to: eventPoint.layer)
             eventPoint.tag = i + 1
             
             eventPointXArray.append(eventPoint.frame.minX)
@@ -230,9 +257,13 @@ extension HSMapViewController {
                     let location = gesture.location(in: self.view)
                     self.tappedEventPointX = location.x
                     self.tappedEventPointY = location.y
-                    self.generateBalloonView(animationEnded: false)
+                    self.generateBalloonView(animationEnded: false, squarePosition: sender.tag - 1)
                 case .ended:
-                    self.removeBalloonView()
+                    // ビューだけを消す
+                    self.balloonView.fadeOut(duration: 0.3) { [weak self] in
+                        self?.balloonView.removeFromSuperview()
+                    }
+                    self.balloonView.removeFromSuperview()
                 default:
                     break
                 }
@@ -305,7 +336,7 @@ extension HSMapViewController {
         let name = player.name
         let money = player.money
         playerAreaView = HSPlayerAreaCustomView(frame: frame, name: name, money: money)
-        let angle = CGFloat((radian * M_PI) / 180.0)
+        let angle = CGFloat((radian * .pi) / 180.0)
         playerAreaView.transform = CGAffineTransform(rotationAngle: angle)
         playerAreaView.delegate = self
         self.playerAreaViewArr[player] = self.playerAreaView
@@ -425,6 +456,20 @@ extension HSMapViewController {
     }
     
     
+=======
+// MARK: - 金額変更アニメーション
+extension HSMapViewController {
+    func addMoneyChangingObserver(){
+        NotificationCenter.default.addObserver(forName: .HSGameControllerDidPlayerMoneyChanged){[weak self] notice in
+            guard let player = notice.object as? HSPlayer else {return}
+            self?.didPlayerMoneyChanged(player: player)
+        }
+    }
+    func didPlayerMoneyChanged(player:HSPlayer){
+        let playerArea = playerAreaViewArr[viewModel.gameController.getPlayerIndex(player)]
+        playerArea.setMoney(player.money)
+        viewModel.gameController.animationDidEnd()
+    }
 }
 
 // MARK: - 車移動アニメーション
@@ -456,32 +501,36 @@ extension HSMapViewController {
         /// 移動処理
         car.moveTo(positions: positions, moveCount: moveCount, completion: {[weak self] (true) -> Void in
             /// 移動完了時吹き出しを出す
-            self?.generateBalloonView(animationEnded: true)
-            self?.viewModel.gameController.animationDidEnd()
+            self?.generateBalloonView(animationEnded: true, squarePosition: toPosition)
         })
     }
 }
 
 // MARK: - アクションアラート
-extension HSMapViewController {
+extension HSMapViewController:ActionAlertViewControllerBinder {
     private func addActionAlertObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(didEventActionOccured(_:)), name: .HSGameControllerDidEventActionOccur, object: nil)
+    }
+    func endActionAlertView() {
+        self.viewModel.gameController.animationDidEnd()
     }
     
     @objc func didEventActionOccured(_ notification: Notification) {
         let action = notification.object as! HSEraEventAction
-        let actionAlertVC = ActionAlertViewController(action: action)
+        let actionAlertVC = ActionAlertViewController(binder: self,action: action)
         actionAlertVC.modalPresentationStyle = .overFullScreen
         actionAlertVC.modalTransitionStyle = .crossDissolve
         present(actionAlertVC, animated: true, completion: nil)
     }
 }
 
+
+//MARK: - ルーレット
 extension HSMapViewController {
-    private func addRouletteObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(endRouletteScene), name: .HSGameControllerDidPlayerPositionChanged, object: nil)
+    ///手番更新時に呼ばれる
+    private func addRouletteChangingObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(disableOthersRouletteBtn), name: .HSGameControllerDidCurrentPlayerChanged, object: nil)
     }
-    
     ///ルーレット画面を終了する
     @objc func endRouletteScene() {
         ///1秒処理を遅らせる
@@ -499,6 +548,19 @@ extension HSMapViewController {
                 self.blackView.removeFromSuperview()
             })
         }
-        
+    }
+    
+    ///手番ではないプレイヤーのルーレットボタンをタップできないようにする
+    @objc func disableOthersRouletteBtn() {
+        let currentPlayer = viewModel.gameController.currentPlayer
+        let currentPlayerIndex = viewModel.gameController.getPlayerIndex(currentPlayer)
+        for i in 0..<4 {
+            if (currentPlayerIndex != i) {
+                playerAreaViewArr[i].disableRouletteBtn()
+            }
+            if (currentPlayerIndex == i) {
+               playerAreaViewArr[i].enableRouletteBtn()
+            }
+        }
     }
 }
