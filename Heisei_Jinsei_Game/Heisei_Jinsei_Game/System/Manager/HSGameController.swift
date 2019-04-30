@@ -138,7 +138,7 @@ class HSGameController {
     private func changeTurn(){
         
         guard let currentPlayerIndex = gamingPlayers.firstIndex(of: currentPlayer) else {
-            fatalError("存在しないぴプレイヤーが指定されました。")
+            fatalError("存在しないプレイヤーが指定されました。")
         }
         if isGameEnded{
             return _checkIfGameEnded()
