@@ -27,7 +27,8 @@ class HSItemAlert: UIView {
         
         viewWidth = frame.width
         viewHeight = frame.height
-        setupItemAlert()
+        
+        //setupItemAlert()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,20 +42,17 @@ class HSItemAlert: UIView {
         self.addSubview(view1)
     }
     
-    private func setupItemAlert() {
-        
+    func setupItemAlert() {
         itemNameLabel.text = "\(item.item.name)を使用"
         itemDescription.text = "次のターンでルーレットを自由な目に固定できる。"
         itemImageView.image = UIImage(named: item.item.imageName)
-        itemOKBtn.addTarget(self, action: #selector(itemOKBtnTapped), for: .touchUpInside)
-        itemCancelBtn.addTarget(self, action: #selector(itemCancelBtnTapped), for: .touchUpInside)
+    }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+//        itemOKBtn.addTarget(self, action: #selector(itemOKBtnTapped), for: .touchUpInside)
+//        itemCancelBtn.addTarget(self, action: #selector(itemCancelBtnTapped), for: .touchUpInside)
     }
     
-    @objc func itemOKBtnTapped() {
-        print("OK")
-    }
+
     
-    @objc func itemCancelBtnTapped() {
-        print("cancel")
-    }
 }

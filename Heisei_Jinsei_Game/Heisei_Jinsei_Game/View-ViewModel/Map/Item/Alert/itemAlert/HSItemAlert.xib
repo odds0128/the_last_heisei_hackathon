@@ -17,7 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HSItemAlert" customModule="Heisei_Jinsei_Game" customModuleProvider="target">
             <connections>
-                <outlet property="itemCancelBtn" destination="uXm-VH-tUE" id="RAl-0D-7VA"/>
+                <outlet property="itemCancelBtn" destination="uXm-VH-tUE" id="amy-dy-gOy"/>
                 <outlet property="itemDescription" destination="bYI-pK-TLA" id="wQK-Tu-ePk"/>
                 <outlet property="itemImageView" destination="FOv-7f-avd" id="NSy-T2-O4v"/>
                 <outlet property="itemNameLabel" destination="EQb-wf-89I" id="RUs-3c-DFD"/>
@@ -78,6 +78,7 @@
                 <constraint firstItem="EQb-wf-89I" firstAttribute="width" secondItem="FCR-ah-Gfa" secondAttribute="width" multiplier="1:1.1" id="GZZ-W9-7AV"/>
                 <constraint firstItem="EQb-wf-89I" firstAttribute="top" secondItem="if9-ty-oOf" secondAttribute="top" constant="20" id="ekg-uw-PEh"/>
                 <constraint firstItem="EQb-wf-89I" firstAttribute="centerX" secondItem="FCR-ah-Gfa" secondAttribute="centerX" id="xWe-tJ-Rxn"/>
+                <constraint firstAttribute="height" constant="400" id="zeG-ie-XfJ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="if9-ty-oOf"/>

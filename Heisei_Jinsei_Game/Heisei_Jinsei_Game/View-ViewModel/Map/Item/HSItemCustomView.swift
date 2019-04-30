@@ -120,11 +120,10 @@ extension HSItemCustomView {
         cell.itemNumLabel.text = "x\(items![indexPath.row].count)"
         cell.itemNumLabel.adjustsFontSizeToFitWidth = true
         cell.itemNumLabel.sizeToFit()
+        cell.itemButton.tag = indexPath.row
         cell.itemButton.addTarget(self, action: #selector(itemBtnTapped), for: .touchUpInside)
-        
         return cell
     }
-    
     
     
     ///ショップのセルを設定
@@ -141,18 +140,9 @@ extension HSItemCustomView {
         return cell
     }
     
-    //Cell が選択された場合
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    @objc func itemBtnTapped(_ sender: UIButton) {
         
-        if (collectionView == itemCollectionView) {
-            self.selectedRow = indexPath.row
-        }
-    }
-    
-    @objc func itemBtnTapped() {
-        print("itemBtnTAPPED")
-        print("selectedRow:\(selectedRow)")
-        //delegate.generateItemAlert(row: selectedRow)
+        delegate.generateItemAlert(row: sender.tag)
     }
     
     @objc func shopBtnTapped() {

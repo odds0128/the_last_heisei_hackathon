@@ -361,11 +361,35 @@ extension HSMapViewController {
         itemAlertView.center = self.view.center
         itemAlertView.backgroundColor = .white
         itemAlertView.layer.cornerRadius = 30
+        print("row: \(row)")
+        print("currentItems:\(viewModel.gameController.currentPlayer.name)")
         let item: HSItemStack = viewModel.gameController.currentPlayer.currentItems[row]
+        print("item: \(item)")
         itemAlertView.item = item
+        itemAlertView.itemOKBtn.addTarget(self, action: #selector(itemOKBtnTapped), for: .touchUpInside)
+        itemAlertView.itemCancelBtn.addTarget(self, action: #selector(itemCancelBtnTapped), for: .touchUpInside)
         blackBackground()
+        itemAlertView.setupItemAlert()
         self.view.addSubview(itemAlertView)
     }
+    
+    @objc func itemOKBtnTapped() {
+        print("OK")
+    }
+    
+    @objc func itemCancelBtnTapped() {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.itemAlertView.fadeOut(duration: 0.2, completed: {
+                self.itemAlertView.removeFromSuperview()
+                
+            })
+            self.blackView.fadeOut(duration: 0.2, completed: {
+                self.blackView.removeFromSuperview()
+            })
+        }
+    }
+    
+    
 }
 
 // MARK: - 車移動アニメーション
