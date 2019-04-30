@@ -26,7 +26,7 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vm2-JM-ijN">
                                         <rect key="frame" x="0.0" y="411" width="608" height="81"/>
-                                        <state key="normal" image="main_menu_multipule"/>
+                                        <state key="normal" image="main_menu_multiple"/>
                                         <connections>
                                             <segue destination="sWP-vh-dpg" kind="show" id="Eey-ry-xlg"/>
                                         </connections>
@@ -52,13 +52,13 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j37-5J-8Ed">
-                                <rect key="frame" x="36" y="247" width="267.5" height="546.5"/>
+                                <rect key="frame" x="36" y="247" width="385" height="546.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flav_garakey" translatesAutoresizingMaskIntoConstraints="NO" id="PuO-om-cGe">
-                                        <rect key="frame" x="0.0" y="0.0" width="117.5" height="546.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="235" height="546.5"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2w5-yM-UtI">
-                                        <rect key="frame" x="117.5" y="0.0" width="150" height="546.5"/>
+                                        <rect key="frame" x="235" y="0.0" width="150" height="546.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flav_bit_coin" translatesAutoresizingMaskIntoConstraints="NO" id="Yhk-SL-mDs">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="246.5"/>
@@ -83,7 +83,7 @@
                                     <constraint firstAttribute="height" constant="128" id="tXF-7r-j17"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flav_eggtti" translatesAutoresizingMaskIntoConstraints="NO" id="CKo-oj-5RP">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flav_eggti" translatesAutoresizingMaskIntoConstraints="NO" id="CKo-oj-5RP">
                                 <rect key="frame" x="901" y="247" width="110" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="bg1-bV-1c1"/>
@@ -156,13 +156,13 @@
     <resources>
         <image name="Logo" width="416" height="358"/>
         <image name="flav_DS" width="346" height="332.5"/>
-        <image name="flav_PSP" width="315" height="173"/>
+        <image name="flav_PSP" width="630" height="346"/>
         <image name="flav_bit_coin" width="271" height="270.5"/>
-        <image name="flav_eggtti" width="218.5" height="287.5"/>
-        <image name="flav_garakey" width="117.5" height="337.5"/>
-        <image name="flav_jobs" width="390.5" height="380"/>
-        <image name="flav_obuchi" width="286.5" height="300"/>
-        <image name="main_menu_multipule" width="608" height="81"/>
+        <image name="flav_eggti" width="218.5" height="287.5"/>
+        <image name="flav_garakey" width="235" height="675"/>
+        <image name="flav_jobs" width="781" height="760"/>
+        <image name="flav_obuchi" width="573" height="600"/>
+        <image name="main_menu_multiple" width="608" height="81"/>
         <image name="main_menu_single" width="606" height="81"/>
         <image name="menu_icon" width="144" height="144"/>
     </resources>

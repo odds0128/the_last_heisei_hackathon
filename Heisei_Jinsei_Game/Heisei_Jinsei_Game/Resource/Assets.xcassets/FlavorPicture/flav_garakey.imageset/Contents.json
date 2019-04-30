@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "flav_garakey.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ガラケー.png",
       "scale" : "2x"
     },
     {
