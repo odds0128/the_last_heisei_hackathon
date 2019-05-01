@@ -25,10 +25,10 @@ protocol PlayerAreaDelegate {
 
 protocol ItemAlertDelegate {
     func generateItemAlert(row: Int)
+    func showPurchaseAlert(item: HSItem)
 }
 
 class HSMapViewController: UIViewController, BalloonViewDelegate, RouletteDelegate, PlayerAreaDelegate, ItemAlertDelegate {
-    
     
     let viewModel: HSMapViewViewModel
     
@@ -381,7 +381,7 @@ extension HSMapViewController {
         let name = viewModel.gameController.currentPlayer.name
         let items = viewModel.gameController.currentPlayer.currentItems
         let frame = CGRect(x: view.frame.width/2-width/2, y: view.frame.height, width: width, height: height)
-        itemView = HSItemCustomView(frame: frame, name: name, items: items)
+        itemView = HSItemCustomView(frame: frame, name: name, items: items, shopItems: items.map{$0.item})
         //HSShadow.init(layer: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
         HSShadow.makeShadow(to: itemView.layer, offset: CGSize.zero, opacity: 3, radius: 10)
         itemView.layer.cornerRadius = 50
@@ -411,6 +411,16 @@ extension HSMapViewController {
         blackBackground()
         itemAlertView.setupItemAlert()
         self.view.addSubview(itemAlertView)
+    }
+    
+    /// アイテム購入モーダル表示
+    ///
+    /// - Parameter item: 購入対象アイテム
+    func showPurchaseAlert(item: HSItem) {
+        let vc = HSItemPurchaseAlertViewController(item: item)
+        vc.modalPresentationStyle = .overFullScreen
+        self.blackBackground()
+        self.present(vc, animated: true, completion: nil)
     }
     
     @objc func closeItemView() {

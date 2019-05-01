@@ -27,10 +27,12 @@ class HSItemCustomView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
     var delegate: ItemAlertDelegate!
     
     var items: [HSItemStack]!
+    var shopItems: [HSItem]
     
     var selectedRow: Int!
     
-    init(frame: CGRect, name: String, items: [HSItemStack]) {
+    init(frame: CGRect, name: String, items: [HSItemStack], shopItems: [HSItem]) {
+        self.shopItems = shopItems
         super.init(frame: frame)
         loadNib()
         
@@ -45,6 +47,7 @@ class HSItemCustomView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     required init?(coder aDecoder: NSCoder) {
+        self.shopItems = [] // TODO: Storyboardでの遷移時でもアイテムを渡せるようにする
         super.init(coder: aDecoder)
         loadNib()
     }
@@ -93,7 +96,7 @@ extension HSItemCustomView {
         if (collectionView == itemCollectionView) {
             return items.count
         } else {
-            return 5
+            return shopItems.count
         }
     }
     ///CollectionViewの内容
@@ -111,6 +114,17 @@ extension HSItemCustomView {
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case shopCollectionView:
+            delegate.showPurchaseAlert(item: shopItems[indexPath.row])
+        case itemCollectionView:
+            delegate.generateItemAlert(row: indexPath.row)
+        default:
+            break
+        }
+    }
+    
     ///アイテムのセルを設定
     private func setupItemCollectionViewCell(cell: HSItemCollectionViewCell, indexPath: IndexPath) -> HSItemCollectionViewCell {
         cell.layer.cornerRadius = 10
@@ -121,23 +135,21 @@ extension HSItemCustomView {
         cell.itemNumLabel.text = "x\(items![indexPath.row].count)"
         cell.itemNumLabel.adjustsFontSizeToFitWidth = true
         cell.itemNumLabel.sizeToFit()
-        cell.itemButton.tag = indexPath.row
-        cell.itemButton.addTarget(self, action: #selector(itemBtnTapped), for: .touchUpInside)
         return cell
     }
     
     
     ///ショップのセルを設定
     private func setupShopCollectionViewCell(cell: HSShopCollectionViewCell, indexPath: IndexPath) -> HSShopCollectionViewCell {
+        let item = shopItems[indexPath.item]
         
         cell.layer.cornerRadius = 10
-        cell.shopItemNameLabel.text = "ガラケー"
+        cell.shopItemNameLabel.text = item.name
         cell.shopItemNameLabel.adjustsFontSizeToFitWidth = true
         cell.shopItemNameLabel.sizeToFit()
-        cell.shopItemPriceLabel.text = "¥15000"
+        cell.shopItemPriceLabel.text = "¥\(item.price)"
         cell.shopItemPriceLabel.adjustsFontSizeToFitWidth = true
         cell.shopItemPriceLabel.sizeToFit()
-        cell.shopButton.addTarget(self, action: #selector(shopBtnTapped), for: .touchUpInside)
         return cell
     }
     

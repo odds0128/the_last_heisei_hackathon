@@ -13,8 +13,6 @@ class HSItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var itemNumLabel: UILabel!
-    @IBOutlet weak var background: UIView!
-    @IBOutlet weak var itemButton: UIButton!
     
     
     func setupCell() {
